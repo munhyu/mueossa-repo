@@ -8,9 +8,6 @@ import com.smhrd.mueossa.Repository.MemberRepository;
 @Controller
 public class MemberController {
 
-	@Autowired
-	private MemberRepository repository;
-
-	
-	
+  @Autowired
+  MemberRepository memberRepository;
 }

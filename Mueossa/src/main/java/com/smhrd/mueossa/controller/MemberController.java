@@ -9,5 +9,5 @@ import com.smhrd.mueossa.Repository.MemberRepository;
 public class MemberController {
 
   @Autowired
-  MemberRepository memberRepository;
+  private MemberRepository memberRepository;
 }

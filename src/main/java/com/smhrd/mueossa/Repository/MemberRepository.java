@@ -33,6 +33,6 @@ public interface MemberRepository extends JpaRepository<MemberEntity, String> {
 	// 테이블 대신 entity 객체 사용, 컬럼 대신 필드 사용!
 	// update member set count = count +1 where idx = 2
 
-	MemberEntity findByM_idAndM_pw(String m_id, String m_pw);
+	// MemberEntity findByM_idAndM_pw(String m_id, String m_pw);
 
 }

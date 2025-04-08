@@ -1,11 +1,13 @@
 package com.smhrd.mueossa.entity;
 
+import java.sql.Timestamp;
+
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.smhrd.mueossa.model.Member;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,29 +21,37 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 @RequiredArgsConstructor
 public class MemberEntity {
-	
+
+	@Column(unique = true)
+	@NonNull
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long idx; // pk 값
-	
+	private String m_id;
+
 	@Column(unique = true)
 	@NonNull
-	private String id;
-	
-	@Column(unique = true)
+	private String m_email;
+
+	@Column
 	@NonNull
-	private String email;
-	
-	@Column(nullable = false)
+	private String m_pw;
+
+	@Column
 	@NonNull
-	private String pw;
-	
-// 기타 등등 추가
-	
+	private String m_gender;
+
+	@Column
+	@CreationTimestamp
+	private Timestamp joined_at;
+
+	@Column
+	private String m_role;
+
+	// 기타 등등 추가
 	public MemberEntity(Member member) {
-		this.id = member.getId();
-		this.email = member.getEmail();
-		this.pw = member.getPw();
+		this.m_id = member.getM_id();
+		this.m_email = member.getM_email();
+		this.m_pw = member.getM_pw();
+		this.m_gender = member.getM_gender();
 	}
 
 }

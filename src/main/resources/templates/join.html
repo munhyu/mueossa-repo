@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JoinPage</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+  </head>
+
+  <body>
+    <form method="post" th:action="@{memberInsert}" th:object="${member}">
+      <!-- 인풋태그 만들기
+getM_id();
+member.getM_email();
+member.getM_pw();
+member.getM_gender(); 
+        -->
+      <input type="text" name="m_id" placeholder="아이디" required />
+      <input type="email" name="m_email" placeholder="이메일" required />
+      <input type="password" name="m_pw" placeholder="비밀번호" required />
+      <div>
+        <input type="radio" name="m_gender" id="male" value="M" required />
+        <label for="male">남성</label>
+        <input type="radio" name="m_gender" id="female" value="F" required />
+        <label for="female">여성</label>
+      </div>
+      <input type="submit" value="가입하기" />
+      <input type="reset" value="초기화" />
+    </form>
+  </body>
+</html>

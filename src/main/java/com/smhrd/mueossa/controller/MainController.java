@@ -11,4 +11,9 @@ public class MainController {
     return "index";
   }
 
+  @GetMapping("/goIndex")
+  public String goIndex() {
+    return "index";
+  }
+
 }

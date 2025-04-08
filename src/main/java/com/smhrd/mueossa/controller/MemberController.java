@@ -28,28 +28,29 @@ public class MemberController {
   // 회원가입
   @PostMapping("/memberInsert")
   public String memberInsert(Member member) {
+    System.out.println("회원가입");
     System.out.println(member.toString());
+    System.out.println("회원가입");
     MemberEntity memberEntity = new MemberEntity(member);
-    memberEntity.setM_role("N");
+    memberEntity.setRole("N");
     // 회원가입 로직
     memberRepository.save(memberEntity);
     return "redirect:/goLogin"; // 회원가입 후 로그인 페이지로 리다이렉트
   }
 
-  // // 로그인
-  // @PostMapping("/memberLogin")
-  // public String memberLogin(Member member) {
-  // System.out.println(member.toString());
-  // MemberEntity memberEntity =
-  // memberRepository.findByM_idAndM_pw(member.getM_id(), member.getM_pw());
-  // if (memberEntity != null) {
-  // // 로그인 성공
-  // System.out.println("로그인 성공");
-  // return "redirect:/goIndex"; // 로그인 성공 후 메인 페이지로 리다이렉트
-  // } else {
-  // // 로그인 실패
-  // return "redirect:/goLogin"; // 로그인 실패 시 다시 로그인 페이지로 리다이렉트
-  // }
-  // }
+  // 로그인
+  @PostMapping("/memberLogin")
+  public String memberLogin(Member member) {
+    System.out.println(member.toString());
+    MemberEntity memberEntity = memberRepository.findByIdAndPw(member.getId(), member.getPw());
+    if (memberEntity != null) {
+      // 로그인 성공
+      System.out.println("로그인 성공");
+      return "redirect:/goIndex"; // 로그인 성공 후 메인 페이지로 리다이렉트
+    } else {
+      // 로그인 실패
+      return "redirect:/goLogin"; // 로그인 실패 시 다시 로그인 페이지로 리다이렉트
+    }
+  }
 
 }

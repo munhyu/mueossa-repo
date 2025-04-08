@@ -9,6 +9,7 @@ import com.smhrd.mueossa.model.Member;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,38 +21,39 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
+@Table(name = "member_entity")
 public class MemberEntity {
 
-	@Column(unique = true)
+	@Column(name = "m_id")
 	@NonNull
 	@Id
-	private String m_id;
+	private String id;
 
-	@Column(unique = true)
+	@Column(name = "m_email", unique = true)
 	@NonNull
-	private String m_email;
+	private String email;
 
-	@Column
+	@Column(name = "m_pw")
 	@NonNull
-	private String m_pw;
+	private String pw;
 
-	@Column
+	@Column(name = "m_gender")
 	@NonNull
-	private String m_gender;
+	private String gender;
 
-	@Column
+	@Column(name = "joined_at")
 	@CreationTimestamp
-	private Timestamp joined_at;
+	private Timestamp joinedAt;
 
-	@Column
-	private String m_role;
+	@Column(name = "m_role")
+	private String role;
 
 	// 기타 등등 추가
 	public MemberEntity(Member member) {
-		this.m_id = member.getM_id();
-		this.m_email = member.getM_email();
-		this.m_pw = member.getM_pw();
-		this.m_gender = member.getM_gender();
+		this.id = member.getId();
+		this.email = member.getEmail();
+		this.pw = member.getPw();
+		this.gender = member.getGender();
 	}
 
 }

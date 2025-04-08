@@ -11,12 +11,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Member {
 
-	private String m_id;
-	private String m_email;
-	private String m_pw;
-	private String m_gender;
-	private Timestamp joined_at;
-	private String m_role;
+	private String id;
+	private String email;
+	private String pw;
+	private String gender;
+	private Timestamp joinedAt;
+	private String role;
 
 	// 기타 등등 추가
 

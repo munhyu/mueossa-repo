@@ -1,0 +1,359 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+body {
+    font-family: sans-serif;
+    background: #f5f5f5;
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    overflow: hidden; /* ✅ body 스크롤 막기 */
+}
+
+.background {
+    background-image: url('../images/bgimg.jpg');
+    background-size: cover;
+    background-position: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.mobile-frame {
+    width: 390px;
+    margin: 0 auto;
+    background: #fff;
+    height: 100vh;           /* ✅ 스크롤 영역 고정 */
+    overflow-y: auto;        /* ✅ 내부만 스크롤 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-right: 200px;
+}
+
+.topbar {
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 16px;
+    height: 50px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.topbar h1 {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    margin-left: -10px;
+    margin-top: -8px;
+    padding-right: 10px;
+}
+
+.search-place{
+   background-color: #e2e1e1;
+   border-radius: 20px;
+   padding: 5px 10px;
+   height: 28px;
+   display: flex;
+   align-items: center;
+   position: relative;
+}
+
+.search-place input {
+    border: none;
+    background: transparent;
+    outline: none;
+    width: 200px;
+    height: 28px;
+    font-size: 14px;
+    color: #333;
+}
+
+.search-button { 
+    background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: contain; /* 이미지 크기 조정 */
+    background-position: center; /* 이미지 위치 조정 */
+    border: none;
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin-top: 6px;
+    margin-left: -16px;
+    position: absolute;
+ }
+
+ .login-box {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 20px;
+
+  }
+
+.login-box img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    cursor: pointer;
+
+}
+
+/* 로그인 폼 스타일 */
+#login {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .login-id, .login-pw {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  .login-id input, .login-pw input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  
+  .login-links {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .login-links a {
+    text-decoration: none;
+    color: #666;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .login-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .login-buttons {
+    margin-top: 20px;
+  }
+  
+  .login-buttons button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .login-buttons button:hover {
+    background-color: #45a049;
+  }
+
+/* 회원가입 폼 스타일 */
+#join {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  
+  span {
+    display: block;
+    margin-bottom: 15px;
+  }
+  
+  span input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    box-sizing: border-box;
+  }
+  .input-wrapper {
+  position: relative;
+  width: 100%; /* 부모 요소의 너비를 100%로 설정 */
+}
+
+.input-wrapper input {
+  width: 100%; /* input 태그가 부모 요소의 너비를 채우도록 설정 */
+  padding-right: 90px; /* 버튼이 겹치지 않도록 오른쪽 여백 추가 */
+}
+
+.check-button {
+  position: absolute;
+  right: 10px; /* input 태그의 오른쪽에 위치 */
+  top: 50%; /* 세로 중앙 정렬 */
+  transform: translateY(-50%);
+  padding: 5px 10px;
+  font-size: 12px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.check-button:hover {
+  background-color: #45a049;
+}
+  
+  .join-gender select {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+
+  .divider {
+    border-top: 2px solid #ccc;
+    margin: 40px 0;
+  }
+  
+  .join-links {
+    margin: 20px 0;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  .join-links a {
+    text-decoration: none;
+    color: #666;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .join-links a:hover {
+    text-decoration: underline;
+  }
+  
+  .join-buttons {
+    margin-top: 20px;
+    margin: 0 0px;
+  }
+  
+  .join-buttons button {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .join-buttons button:hover {
+    background-color: #45a049;
+  }
+
+.banner img {
+    width: 100%;
+    display: block;
+}
+
+.section-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 16px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    padding: 0 16px;
+    justify-content: center;
+}
+
+.product-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    width: 45%;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-info {
+    padding: 10px;
+}
+
+.product-title {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.product-price {
+    color: #e91e63;
+    font-weight: bold;
+}
+
+.tabbar {
+    position: absolute; /* ✅ 부모 요소(.mobile-frame)를 기준으로 위치 설정 */
+    bottom: 0;
+    width: 100%; /* 부모 요소의 너비에 맞게 설정 */
+    background: white;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+.tabbar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.tabbar a img {
+    width: 24px;
+    height: 24px;
+    margin-bottom: 4px;
+}
+
+.page {
+    display: none;
+    padding-bottom: 60px;
+}
+
+.page.active {
+    display: block;
+}

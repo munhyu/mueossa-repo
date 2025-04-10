@@ -141,60 +141,72 @@
       </div>
     </div>
 
-    <!-- 여기 footer 메뉴에요! -->
+    <!-- 여기 tabbar 메뉴에요! -->
     <div class="tabbar">
       <a onclick="showPage('home')">
         <img src="https://cdn-icons-png.flaticon.com/512/25/25694.png" alt="홈" />
         홈
       </a>
+      <a onclick="showPage('category')">
+        <img src="https://cdn-icons-png.flaticon.com/512/25/25391.png" alt="장바구니" />
+        카테고리
+      </a>
       <a onclick="showPage('wishlist')">
         <img src="https://cdn-icons-png.flaticon.com/512/1077/1077035.png" alt="찜" />
         찜
-      </a>
-      <a onclick="showPage('cart')">
-        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="장바구니" />
-        장바구니
       </a>
       <a onclick="showPage('profile')">
         <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png" alt="마이페이지" />
         마이페이지
       </a>
     </div>
-    
+
     <!-- 여기 로그인이에요! -->
-<div id="login" class="page">
-  <div class="section-title">LOGIN</div>
-  <form method="post" th:action="@{login}" th:object="${login}">
-    <!-- 아이디 또는 이메일 입력 -->
-    <span class="login-id">
-      <input type="text" id="login-id" name="id" placeholder="ID 또는 email" required />
-    </span>
+    <div id="login" class="page">
+      <div class="section-title">LOGIN</div>
 
-    <!-- 비밀번호 입력 -->
-    <span class="login-pw">
-      <input type="password" id="login-pw" name="password" placeholder="Password" required />
-    </span>
+      <!-- 로그인 폼 위에 에러 메시지 출력 -->
+      <div th:if="${error != null and error != ''}" class="error-message">
+        <p th:text="${error}"></p>
+      </div>
 
-    <div class="divider"></div>
+      <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+        <!-- 아이디 또는 이메일 입력 -->
+        <span class="login-id">
+          <input type="text" id="login-id" name="id" placeholder="ID 또는 email" required />
+        </span>
 
-    <!-- 하단 링크 -->
-    <div class="login-links">
-      <a onclick="showPage('join')">회원가입</a> | 
-      <a href="#">비밀번호 재설정</a> | 
-      <a href="#">문의하기</a>
+        <!-- 비밀번호 입력 -->
+        <span class="login-pw">
+          <input type="password" id="login-pw" name="password" placeholder="Password" required />
+        </span>
+
+        <div class="divider"></div>
+
+        <!-- 하단 링크 -->
+        <div class="login-links">
+          <a onclick="showPage('join')">회원가입</a> |
+          <a href="#">비밀번호 재설정</a> |
+          <a href="#">문의하기</a>
+        </div>
+
+        <!-- 로그인 버튼 -->
+        <div class="login-buttons">
+          <button type="submit">로그인</button>
+        </div>
+      </form>
     </div>
-
-    <!-- 로그인 버튼 -->
-    <div class="login-buttons">
-      <button type="submit">로그인</button>
-    </div>
-  </form>
-</div>
 
     <!-- 여기 회원가입이에요! -->
     <div id="join" class="page">
       <div class="section-title">SIGN UP</div>
-      <form method="post" th:action="@{memberInsert}" th:object="${member}">
+
+      <!-- 회원가입 폼 위에 에러 메시지 출력 -->
+      <div th:if="${error != null and error != ''}" class="error-message">
+        <p th:text="${error}"></p>
+      </div>
+
+      <form method="post" th:action="@{/memberInsert}" th:object="${member}">
         <!-- 아이디 또는 이메일 입력 -->
         <span class="join-id">
           <div class="input-wrapper">
@@ -202,22 +214,22 @@
             <button type="button" class="check-button">중복확인</button>
           </div>
         </span>
-    
+
         <!-- 비밀번호 입력 -->
         <span class="join-pw">
           <input type="password" id="pw" name="pw" placeholder="Password" required />
         </span>
-    
+
         <!-- 비밀번호 확인 -->
         <span class="join-pw-confirm">
           <input type="password" id="pw-confirm" name="pw-confirm" placeholder="Password 확인" required />
         </span>
-    
+
         <!-- 닉네임 입력 -->
         <span class="join-nickname">
           <input type="text" id="nickname" name="nickname" placeholder="닉네임 입력" required />
         </span>
-    
+
         <!-- 성별 선택 -->
         <div class="join-gender">
           <select name="gender" id="gender" required>
@@ -228,15 +240,15 @@
         </div>
 
         <div class="divider"></div>
-        
+
         <!-- 하단 링크 -->
         <div class="join-links">
-          <a onclick="showPage('login')">로그인</a> | 
-          <a href="#">비밀번호 재설정</a> | 
-          <a href="#">계정 찾기</a> | 
+          <a onclick="showPage('login')">로그인</a> |
+          <a href="#">비밀번호 재설정</a> |
+          <a href="#">계정 찾기</a> |
           <a href="#">문의하기</a>
         </div>
-    
+
         <!-- 완료 버튼 -->
         <div class="join-buttons">
           <button type="submit">완료</button>
@@ -250,8 +262,8 @@
     </div>
 
     <!-- 여기 장바구니에요! -->
-    <div id="cart" class="page">
-      <div class="section-title">장바구니가 비어 있습니다.</div>
+    <div id="category" class="page">
+      <div class="section-title">카테고리가 비어있습니다.</div>
     </div>
 
     <!-- 여기 마이페이지에요! -->
@@ -259,8 +271,8 @@
       <div class="section-title">내 정보 페이지입니다.</div>
     </div>
   </div>
-    
-    
+
+
   <script>
     function showPage(id) {
       // 모든 페이지 숨기기
@@ -279,8 +291,29 @@
         topbar.classList.remove("login-active"); // 다른 페이지로 이동 시 원래 디자인으로 복구
       }
     }
-  </script>
   
+    // 스크롤 이벤트 추가
+    document.addEventListener("DOMContentLoaded", () => {
+    document.addEventListener("scroll", () => {
+      const mobileFrame = document.querySelector(".mobile-frame");
+      const tabbar = document.querySelector(".tabbar");
+
+      // 부모 요소의 경계값 계산
+      const frameRect = mobileFrame.getBoundingClientRect();
+      console.log("frameRect.bottom:", frameRect.bottom, "window.innerHeight:", window.innerHeight);
+
+      // 화면 하단에 고정되도록 위치 조정
+      if (frameRect.bottom <= window.innerHeight) {
+        tabbar.style.position = "absolute";
+        tabbar.style.bottom = "0";
+      } else {
+        tabbar.style.position = "fixed";
+        tabbar.style.bottom = "0";
+      }
+    });
+  });
+  </script>
+
 </body>
 
 </html>

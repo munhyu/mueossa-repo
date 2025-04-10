@@ -2,6 +2,7 @@ package com.smhrd.mueossa.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -15,42 +16,45 @@ public class MemberController {
   @Autowired
   private MemberRepository memberRepository;
 
+  // 회원가입 페이지 이동
   @GetMapping("/goJoin")
   public String goJoin() {
-    return "join";
+    return "main"; // main.html로 이동
   }
 
-  @GetMapping("goLogin")
+  // 로그인 페이지 이동
+  @GetMapping("/goLogin")
   public String goLogin() {
-    return "login";
+    return "main"; // main.html로 이동
   }
 
-  // 회원가입
+  // 회원가입 처리
   @PostMapping("/memberInsert")
-  public String memberInsert(Member member) {
-    System.out.println("회원가입");
-    System.out.println(member.toString());
-    System.out.println("회원가입");
+  public String memberInsert(Member member, Model model) {
+    // 비밀번호 확인 로직 추가
+    if (!member.getPw().equals(member.getPwConfirm())) {
+      model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
+      return "main"; // 에러 메시지와 함께 main.html로 이동
+    }
+
     MemberEntity memberEntity = new MemberEntity(member);
     memberEntity.setRole("N");
-    // 회원가입 로직
     memberRepository.save(memberEntity);
     return "redirect:/goLogin"; // 회원가입 후 로그인 페이지로 리다이렉트
   }
 
-  // 로그인
+  // 로그인 처리
   @PostMapping("/memberLogin")
-  public String memberLogin(Member member) {
-    System.out.println(member.toString());
+  public String memberLogin(Member member, Model model) {
+    System.out.println("로그인 시도: ID=" + member.getId() + ", PW=" + member.getPw());
     MemberEntity memberEntity = memberRepository.findByIdAndPw(member.getId(), member.getPw());
     if (memberEntity != null) {
-      // 로그인 성공
       System.out.println("로그인 성공");
-      return "redirect:/goIndex"; // 로그인 성공 후 메인 페이지로 리다이렉트
+      return "redirect:/goIndex"; // 메인 페이지로 리다이렉트
     } else {
-      // 로그인 실패
-      return "redirect:/goLogin"; // 로그인 실패 시 다시 로그인 페이지로 리다이렉트
+      System.out.println("로그인 실패");
+      model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+      return "main"; // 에러 메시지와 함께 main.html로 이동
     }
   }
-
 }

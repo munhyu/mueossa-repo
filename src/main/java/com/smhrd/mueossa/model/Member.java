@@ -14,6 +14,7 @@ public class Member {
 	private String id;
 	private String email;
 	private String pw;
+	private String pwConfirm;
 	private String gender;
 	private Timestamp joinedAt;
 	private String role;

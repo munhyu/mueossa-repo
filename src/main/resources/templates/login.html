@@ -15,9 +15,7 @@
   <div id="login" class="page">
     <div class="section-title">LOGIN</div>
 
-    
-
-    <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+    <form method="post" th:action="@{/userLogin}" th:object="${user}">
       <!-- 아이디 또는 이메일 입력 -->
       <span class="login-id">
         <input type="text" id="login-id" name="id" placeholder="ID" required />
@@ -25,7 +23,7 @@
 
       <!-- 비밀번호 입력 -->
       <span class="login-pw">
-        <input type="password" id="login-pw" name="password" placeholder="Password" required />
+        <input type="password" id="login-pw" name="pw" placeholder="Password" required />
       </span>
 
       <div class="divider"></div>

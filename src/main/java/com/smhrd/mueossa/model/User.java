@@ -9,15 +9,15 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member {
+public class User {
 
 	private String id;
 	private String email;
 	private String pw;
-	private String pwConfirm;
+	private String nick;
 	private String gender;
 	private Timestamp joinedAt;
-	private String role;
+	private String type;
 
 	// 기타 등등 추가
 

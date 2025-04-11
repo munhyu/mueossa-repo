@@ -22,7 +22,7 @@ public class MainController {
   }
 
   // 메인 페이지 이동
-  @GetMapping("goHome")
+  @GetMapping("/goHome")
   public String goHome() {
       return "home";
   }
@@ -68,6 +68,7 @@ public class MainController {
    public String goUpdate() {
        return "update";
    }
+   
    
   
 }

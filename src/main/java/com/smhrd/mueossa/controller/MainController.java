@@ -57,5 +57,11 @@ public class MainController {
        return "mypage";
    }
    
+   // 취향선택 페이지 이동
+   @GetMapping("/goPreference")
+   public String goPreference() {
+       return "preference";
+   }
+   
   
 }

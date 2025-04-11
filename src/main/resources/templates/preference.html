@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="css"></th:block>
+
+<th:block layout:fragment="header"></th:block>
+
+<div layout:fragment="content">
+
+    <div id="login" class="page">
+        <div class="section-title">당신의 취향을 선택하세요.</div>
+
+
+
+        <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+
+            <!-- 취향 선택 -->
+
+            <div class="preference-buttons">
+                <button type="button" class="preference-button">편한</button>
+                <button type="button" class="preference-button">푹신한</button>
+                <button type="button" class="preference-button">가벼운</button>
+                <button type="button" class="preference-button">부드러운</button>
+                <button type="button" class="preference-button">플랫한</button>
+                <button type="button" class="preference-button">예쁜</button>
+                <button type="button" class="preference-button">귀여운</button>
+                <button type="button" class="preference-button">깔끔한</button>
+                <button type="button" class="preference-button">모던한</button>
+                <button type="button" class="preference-button">휘뚜루마뚜루</button>
+                <button type="button" class="preference-button">발볼이 넓은</button>
+                <button type="button" class="preference-button">발볼이 좁은</button>
+                <button type="button" class="preference-button">발볼이 보통</button>
+                <button type="button" class="preference-button">가격이 착한</button>
+                <button type="button" class="preference-button">튼튼한</button>
+            </div>
+
+            <!-- 선택된 취향 데이터를 저장할 hidden 필드 -->
+             <!-- 스크립트 써서 디자인하느라 들어있는거에요!  -->
+            <input type="hidden" name="selectedPreferences" id="selectedPreferences" />
+
+            <!-- 완료 버튼 -->
+            <div class="login-buttons">
+                <button type="submit">취향 선택 완료</button>
+            </div>
+        </form>
+    </div>
+
+
+</div>
+
+<th:block layout:fragment="footer"></th:block>
+
+</html>

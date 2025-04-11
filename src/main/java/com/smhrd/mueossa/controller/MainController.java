@@ -2,6 +2,8 @@ package com.smhrd.mueossa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 
 @Controller
@@ -37,5 +39,18 @@ public class MainController {
      return "login"; // main.html로 이동
    }
   
+   // 카테고리 페이지 이동
+   @GetMapping("/goCategory")
+   public String goCategory() {
+       return "category";
+   }
+   
+   // 찜목록 페이지 이동
+   @GetMapping("/goWishlist")
+   public String goWishlist() {
+       return "wishlist";
+   }
+   
+   
   
 }

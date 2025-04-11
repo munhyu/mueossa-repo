@@ -42,16 +42,13 @@ public interface UserRepository extends JpaRepository<TbUser, String> {
 	TbUser findByIdAndPw(String id, String pw);
 
 	// 회원가입 시 비밀번호 SHA2로 암호화해서 저장하기
-	// @Transactional
-	// @Modifying
-	// @Query("INSERT INTO tb_user (u_id, u_pw, u_email, u_nick, u_gender, u_type,
-	// joined_at) VALUES (:id, :pw, :email, :nick, :gender, :type, :joinedAt)")
-	// int userJoin(@Param("id") String id, @Param("pw") String pw, @Param("email")
-	// String email,
-	// @Param("nick") String nick, @Param("gender") String gender,
-	// @Param("joinedAt") Timestamp joinedAt,
-	// @Param("type") String type);
-	// // 아이디 중복체크
+	@Transactional
+	@Modifying
+	@Query(value = "INSERT INTO tb_user (u_id, u_pw, u_email, u_nick, u_gender, u_type, joined_at) " +
+			"VALUES (:id, SHA2(:pw, 256), :email, :nick, :gender, :type, :joinedAt)", nativeQuery = true)
+	int userJoin(@Param("id") String id, @Param("pw") String pw, @Param("email") String email,
+			@Param("nick") String nick, @Param("gender") String gender,
+			@Param("joinedAt") Timestamp joinedAt, @Param("type") String type); // // 아이디 중복체크
 	// TbUser findById(String id);
 
 }

@@ -73,6 +73,7 @@ body {
 .search-place{
    background-color: #e2e1e1;
    border-radius: 20px;
+   border-color: black;
    padding: 5px 10px;
    height: 28px;
    display: flex;
@@ -84,6 +85,7 @@ body {
     border: none;
     background: transparent;
     outline: none;
+    border-color: black;
     width: 200px;
     height: 28px;
     font-size: 14px;
@@ -108,13 +110,13 @@ body {
  .login-box {
     display: inline-block;
     cursor: pointer;
-    margin-left: 20px;
+    margin-left: 15px;
 
   }
 
 .login-box img {
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 60px;
     display: block;
     cursor: pointer;
 
@@ -130,13 +132,14 @@ body {
   background-color: #ffffffb6;
   margin: 5px;
   font-family: Arial, sans-serif;
+  font-size: 10px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
 }
 
 .mypage-button:hover {
-  background-color: #f0f0f0;
+  background-color: #4CAF50;
 }
 
 .mypage-button.selected {

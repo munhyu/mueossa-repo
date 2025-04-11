@@ -34,7 +34,7 @@ public class MemberController {
     // 비밀번호 확인 로직 추가
     if (!member.getPw().equals(member.getPwConfirm())) {
       model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
-      return "main"; // 에러 메시지와 함께 main.html로 이동
+      return "preference"; // 에러 메시지와 함께 main.html로 이동
     }
 
     MemberEntity memberEntity = new MemberEntity(member);
@@ -50,11 +50,11 @@ public class MemberController {
     MemberEntity memberEntity = memberRepository.findByIdAndPw(member.getId(), member.getPw());
     if (memberEntity != null) {
       System.out.println("로그인 성공");
-      return "redirect:/goIndex"; // 메인 페이지로 리다이렉트
+      return "redirect:/goHome"; // 메인 페이지로 리다이렉트
     } else {
       System.out.println("로그인 실패");
       model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
-      return "main"; // 에러 메시지와 함께 main.html로 이동
+      return "home"; // 에러 메시지와 함께 main.html로 이동
     }
   }
 }

@@ -7,16 +7,20 @@
 <th:block layout:fragment="header"></th:block>
 
 <div layout:fragment="content">
-    
 
-     <!-- 여기 마이페이지에요! -->
-     <div id="profile" class="page">
-        <div class="section-title">내 정보 페이지입니다.</div>
-      </div>
-
-      
+<div id="login" class="page">
+  <div class="section-title">마이페이지</div>
+  <div class="mypage-buttons">
+    <button type="button" class="mypage-button" onclick="location.href='goUpdate'">회원정보 수정</button>
+    <button type="button" class="mypage-button" onclick="location.href='goPreference'">취향 선택</button>
+    <button type="button" class="mypage-button" onclick="location.href='goWishlist'">찜한 상품</button>
+  </div>
+</div>
 </div>
 
+
 <th:block layout:fragment="footer"></th:block>
+
+<th:block layout:fragment="script-footer"></th:block>
 
 </html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="css"></th:block>
+
+<th:block layout:fragment="header"></th:block>
+
+<div layout:fragment="content">
+    
+
+    <div id="join" class="page">
+        <div class="section-title">회원 정보 수정</div>
+    
+        <!-- 회원가입 폼 위에 에러 메시지 출력 -->
+        <div th:if="${error != null and error != ''}" class="error-message">
+          <p th:text="${error}"></p>
+        </div>
+    
+        <form method="post" th:action="@{/memberInsert}" th:object="${member}">
+          
+    
+          <!-- email 입력 -->
+          <span class="join-email">
+            <div class="input-wrapper">
+              <input type="email" id="email" name="email" placeholder="변경할 email" required />
+              <button type="button" class="check-button">중복확인</button>
+            </div>
+          </span>
+    
+          <!-- 비밀번호 입력 -->
+          <span class="join-pw">
+            <input type="password" id="pw" name="pw" placeholder="변경할 Password" required />
+          </span>
+    
+          <!-- 비밀번호 확인 -->
+          <span class="join-pw-confirm">
+            <input type="password" id="pw-confirm" name="pw-confirm" placeholder="변경할 Password 확인" required />
+          </span>
+    
+          <!-- 닉네임 입력 -->
+          <span class="join-nickname">
+            <input type="text" id="nickname" name="nickname" placeholder="변경할 닉네임 입력" required />
+          </span>
+    
+    
+          <div class="divider"></div>
+    
+          <!-- 하단 링크 -->
+          <div class="join-links">
+            <a href="goLogin">로그인</a> |
+            <a href="#">비밀번호 재설정</a> |
+            <a href="#">계정 찾기</a> |
+            <a href="#">문의하기</a>
+          </div>
+    
+          <!-- 완료 버튼 -->
+          <div class="join-buttons">
+            <button type="submit">완료</button>
+          </div>
+        </form>
+      </div>
+
+
+</div>
+
+<th:block layout:fragment="footer"></th:block>
+
+<th:block layout:fragment="script-footer"></th:block>
+
+</html>

@@ -63,5 +63,11 @@ public class MainController {
        return "preference";
    }
    
+   // 회원 정보 수정 페이지 이동
+   @GetMapping("/goUpdate")
+   public String goUpdate() {
+       return "update";
+   }
+   
   
 }

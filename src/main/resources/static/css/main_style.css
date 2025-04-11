@@ -53,6 +53,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
+.topbar a {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+
 .topbar h1 {
     font-size: 18px;
     color: #333;
@@ -335,6 +343,7 @@ body {
   z-index: 1000; /* 다른 요소 위에 표시 */
   border-top: 1px solid #e0e0e0; /* 상단 경계선 */
   border-radius: 20px; 
+  margin-left: 15px;
 }
 
 .tabbar a {

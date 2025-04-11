@@ -2,7 +2,6 @@ package com.smhrd.mueossa.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class MainController {
@@ -11,11 +10,6 @@ public class MainController {
   @GetMapping("/")
   public String home() {
     return "home";
-  }
-
-  @GetMapping("/goIndex")
-  public String goIndex() {
-    return "index";
   }
 
   // 메인 페이지 이동
@@ -52,6 +46,12 @@ public class MainController {
   @GetMapping("/goMypage")
   public String goMypage() {
     return "mypage";
+  }
+
+  // 취향선택 페이지 이동
+  @GetMapping("/goPreference")
+  public String goPreference() {
+    return "preference";
   }
 
 }

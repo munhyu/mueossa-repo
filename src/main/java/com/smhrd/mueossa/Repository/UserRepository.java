@@ -1,7 +1,13 @@
 package com.smhrd.mueossa.Repository;
 
+import java.sql.Timestamp;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.smhrd.mueossa.entity.TbUser;
 
@@ -35,7 +41,17 @@ public interface UserRepository extends JpaRepository<TbUser, String> {
 
 	TbUser findByIdAndPw(String id, String pw);
 
-	// 아이디 중복체크
-	TbUser findById(String id);
+	// 회원가입 시 비밀번호 SHA2로 암호화해서 저장하기
+	// @Transactional
+	// @Modifying
+	// @Query("INSERT INTO tb_user (u_id, u_pw, u_email, u_nick, u_gender, u_type,
+	// joined_at) VALUES (:id, :pw, :email, :nick, :gender, :type, :joinedAt)")
+	// int userJoin(@Param("id") String id, @Param("pw") String pw, @Param("email")
+	// String email,
+	// @Param("nick") String nick, @Param("gender") String gender,
+	// @Param("joinedAt") Timestamp joinedAt,
+	// @Param("type") String type);
+	// // 아이디 중복체크
+	// TbUser findById(String id);
 
 }

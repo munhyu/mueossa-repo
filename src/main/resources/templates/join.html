@@ -74,15 +74,22 @@
 
   <!-- 아이디 중복체크 스크립트 -->
   <script th:inline="javascript">
-
     document.querySelector('.check-button').addEventListener('click', function () {
       const id = document.querySelector('#id').value;
       if (id) {
-        // 요청을 통해 중복 체크
-        fetch('/checkId?id=' + id)
+        const formData = new URLSearchParams();
+        formData.append('id', id);
+
+        fetch('/checkId', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData.toString()
+        })
           .then(response => response.json())
           .then(data => {
-            if (data.exists) {
+            if (data === false) {
               alert('이미 사용 중인 아이디입니다.');
             } else {
               alert('사용 가능한 아이디입니다.');
@@ -93,6 +100,7 @@
         alert('아이디를 입력하세요.');
       }
     });
+
   </script>
 
 </th:block>

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smhrd.mueossa.Repository.UserRepository;
 import com.smhrd.mueossa.entity.TbUser;
@@ -34,11 +36,23 @@ public class UserController {
     TbUser tbUser = userRepository.findByIdAndPw(user.getId(), user.getPw());
     if (tbUser != null) {
       System.out.println("로그인 성공");
-      return "redirect:/goMain"; // 메인 페이지로 리다이렉트
+      return "redirect:/goHome"; // 메인 페이지로 리다이렉트
     } else {
       System.out.println("로그인 실패");
       model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
-      return "main"; // 에러 메시지와 함께 main.html로 이동
+      return "home"; // 에러 메시지와 함께 main.html로 이동
     }
   }
+
+  // // 아이디 중복 체크
+  // @PostMapping("/checkId")
+  // @ResponseBody
+  // public boolean checkId(@RequestParam("id") String id) {
+  // TbUser tbUser = userRepository.findByUserId(id);
+  // if (tbUser != null) {
+  // return false; // 중복된 아이디가 존재하는 경우
+  // } else {
+  // return true; // 중복되지 않은 아이디인 경우
+  // }
+  // }
 }

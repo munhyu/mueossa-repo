@@ -354,11 +354,7 @@ body {
 }
 
 .page {
-    display: none;
     padding-bottom: 60px;
     min-height: calc(100vh - 50px);
 }
 
-.page.active {
-    display: block;
-}

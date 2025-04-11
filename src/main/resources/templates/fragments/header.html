@@ -1,0 +1,26 @@
+<html lang="ko">
+
+
+<th:block th:fragment="header">
+
+
+<div class="topbar">
+    <h1>mueossa</h1>
+    <div class="search-place">
+        <form action="#" class="search-keyword">
+            <input type="text" placeholder="검색어를 입력하세요" />
+            <button type="submit" class="search-button"></button>
+        </form>
+    </div>
+    <div class="login-box" onclick="location.href='goLogin'">
+        <img th:src="@{/images/favicon_login.ico}" alt="Login" class="login-image">
+    </div>
+</div>
+
+
+</th:block>
+
+
+
+
+</html>

@@ -270,27 +270,11 @@
     <div id="profile" class="page">
       <div class="section-title">내 정보 페이지입니다.</div>
     </div>
-  </div>
+  
 
 
   <script>
-    function showPage(id) {
-      // 모든 페이지 숨기기
-      document.querySelectorAll(".page").forEach((page) => {
-        page.classList.remove("active");
-      });
-  
-      // 선택한 페이지 활성화
-      document.getElementById(id).classList.add("active");
-  
-      // 톱바 디자인 변경
-      const topbar = document.querySelector(".topbar");
-      if (id === "join") {
-        topbar.classList.add("login-active"); // 로그인 페이지일 때 디자인 변경
-      } else {
-        topbar.classList.remove("login-active"); // 다른 페이지로 이동 시 원래 디자인으로 복구
-      }
-    }
+    
   
     // 스크롤 이벤트 추가
     document.addEventListener("DOMContentLoaded", () => {

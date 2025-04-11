@@ -31,7 +31,12 @@
 	</properties>
 	<dependencies>
 
-
+		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->
+		<dependency>
+			<groupId>nz.net.ultraq.thymeleaf</groupId>
+			<artifactId>thymeleaf-layout-dialect</artifactId>
+		</dependency>
+		
 		<!-- 환경변수 사용을 위한 dependency -->
 		<dependency>
 			<groupId>io.github.cdimascio</groupId>

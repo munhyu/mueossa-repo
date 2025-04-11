@@ -1,0 +1,49 @@
+<!-- layout 설정-->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mueossa</title>
+
+    <link rel="stylesheet" th:href="@{/css/main_style.css}" />
+
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+</head>
+
+<body>
+
+
+
+
+    <div class="background"></div>
+
+    <div class="mobile-frame">
+
+
+        <!-- 페이지 콘텐츠 -->
+
+
+
+
+
+
+
+
+
+        <th:block th:replace="~{fragments/header :: header}"></th:block>
+
+
+
+        <th:block layout:fragment="content"></th:block>
+
+
+        <th:block th:replace="~{fragments/footer :: footer}"></th:block>
+
+    </div>
+</body>
+
+</html>

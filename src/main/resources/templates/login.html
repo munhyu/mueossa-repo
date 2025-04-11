@@ -1,17 +1,51 @@
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JoinPage</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}" />
-  </head>
+<!-- layout 쓰는 파일-->
 
-  <body>
-    <form th:action="@{memberLogin}" method="post" th:object="${member}">
-      <input type="text" name="id" placeholder="아이디" required />
-      <input type="password" name="pw" placeholder="비밀번호" required />
-      <input type="submit" value="로그인" />
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="css"></th:block>
+
+<th:block layout:fragment="header"></th:block>
+
+
+<th:block layout:fragment="content">
+
+  <!-- 여기 로그인이에요! -->
+  <div id="login" class="page">
+    <div class="section-title">LOGIN</div>
+
+    
+
+    <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+      <!-- 아이디 또는 이메일 입력 -->
+      <span class="login-id">
+        <input type="text" id="login-id" name="id" placeholder="ID 또는 email" required />
+      </span>
+
+      <!-- 비밀번호 입력 -->
+      <span class="login-pw">
+        <input type="password" id="login-pw" name="password" placeholder="Password" required />
+      </span>
+
+      <div class="divider"></div>
+
+      <!-- 하단 링크 -->
+      <div class="login-links">
+        <a href="goJoin">회원가입</a> |
+        <a href="#">비밀번호 재설정</a> |
+        <a href="#">문의하기</a>
+      </div>
+
+      <!-- 로그인 버튼 -->
+      <div class="login-buttons">
+        <button type="submit">로그인</button>
+      </div>
     </form>
-  </body>
+  </div>
+
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
 </html>

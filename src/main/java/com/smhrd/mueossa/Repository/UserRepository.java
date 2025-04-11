@@ -3,10 +3,10 @@ package com.smhrd.mueossa.Repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.smhrd.mueossa.entity.MemberEntity;
+import com.smhrd.mueossa.entity.TbUser;
 
 @Repository
-public interface MemberRepository extends JpaRepository<MemberEntity, String> {
+public interface UserRepository extends JpaRepository<TbUser, String> {
 	// 기본적으로 제공하고 있는 CRUD
 	// 1. findAll()
 	// - select * from 테이블명;
@@ -33,6 +33,9 @@ public interface MemberRepository extends JpaRepository<MemberEntity, String> {
 	// 테이블 대신 entity 객체 사용, 컬럼 대신 필드 사용!
 	// update member set count = count +1 where idx = 2
 
-	MemberEntity findByIdAndPw(String id, String pw);
+	TbUser findByIdAndPw(String id, String pw);
+
+	// 아이디 중복체크
+	TbUser findById(String id);
 
 }

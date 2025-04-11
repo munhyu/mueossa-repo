@@ -170,7 +170,7 @@
         <p th:text="${error}"></p>
       </div>
 
-      <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+      <form method="post" th:action="@{/userLogin}" th:object="${user}">
         <!-- 아이디 또는 이메일 입력 -->
         <span class="login-id">
           <input type="text" id="login-id" name="id" placeholder="ID 또는 email" required />
@@ -206,7 +206,7 @@
         <p th:text="${error}"></p>
       </div>
 
-      <form method="post" th:action="@{/memberInsert}" th:object="${member}">
+      <form method="post" th:action="@{/userInsert}" th:object="${user}">
         <!-- 아이디 또는 이메일 입력 -->
         <span class="join-id">
           <div class="input-wrapper">
@@ -270,33 +270,33 @@
     <div id="profile" class="page">
       <div class="section-title">내 정보 페이지입니다.</div>
     </div>
-  
 
 
-  <script>
-    
-  
-    // 스크롤 이벤트 추가
-    document.addEventListener("DOMContentLoaded", () => {
-    document.addEventListener("scroll", () => {
-      const mobileFrame = document.querySelector(".mobile-frame");
-      const tabbar = document.querySelector(".tabbar");
 
-      // 부모 요소의 경계값 계산
-      const frameRect = mobileFrame.getBoundingClientRect();
-      console.log("frameRect.bottom:", frameRect.bottom, "window.innerHeight:", window.innerHeight);
+    <script>
 
-      // 화면 하단에 고정되도록 위치 조정
-      if (frameRect.bottom <= window.innerHeight) {
-        tabbar.style.position = "absolute";
-        tabbar.style.bottom = "0";
-      } else {
-        tabbar.style.position = "fixed";
-        tabbar.style.bottom = "0";
-      }
-    });
-  });
-  </script>
+
+      // 스크롤 이벤트 추가
+      document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("scroll", () => {
+          const mobileFrame = document.querySelector(".mobile-frame");
+          const tabbar = document.querySelector(".tabbar");
+
+          // 부모 요소의 경계값 계산
+          const frameRect = mobileFrame.getBoundingClientRect();
+          console.log("frameRect.bottom:", frameRect.bottom, "window.innerHeight:", window.innerHeight);
+
+          // 화면 하단에 고정되도록 위치 조정
+          if (frameRect.bottom <= window.innerHeight) {
+            tabbar.style.position = "absolute";
+            tabbar.style.bottom = "0";
+          } else {
+            tabbar.style.position = "fixed";
+            tabbar.style.bottom = "0";
+          }
+        });
+      });
+    </script>
 
 </body>
 

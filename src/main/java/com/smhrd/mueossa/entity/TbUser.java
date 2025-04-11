@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 import org.hibernate.annotations.CreationTimestamp;
 
-import com.smhrd.mueossa.model.Member;
+import com.smhrd.mueossa.model.User;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,23 +21,27 @@ import lombok.RequiredArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @RequiredArgsConstructor
-@Table(name = "member_entity")
-public class MemberEntity {
+@Table(name = "tb_user")
+public class TbUser {
 
-	@Column(name = "m_id")
+	@Column(name = "u_id")
 	@NonNull
 	@Id
 	private String id;
 
-	@Column(name = "m_email", unique = true)
+	@Column(name = "u_email", unique = true)
 	@NonNull
 	private String email;
 
-	@Column(name = "m_pw")
+	@Column(name = "u_pw")
 	@NonNull
 	private String pw;
 
-	@Column(name = "m_gender")
+	@Column(name = "u_nick")
+	@NonNull
+	private String nick;
+
+	@Column(name = "u_gender")
 	@NonNull
 	private String gender;
 
@@ -45,15 +49,16 @@ public class MemberEntity {
 	@CreationTimestamp
 	private Timestamp joinedAt;
 
-	@Column(name = "m_role")
-	private String role;
+	@Column(name = "u_type")
+	private String type;
 
 	// 기타 등등 추가
-	public MemberEntity(Member member) {
-		this.id = member.getId();
-		this.email = member.getEmail();
-		this.pw = member.getPw();
-		this.gender = member.getGender();
+	public TbUser(User user) {
+		this.id = user.getId();
+		this.email = user.getEmail();
+		this.pw = user.getPw();
+		this.nick = user.getNick();
+		this.gender = user.getGender();
 	}
 
 }

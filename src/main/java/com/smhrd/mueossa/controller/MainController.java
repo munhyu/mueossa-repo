@@ -48,4 +48,10 @@ public class MainController {
     return "wishlist";
   }
 
+  // 마이페이지 페이지 이동
+  @GetMapping("/goMypage")
+  public String goMypage() {
+    return "mypage";
+  }
+
 }

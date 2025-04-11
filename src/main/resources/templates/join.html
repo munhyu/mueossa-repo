@@ -19,7 +19,7 @@
       <p th:text="${error}"></p>
     </div>
 
-    <form method="post" th:action="@{/memberInsert}" th:object="${member}">
+    <form method="post" th:action="@{/userInsert}" th:object="${user}">
       <!-- 아이디  입력 -->
       <span class="join-id">
         <div class="input-wrapper">
@@ -41,14 +41,9 @@
         <input type="password" id="pw" name="pw" placeholder="Password" required />
       </span>
 
-      <!-- 비밀번호 확인 -->
-      <span class="join-pw-confirm">
-        <input type="password" id="pw-confirm" name="pw-confirm" placeholder="Password 확인" required />
-      </span>
-
       <!-- 닉네임 입력 -->
       <span class="join-nickname">
-        <input type="text" id="nickname" name="nickname" placeholder="닉네임 입력" required />
+        <input type="text" id="nickname" name="nick" placeholder="닉네임 입력" required />
       </span>
 
       <!-- 성별 선택 -->
@@ -76,6 +71,29 @@
       </div>
     </form>
   </div>
+
+  <!-- 아이디 중복체크 스크립트 -->
+  <script th:inline="javascript">
+
+    document.querySelector('.check-button').addEventListener('click', function () {
+      const id = document.querySelector('#id').value;
+      if (id) {
+        // 요청을 통해 중복 체크
+        fetch('/checkId?id=' + id)
+          .then(response => response.json())
+          .then(data => {
+            if (data.exists) {
+              alert('이미 사용 중인 아이디입니다.');
+            } else {
+              alert('사용 가능한 아이디입니다.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        alert('아이디를 입력하세요.');
+      }
+    });
+  </script>
 
 </th:block>
 

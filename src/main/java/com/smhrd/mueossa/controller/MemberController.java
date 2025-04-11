@@ -31,12 +31,6 @@ public class MemberController {
   // 회원가입 처리
   @PostMapping("/memberInsert")
   public String memberInsert(Member member, Model model) {
-    // 비밀번호 확인 로직 추가
-    if (!member.getPw().equals(member.getPwConfirm())) {
-      model.addAttribute("error", "비밀번호가 일치하지 않습니다.");
-      return "main"; // 에러 메시지와 함께 main.html로 이동
-    }
-
     MemberEntity memberEntity = new MemberEntity(member);
     memberEntity.setRole("N");
     memberRepository.save(memberEntity);
@@ -45,7 +39,10 @@ public class MemberController {
 
   // 로그인 처리
   @PostMapping("/memberLogin")
-  public String memberLogin(Member member, Model model) {
+  public String memberLogin(Member member) {
+
+    //
+
     System.out.println("로그인 시도: ID=" + member.getId() + ", PW=" + member.getPw());
     MemberEntity memberEntity = memberRepository.findByIdAndPw(member.getId(), member.getPw());
     if (memberEntity != null) {

@@ -20,7 +20,7 @@
     </div>
 
     <form method="post" th:action="@{/memberInsert}" th:object="${member}">
-      <!-- 아이디 입력 -->
+      <!-- 아이디  입력 -->
       <span class="join-id">
         <div class="input-wrapper">
           <input type="text" id="id" name="id" placeholder="ID" required />
@@ -28,10 +28,10 @@
         </div>
       </span>
 
-      <!-- 이메일 입력 -->
-      <span class="join-id">
+      <!-- email 입력 -->
+      <span class="join-email">
         <div class="input-wrapper">
-          <input type="text" id="email" name="email" placeholder="EMAIL" required />
+          <input type="email" id="email" name="email" placeholder="email" required />
           <button type="button" class="check-button">중복확인</button>
         </div>
       </span>

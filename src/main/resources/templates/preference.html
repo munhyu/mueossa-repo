@@ -8,12 +8,12 @@
 
 <div layout:fragment="content">
 
-    <div id="login" class="page">
+    <div id="join" class="page">
         <div class="section-title">당신의 취향을 선택하세요.</div>
 
 
-
-        <form method="post" th:action="@{/memberLogin}" th:object="${member}">
+        <!-- 페이지 이동하려고 임시로 get 해두고 goHome 해둔거에요 기능 만드실 때 post로 변경하심 될듯??? -->
+        <form method="get" th:action="@{/goHome}" th:object="${member}">
 
             <!-- 취향 선택 -->
 
@@ -27,10 +27,10 @@
                 <button type="button" class="preference-button">귀여운</button>
                 <button type="button" class="preference-button">깔끔한</button>
                 <button type="button" class="preference-button">모던한</button>
-                <button type="button" class="preference-button">휘뚜루마뚜루</button>
                 <button type="button" class="preference-button">발볼이 넓은</button>
                 <button type="button" class="preference-button">발볼이 좁은</button>
                 <button type="button" class="preference-button">발볼이 보통</button>
+                <button type="button" class="preference-button">휘뚜루마뚜루</button>
                 <button type="button" class="preference-button">가격이 착한</button>
                 <button type="button" class="preference-button">튼튼한</button>
             </div>

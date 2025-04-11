@@ -23,7 +23,7 @@ public class UserController {
     TbUser tbUser = new TbUser(user);
     tbUser.setType("U");
     userRepository.save(tbUser);
-    return "redirect:/goLogin"; // 회원가입 후 로그인 페이지로 리다이렉트
+    return "redirect:/goPreference"; // 회원가입 후 로그인 페이지로 리다이렉트
   }
 
   // 로그인 처리

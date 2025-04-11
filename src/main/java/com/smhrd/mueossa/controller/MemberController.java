@@ -19,13 +19,13 @@ public class MemberController {
   // // 회원가입 페이지 이동
   // @GetMapping("/goJoin")
   // public String goJoin() {
-  //   return "main"; // main.html로 이동
+  // return "main"; // main.html로 이동
   // }
 
   // // 로그인 페이지 이동
   // @GetMapping("/goLogin")
   // public String goLogin() {
-  //   return "main"; // main.html로 이동
+  // return "main"; // main.html로 이동
   // }
 
   // 회원가입 처리

@@ -48,7 +48,8 @@ public interface UserRepository extends JpaRepository<TbUser, String> {
 			"VALUES (:id, SHA2(:pw, 256), :email, :nick, :gender, :type, :joinedAt)", nativeQuery = true)
 	int userJoin(@Param("id") String id, @Param("pw") String pw, @Param("email") String email,
 			@Param("nick") String nick, @Param("gender") String gender,
-			@Param("joinedAt") Timestamp joinedAt, @Param("type") String type); // // 아이디 중복체크
+			@Param("joinedAt") Timestamp joinedAt, @Param("type") String type);
+
 	// TbUser findById(String id);
 
 }

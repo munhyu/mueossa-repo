@@ -1,5 +1,7 @@
 package com.smhrd.mueossa.controller;
 
+import java.sql.Timestamp;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smhrd.mueossa.Repository.UserRepository;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class UserController {
@@ -22,13 +26,25 @@ public class UserController {
   public String userInsert(User user, Model model) {
     TbUser tbUser = new TbUser(user);
     tbUser.setType("U");
-    userRepository.save(tbUser);
-    return "redirect:/goPreference"; // 회원가입 후 로그인 페이지로 리다이렉트
+    Timestamp joinedAt = new Timestamp(System.currentTimeMillis());
+    int result = userRepository.userJoin(user.getId(),
+        user.getPw(), // 비밀번호는 Repository에서 SHA2로 암호화
+        user.getEmail(),
+        user.getNick(),
+        user.getGender(),
+        joinedAt,
+        "U"); // 회원 타입 (일반 사용자));
+    if (result > 0) {
+      return "redirect:/goPreference"; // 회원가입 성공 시 리다이렉트
+    } else {
+      model.addAttribute("error", "회원가입에 실패했습니다.");
+      return "home"; // 실패 시 홈 화면으로 이동
+    }
   }
 
   // 로그인 처리
   @PostMapping("/userLogin")
-  public String userLogin(User user, Model model) {
+  public String userLogin(User user, HttpSession session, Model model) {
 
     // 비밀번호
     System.out.println("로그인 시도: ID=" + user.getId() + ", PW=" + user.getPw());

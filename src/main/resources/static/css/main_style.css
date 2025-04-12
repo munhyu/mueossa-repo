@@ -81,7 +81,6 @@ body {
 }
 
 .search-place {
-  background-color: #e2e1e1;
   border-radius: 20px;
   border-color: black;
   padding: 5px 10px;
@@ -92,13 +91,13 @@ body {
 }
 
 .search-place input {
-  border: none;
   background: transparent;
   outline: none;
-  border-color: black;
+  border-radius: 15px;
+  border-color: rgba(0, 0, 0, 0.466);
   width: 200px;
   height: 28px;
-  font-size: 14px;
+  font-size: 12px;
   color: #333;
 }
 
@@ -114,8 +113,8 @@ body {
   cursor: pointer;
   height: 15px;
   width: 15px;
-  margin-top: 6px;
-  margin-left: -16px;
+  margin-top: 7px;
+  margin-left: -22px;
   position: absolute;
 }
 
@@ -123,7 +122,7 @@ body {
   display: inline-block;
   cursor: pointer;
   margin-left: 15px;
-
+  margin-top: 8px;
 }
 
 .login-box img {

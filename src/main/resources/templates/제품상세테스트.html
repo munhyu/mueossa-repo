@@ -1,0 +1,79 @@
+<!-- layout 쓰는 파일-->
+
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+>
+  <th:block layout:fragment="script"></th:block>
+
+  <th:block layout:fragment="css"></th:block>
+
+  <th:block layout:fragment="header"></th:block>
+  <!-- 콘텐츠 -->
+  <div layout:fragment="content">
+    <div id="home" class="page active">
+      <div class="banner">
+        <img src="https://picsum.photos/400/150?random=1" alt="배너" />
+      </div>
+
+      <div class="main-title">사용자의 취향에 맞는 추천 상품</div>
+
+      <div class="main-title2">사용자의 취향에 맞는 추천 상품</div>
+
+      <div class="divider2"></div>
+
+      <div class="product-list">
+        <!-- 상품 카드 반복 -->
+
+        <div class="product-card">
+          <img th:src="${product.pImage}" alt="상품 이미지" />
+          <div class="product-info">
+            <div class="product-title" th:text="${product.pName}"></div>
+            <div
+              class="product-title"
+              name="pd_rating"
+              th:text="${product.pRating}"
+            ></div>
+            <div
+              class="product-title"
+              name="discount"
+              th:text="${product.pDiscount}"
+            ></div>
+            <div class="product-price" th:text="${product.pPrice}"></div>
+            <!-- 신발 종류 -->
+            <div
+              th:text="'카테고리: '+${product.pGroup} +' > '+ ${product.pType}"
+            ></div>
+          </div>
+        </div>
+
+        <!-- 카테고리 점수 -->
+        <th:block>
+          <div th:text="'편한: '+ ${prodFeelCategory.ctComf}"></div>
+          <div th:text="'푹신한: '+ ${prodFeelCategory.ctFluffy}"></div>
+          <div th:text="'부드러운: '+ ${prodFeelCategory.ctSoft}"></div>
+          <div th:text="'플랫한: '+ ${prodFeelCategory.ctFlat}"></div>
+          <div th:text="'예쁜: '+ ${prodFeelCategory.ctPretty}"></div>
+          <div th:text="'귀여운: '+ ${prodFeelCategory.ctCute}"></div>
+          <div th:text="'깔끔한: '+ ${prodFeelCategory.ctNeat}"></div>
+          <div th:text="'모던한: '+ ${prodFeelCategory.ctModern}"></div>
+          <div th:text="'휘뚜루마뚜루: '+ ${prodFeelCategory.ctHip}"></div>
+          <div th:text="'발볼이 넓은: '+ ${prodFeelCategory.ctWide}"></div>
+          <div th:text="'발볼이 좁은: '+ ${prodFeelCategory.ctNarrow}"></div>
+          <div th:text="'발볼이 보통: '+ ${prodFeelCategory.ctStandard}"></div>
+          <div th:text="'가격이 착한: '+ ${prodFeelCategory.ctCost}"></div>
+          <div th:text="'튼튼한: '+ ${prodFeelCategory.ctStrong}"></div>
+        </th:block>
+
+        <!-- 제품 설명 이미지 -->
+        <th:block th:each="productImage : ${ProdImageList}">
+          <img th:src="${productImage.imgName}" alt="상품 이미지" />
+        </th:block>
+      </div>
+    </div>
+  </div>
+
+  <th:block layout:fragment="footer"></th:block>
+</html>

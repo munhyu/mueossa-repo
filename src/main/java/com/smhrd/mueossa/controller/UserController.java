@@ -4,12 +4,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smhrd.mueossa.Repository.UserRepository;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
 
 import jakarta.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
@@ -56,4 +59,12 @@ public class UserController {
     // Optional 처리
     return userRepository.findById(id).isEmpty(); // 중복되지 않은 경우 true 반환
   }
+
+  // 로그아웃
+  @GetMapping("/logout")
+  public String logout(HttpSession session) {
+    session.invalidate(); // 세션 무효화
+    return "redirect:/goHome"; // 홈 화면으로 리다이렉트
+  }
+
 }

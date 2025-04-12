@@ -34,7 +34,6 @@
 		<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
-				<version>1.18.0</version>
 		</dependency>
 		
 		<!-- https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect -->

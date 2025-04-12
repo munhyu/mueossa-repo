@@ -24,7 +24,13 @@
       <span class="join-id">
         <div class="input-wrapper">
           <input type="text" id="id" name="id" placeholder="ID" required />
-          <button type="button" class="check-button">중복확인</button>
+          <button type="button" id="check" class="id-check-button check-button">중복확인</button>
+        </div>
+      </span>
+
+      <span class="join-id">
+        <div class="input-wrapper">
+          <input type="text" id="id_check" placeholder="ID중복확인을 해주세요" readonly />
         </div>
       </span>
 
@@ -32,9 +38,16 @@
       <span class="join-email">
         <div class="input-wrapper">
           <input type="email" id="email" name="email" placeholder="email" required />
-          <button type="button" class="check-button">중복확인</button>
+          <button type="button" id="check" class="email-check-button check-button">중복확인</button>
         </div>
       </span>
+
+      <span class="join-email">
+        <div class="input-wrapper">
+          <input type="text" id="email_check" placeholder="EMAIL중복확인을 해주세요" readonly />
+        </div>
+      </span>
+
 
       <!-- 비밀번호 입력 -->
       <span class="join-pw">
@@ -73,8 +86,16 @@
   </div>
 
   <!-- 아이디 중복체크 스크립트 -->
+
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+
+<th:block layout:fragment="script-footer">
+
   <script th:inline="javascript">
-    document.querySelector('.check-button').addEventListener('click', function () {
+    document.querySelector('.id-check-button').addEventListener('click', function () {
       const id = document.querySelector('#id').value;
       if (id) {
         const formData = new URLSearchParams();
@@ -90,9 +111,14 @@
           .then(response => response.json())
           .then(data => {
             if (data === false) {
-              alert('이미 사용 중인 아이디입니다.');
+              $('#id_check').val('이미 사용 중인 아이디입니다.');
+
             } else {
-              alert('사용 가능한 아이디입니다.');
+              $('#id_check').val('사용 가능한 아이디입니다.');
+              const emailCheck = $('#email_check').val();
+              if (emailCheck === '사용 가능한 이메일입니다.') {
+                $('button[type="submit"]').attr('disabled', false);
+              }
             }
           })
           .catch(error => console.error('Error:', error));
@@ -101,10 +127,54 @@
       }
     });
 
+    // duplicate email check
+    document.querySelector('.email-check-button').addEventListener('click', function () {
+      const email = document.querySelector('#email').value;
+      if (email) {
+        const formData = new URLSearchParams();
+        formData.append('email', email);
+
+        fetch('/checkEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData.toString()
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data == false) {
+              $('#email_check').val('이미 사용 중인 이메일입니다.');
+            } else {
+              $('#email_check').val('사용 가능한 이메일입니다.');
+              const idCheck = $('#id_check').val();
+              if (idCheck === '사용 가능한 아이디입니다.') {
+                $('button[type="submit"]').attr('disabled', false);
+              }
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        alert('이메일를 입력하세요.');
+      }
+    });
+
+  </script>
+
+  <script th:inline="javascript">
+
+    // 아이디 입력 시 submit 버튼 비활성화
+    $('#id').on('input', function () {
+      $('button[type="submit"]').attr('disabled', 'true');
+    });
+
+    // 이메일 입력 시 submit 버튼 비활성화
+    $('#email').on('input', function () {
+      $('button[type="submit"]').attr('disabled', 'true');
+    });
+
   </script>
 
 </th:block>
-
-<th:block layout:fragment="footer"></th:block>
 
 </html>

@@ -60,11 +60,33 @@ public class UserController {
     return userRepository.findById(id).isEmpty(); // 중복되지 않은 경우 true 반환
   }
 
-  // 로그아웃
-  @GetMapping("/logout")
-  public String logout(HttpSession session) {
+  // 이메일 중복 체크
+  @PostMapping("/checkEmail")
+  @ResponseBody
+  public boolean checkEmail(@RequestParam("email") String email) {
+    // return !userRepository.existsByEmail(email);
+    return userRepository.findByEmail(email).isEmpty(); // 중복되지 않은 경우 true 반환
+  }
+
+  // 로그아웃 처리
+  @GetMapping("/userLogout")
+  public String userLogout(HttpSession session) {
     session.invalidate(); // 세션 무효화
-    return "redirect:/goHome"; // 홈 화면으로 리다이렉트
+    return "redirect:/goHome"; // 메인 페이지로 리다이렉트
+  }
+
+  // 회원 정보 수정 처리
+  @PostMapping("/userUpdate")
+  public String userUpdate(User user, HttpSession session) {
+    TbUser tbUser = (TbUser) session.getAttribute("user"); // 세션에서 사용자 정보 가져오기
+    if (tbUser != null) {
+      tbUser.setEmail(user.getEmail());
+      tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
+      tbUser.setNick(user.getNick());
+      userRepository.save(tbUser); // 수정된 정보 저장
+      session.setAttribute("user", tbUser); // 세션에 업데이트된 사용자 정보 저장
+    }
+    return "redirect:/goMypage"; // 마이페이지로 리다이렉트
   }
 
 }

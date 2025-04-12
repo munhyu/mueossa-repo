@@ -1,14 +1,12 @@
 package com.smhrd.mueossa.Repository;
 
-import java.util.Optional;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.smhrd.mueossa.entity.TbUser;
+import com.smhrd.mueossa.entity.TbSurvey;
 
 @Repository
-public interface UserRepository extends JpaRepository<TbUser, String> {
+public interface SurveyRepository extends JpaRepository<TbSurvey, String> {
 	// 기본적으로 제공하고 있는 CRUD
 	// 1. findAll()
 	// - select * from 테이블명;
@@ -35,9 +33,6 @@ public interface UserRepository extends JpaRepository<TbUser, String> {
 	// 테이블 대신 entity 객체 사용, 컬럼 대신 필드 사용!
 	// update member set count = count +1 where idx = 2
 
-	TbUser findByIdAndPw(String id, String pw);
-
-	Optional<TbUser> findByEmail(String email); // 이메일 중복 체크
 	// 회원가입 시 비밀번호 SHA2로 암호화해서 저장하기
 
 	// TbUser findById(String id);

@@ -371,9 +371,66 @@ body {
     background-color: #45a049;
   }
 
-.banner img {
+  .banner-slider {
     width: 100%;
-    display: block;
+    overflow: hidden; /* 슬라이드 영역 밖의 이미지를 숨김 */
+    position: relative;
+}
+
+.slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out; /* 슬라이드 전환 효과 */
+}
+
+.slides img {
+    width: 100%;
+}
+
+.prev-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.192);
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    padding-right: 10px;
+}
+.next-slide {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.192);
+    color: white;
+    border: none;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    z-index: 10;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    line-height: 1;
+    padding-left: 10px;
+}
+
+.prev-slide {
+    left: 2px; /* 왼쪽 버튼 위치 */
+}
+
+.next-slide {
+    right: 2px; /* 오른쪽 버튼 위치 */
 }
 
 
@@ -400,18 +457,45 @@ body {
 
 .product-info {
     padding: 10px;
+    white-space: normal;
 }
 
-.product-title {
-    font-size: 14px;
-    font-weight: bold;
+.product-brand {
+    font-size: 12px;
+    color: #666;
     margin-bottom: 4px;
-    margin-top: 1px;
+}
+
+.product-name {
+  font-size: 12px;
+  color: #333;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.product-rating {
+    font-size: 12px;
+    color: #ff9800; /* 별 색상 */
+    margin-bottom: 4px;
+}
+
+.price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+  margin-top: 4px;
+}
+
+.product-discount {
+  color: red;
+  font-size: 10px;
+  font-weight: bold;
 }
 
 .product-price {
-    color: #e91e63;
-    font-weight: bold;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
 }
 
 .tabbar {

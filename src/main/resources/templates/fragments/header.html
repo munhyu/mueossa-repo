@@ -18,7 +18,7 @@
         <div th:if="${session.user != null}">
             <!-- 로그아웃 버튼 -->
             <div class="login-box" onclick="location.href='userLogout'">
-                <img th:src="@{/images/favicon_logout.ico}" alt="logout" class="logout-image">
+                <img th:src="@{/images/logout_icon.ico}" alt="logout" class="logout-image">
             </div>
         </div>
         <div th:if="${session.user == null}">

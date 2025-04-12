@@ -88,4 +88,5 @@ public class UserController {
     }
     return "redirect:/goMypage"; // 마이페이지로 리다이렉트
   }
+
 }

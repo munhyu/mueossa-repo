@@ -19,7 +19,6 @@
 
     <form method="post" th:action="@{/userUpdate}" th:object="${user}">
 
-
       <!-- email 입력 -->
       <span class="join-email">
         <div class="input-wrapper">
@@ -48,7 +47,6 @@
       <span class="join-nickname">
         <input type="text" id="nickname" name="nickname" placeholder="변경할 닉네임 입력" required />
       </span>
-
 
       <div class="divider"></div>
 
@@ -108,9 +106,9 @@
   <script th:inline="javascript">
 
     // 이메일 입력 시 submit 버튼 비활성화
-    $('#email').on('input', function () {
-      $('button[type="submit"]').attr('disabled', 'true');
-    });
+    // $('#email').on('input', function () {
+    //   $('button[type="submit"]').attr('disabled', 'true');
+    // });
 
   </script>
 

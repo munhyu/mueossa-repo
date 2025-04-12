@@ -19,9 +19,7 @@
     <div id="join" class="page">
         <div class="section-title">당신의 취향을 선택하세요.</div>
 
-
-        <!-- 페이지 이동하려고 임시로 get 해두고 goHome 해둔거에요 기능 만드실 때 post로 변경하심 될듯??? -->
-        <form method="get" th:action="@{/goHome}" th:object="${member}">
+        <form method="post" th:action="@{/surveyInsert}" th:object="${survey}">
 
             <!-- 취향 선택 -->
             <div class="preference-buttons">

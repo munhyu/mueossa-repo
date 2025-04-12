@@ -28,7 +28,7 @@ public class UserController {
     // SHA256 암호화
     tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
     userRepository.save(tbUser);
-    return "redirect:/goPreference"; // 회원가입 후 로그인 페이지로 리다이렉트
+    return "redirect:/goLogin";
   }
 
   // 로그인 처리
@@ -75,18 +75,26 @@ public class UserController {
     return "redirect:/goHome"; // 메인 페이지로 리다이렉트
   }
 
-  // 회원 정보 수정 처리
-  @PostMapping("/userUpdate")
-  public String userUpdate(User user, HttpSession session) {
-    TbUser tbUser = (TbUser) session.getAttribute("user"); // 세션에서 사용자 정보 가져오기
-    if (tbUser != null) {
-      tbUser.setEmail(user.getEmail());
-      tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
-      tbUser.setNick(user.getNick());
-      userRepository.save(tbUser); // 수정된 정보 저장
-      session.setAttribute("user", tbUser); // 세션에 업데이트된 사용자 정보 저장
-    }
-    return "redirect:/goMypage"; // 마이페이지로 리다이렉트
-  }
+  // // 회원 정보 수정 처리
+  // @PostMapping("/userUpdate")
+  // public String userUpdate(User user, HttpSession session) {
+  // TbUser loginUser = (TbUser) session.getAttribute("user");
+  // String userId = loginUser.getId();
+  // String pw =
+  // org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()); // 비밀번호
+  // 암호화
+  // String email = user.getEmail();
+  // String nick = user.getNick();
+  // TbUser tbUser = userRepository.findById(userId).orElse(null); // 사용자 정보 조회
+
+  // if (tbUser != null) {
+  // tbUser.setEmail(user.getEmail());
+  // tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
+  // tbUser.setNick(user.getNick());
+  // userRepository.save(tbUser); // 수정된 정보 저장
+  // session.setAttribute("user", tbUser); // 세션에 업데이트된 사용자 정보 저장
+  // }
+  // return"redirect:/goMypage"; // 마이페이지로 리다이렉트
+  // }
 
 }

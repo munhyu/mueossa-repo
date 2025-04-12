@@ -4,18 +4,31 @@
 <th:block th:fragment="header">
 
 
-<div class="topbar">
-    <a href="goHome"><h1>mueossa</h1></a>
-    <div class="search-place">
-        <form action="#" class="search-keyword">
-            <input type="text" placeholder="검색어를 입력하세요" />
-            <button type="submit" class="search-button"></button>
-        </form>
+    <div class="topbar">
+        <a href="goHome">
+            <h1>mueossa</h1>
+        </a>
+        <div class="search-place">
+            <form action="#" class="search-keyword">
+                <input type="text" placeholder="검색어를 입력하세요" />
+                <button type="submit" class="search-button"></button>
+            </form>
+        </div>
+
+        <div th:if="${session.user != null}">
+            <!-- 로그아웃 버튼 -->
+            <div class="login-box" onclick="location.href='userLogout'">
+                <img th:src="@{/images/favicon_logout.ico}" alt="logout" class="logout-image">
+            </div>
+        </div>
+        <div th:if="${session.user == null}">
+            <!-- 로그인 버튼 -->
+            <div class="login-box" onclick="location.href='goLogin'">
+                <img th:src="@{/images/favicon_login.ico}" alt="Login" class="login-image">
+            </div>
+        </div>
+
     </div>
-    <div class="login-box" onclick="location.href='goLogin'">
-        <img th:src="@{/images/favicon_login.ico}" alt="Login" class="login-image">
-    </div>
-</div>
 
 
 </th:block>

@@ -7,65 +7,113 @@
 <th:block layout:fragment="header"></th:block>
 
 <div layout:fragment="content">
-    
 
-    <div id="join" class="page">
-        <div class="section-title">회원 정보 수정</div>
-    
-        <!-- 회원가입 폼 위에 에러 메시지 출력 -->
-        <div th:if="${error != null and error != ''}" class="error-message">
-          <p th:text="${error}"></p>
+
+  <div id="join" class="page">
+    <div class="section-title">회원 정보 수정</div>
+
+    <!-- 회원가입 폼 위에 에러 메시지 출력 -->
+    <div th:if="${error != null and error != ''}" class="error-message">
+      <p th:text="${error}"></p>
+    </div>
+
+    <form method="post" th:action="@{/userUpdate}" th:object="${user}">
+
+
+      <!-- email 입력 -->
+      <span class="join-email">
+        <div class="input-wrapper">
+          <input type="email" id="email" name="email" placeholder="변경할 email" required />
+          <button type="button" id="check" class="email-check-button check-button">중복확인</button>
         </div>
-    
-        <form method="post" th:action="@{/memberInsert}" th:object="${member}">
-          
-    
-          <!-- email 입력 -->
-          <span class="join-email">
-            <div class="input-wrapper">
-              <input type="email" id="email" name="email" placeholder="변경할 email" required />
-              <button type="button" class="check-button">중복확인</button>
-            </div>
-          </span>
-    
-          <!-- 비밀번호 입력 -->
-          <span class="join-pw">
-            <input type="password" id="pw" name="pw" placeholder="변경할 Password" required />
-          </span>
-    
-          <!-- 비밀번호 확인 -->
-          <span class="join-pw-confirm">
-            <input type="password" id="pw-confirm" name="pw-confirm" placeholder="변경할 Password 확인" required />
-          </span>
-    
-          <!-- 닉네임 입력 -->
-          <span class="join-nickname">
-            <input type="text" id="nickname" name="nickname" placeholder="변경할 닉네임 입력" required />
-          </span>
-    
-    
-          <div class="divider"></div>
-    
-          <!-- 하단 링크 -->
-          <div class="join-links">
-            <a href="goLogin">로그인</a> |
-            <a href="#">비밀번호 재설정</a> |
-            <a href="#">계정 찾기</a> |
-            <a href="#">문의하기</a>
-          </div>
-    
-          <!-- 완료 버튼 -->
-          <div class="join-buttons">
-            <button type="submit">완료</button>
-          </div>
-        </form>
+      </span>
+
+      <span class="join-email">
+        <div class="input-wrapper">
+          <input type="text" id="email_check" placeholder="EMAIL중복확인을 해주세요" readonly />
+        </div>
+      </span>
+
+      <!-- 비밀번호 입력 -->
+      <span class="join-pw">
+        <input type="password" id="pw" name="pw" placeholder="변경할 Password" required />
+      </span>
+
+      <!-- 비밀번호 확인 -->
+      <span class="join-pw-confirm">
+        <input type="password" id="pw-confirm" name="pw-confirm" placeholder="변경할 Password 확인" required />
+      </span>
+
+      <!-- 닉네임 입력 -->
+      <span class="join-nickname">
+        <input type="text" id="nickname" name="nickname" placeholder="변경할 닉네임 입력" required />
+      </span>
+
+
+      <div class="divider"></div>
+
+      <!-- 하단 링크 -->
+      <div class="join-links">
+        <a href="goLogin">로그인</a> |
+        <a href="#">비밀번호 재설정</a> |
+        <a href="#">계정 찾기</a> |
+        <a href="#">문의하기</a>
       </div>
 
+      <!-- 완료 버튼 -->
+      <div class="join-buttons">
+        <button type="submit">완료</button>
+      </div>
+    </form>
+  </div>
 
 </div>
 
 <th:block layout:fragment="footer"></th:block>
 
-<th:block layout:fragment="script-footer"></th:block>
+<th:block layout:fragment="script-footer">
+
+  <script th:inline="javascript">
+    // 이메일 중복 체크 버튼 클릭 시 이메일 중복 체크
+    document.querySelector('#check').addEventListener('click', function () {
+      const email = document.querySelector('#email').value;
+      console.log(email);
+      if (email) {
+        const formData = new URLSearchParams();
+        formData.append('email', email);
+
+        fetch('/checkEmail', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          body: formData.toString()
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data === false) {
+              $('#email_check').val('이미 사용 중인 이메일입니다.');
+
+            } else {
+              $('#email_check').val('사용 가능한 이메일입니다.');
+            }
+          })
+          .catch(error => console.error('Error:', error));
+      } else {
+        alert('이메일를 입력하세요.');
+      }
+    });
+  </script>
+
+  <script th:inline="javascript">
+
+    // 이메일 입력 시 submit 버튼 비활성화
+    $('#email').on('input', function () {
+      $('button[type="submit"]').attr('disabled', 'true');
+    });
+
+  </script>
+
+</th:block>
 
 </html>

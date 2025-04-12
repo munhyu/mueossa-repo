@@ -469,10 +469,21 @@ span input {
 }
 
 .product-card {
+  position: relative;
   background: white;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
   overflow: hidden;
   width: calc(33.33% - 16px);
+}
+
+.product-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .product-card img {
@@ -508,10 +519,28 @@ span input {
     margin-bottom: 4px;
 }
 
+.price-line {
+  position: absolute; /* 부모 요소의 위치를 기준으로 설정 */
+  bottom: 0; /* 카드의 아래쪽에 고정 */
+  left: 0; /* 카드의 왼쪽에 정렬 */
+  width: 100%; /* 카드의 너비를 채움 */
+  padding: 5px 10px; /* 내부 여백 */
+  display: flex; /* 내용 정렬 */
+  justify-content: space-between; /* 자식 요소 간격 균등 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.product-discount {
+  font-size: 10px;
+  color: red;
+  margin-bottom: 4px;
+}
+
 .product-price {
   font-size: 12px;
   font-weight: bold;
   color: #333;
+  margin-left: 4px;
 }
 
 .tabbar {

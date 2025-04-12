@@ -12,12 +12,22 @@
 <div layout:fragment="content">
 
     <div id="home" class="page active">
-        <div class="banner">
-            <img src="https://picsum.photos/400/150?random=1" alt="배너" />
+        <div class="banner-slider">
+            <button class="prev-slide">〈</button> <!-- 이전 슬라이드 버튼 -->
+            <div class="slides">
+                <img src="/images/banner/무엇사_배너_디자인_01.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_02.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_03.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_04.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_05.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_06.jpg" alt="배너" />
+                <img src="/images/banner/무엇사_배너_디자인_07.jpg" alt="배너" />
+            </div>
+            <button class="next-slide">〉</button> <!-- 다음 슬라이드 버튼 -->
         </div>
-        
-            <div class="main-title">사용자의 취향에 맞는 추천 상품</div>
-     
+
+        <div class="main-title">사용자의 취향에 맞는 추천 상품</div>
+
 
         <div class="main-title2">사용자의 취향에 맞는 추천 상품</div>
 
@@ -34,100 +44,162 @@
             <!-- 반복문처럼 생성된 카드들 -->
             <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image"/>
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title" name="pd_name">플라워 원피스</div>
-                    <div class="product-title" name="pd_rating"></div>
-                    <div class="product-title" name="discount"></div>
-                    <div class="product-price" name="pd_price">₩39,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="product-card">
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
+                <div class="product-info">
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=2" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
 
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
+
             <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
+                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
                 <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
+                    <div class="product-brand">반스</div>
+                    <div class="product-name">올드스쿨</div>
+                    <div class="product-rating">⭐3.2</div>
+                    <div class="price-line">
+                        <span class="product-discount">10%</span>
+                        <span class="product-price">₩39,000</span>
+                    </div>
                 </div>
             </div>
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
-                <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
-                </div>
-            </div>
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=3" alt="상품 이미지" />
-                <div class="product-info">
-                    <div class="product-title">베이직 셔츠</div>
-                    <div class="product-price">₩29,000</div>
-                </div>
-            </div>
+
 
             <!-- 생략된 나머지 카드들은 같은 형식으로 4~18까지 random 파라미터만 바꾸면 됨 -->
         </div>

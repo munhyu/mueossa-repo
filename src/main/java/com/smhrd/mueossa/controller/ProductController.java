@@ -53,6 +53,38 @@ public class ProductController {
   public String goProductList2(Model model) {
 
     List<TbProduct> productList = productRepository.findAll();
+
+    // pPrice를 세자리 수 마다 , 를 넣기
+    // pName의 최대 글자 수를 제한
+    for (TbProduct product : productList) {
+      String price = product.getPPrice();
+      String name = product.getPName();
+
+      // pName의 _가 포함되어 있으면 _를 공백으로 변경
+      // pName의 시작이 [이면 ]까지 제거
+      if (name.startsWith("[")) {
+        int endIndex = name.indexOf("]");
+        if (endIndex != -1) {
+          name = name.substring(endIndex + 1).trim();
+        }
+      }
+      // pName의 최대 글자 수를 제한
+      if (name.length() > 10) {
+        name = name.substring(0, 10) + "...";
+      }
+      // 글자 다시 설정
+      product.setPName(name);
+
+      // 문자열을 숫자로 변환
+      int priceValue = Integer.parseInt(price);
+
+      // 숫자를 세자리마다 콤마로 포맷팅
+      String formattedPrice = String.format("%,d원", priceValue);
+
+      // 포맷팅된 값을 다시 설정
+      product.setPPrice(formattedPrice);
+    }
+
     model.addAttribute("productList", productList);
 
     return "제품나열테스트";

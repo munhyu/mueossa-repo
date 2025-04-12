@@ -15,7 +15,7 @@ public class Product {
 	private int pLikes;
 	private float pRating;
 	private String pDiscount;
-	private int pPrice;
+	private String pPrice;
 	private String pGender;
 	private String pLink;
 	private String pImage;

@@ -164,6 +164,10 @@ body {
   background-color: #ffffffb6;
   margin: 5px;
   font-family: Arial, sans-serif;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;

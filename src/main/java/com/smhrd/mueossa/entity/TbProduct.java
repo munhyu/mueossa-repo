@@ -41,7 +41,7 @@ public class TbProduct {
 	private String pDiscount;
 
 	@Column(name = "pd_price")
-	private int pPrice;
+	private String pPrice;
 
 	@Column(name = "pd_gender")
 	private String pGender;

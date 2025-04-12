@@ -402,6 +402,22 @@ body {
     padding: 10px;
 }
 
+.product-brand {
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.product-name {
+  font-size: 10px;
+  margin-bottom: 4px;
+}
+
+.product-rating {
+  font-size: 8px;
+  margin-bottom: 4px;
+}
+
 .product-title {
     font-size: 14px;
     font-weight: bold;

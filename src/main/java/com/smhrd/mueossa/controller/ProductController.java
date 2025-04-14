@@ -49,7 +49,7 @@ public class ProductController {
   }
 
   // 상품 나열 - 기준없이 그냥 전체
-  @GetMapping("/제품나열테스트")
+  @GetMapping({"/goHome", "/"})
   public String goProductList2(Model model) {
 
     List<TbProduct> productList = productRepository.findAll();
@@ -87,7 +87,7 @@ public class ProductController {
 
     model.addAttribute("productList", productList);
 
-    return "제품나열테스트";
+    return "Home";
   }
 
 }

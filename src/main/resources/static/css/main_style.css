@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'NanumSquareR';
-  src: url('../font/NanumSquareR.ttf') format('truetype');
+  font-family: "NanumSquareR";
+  src: url("../font/NanumSquareR.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -31,7 +31,7 @@ p {
   color: black; /* 텍스트 색상 */
 }
 .background {
-  background-image: url('../images/bgimg.jpg');
+  background-image: url("../images/bgimg.jpg");
   background-size: cover;
   background-position: center;
   position: fixed;
@@ -107,7 +107,7 @@ p {
 }
 
 .search-button {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
+  background-image: url("https://cdn-icons-png.flaticon.com/512/622/622669.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
@@ -135,11 +135,9 @@ p {
   height: 60px;
   display: block;
   cursor: pointer;
-
 }
 
 /* 마이페이지 스타일 */
-
 
 .mypage-button {
   width: 240px;
@@ -155,9 +153,8 @@ p {
 }
 
 .mypage-button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
-
 
 /* 취향테이블 스타일 */
 
@@ -182,11 +179,11 @@ p {
 }
 
 .preference-button.selected {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid #4CAF50;
+  border: 1px solid #4caf50;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -238,7 +235,7 @@ p {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -269,8 +266,6 @@ p {
   margin-bottom: 20px;
 }
 
-
-
 .main-title {
   font-size: 18px;
   font-weight: bold;
@@ -279,7 +274,7 @@ p {
   /* 텍스트 세로 중앙 정렬 */
   margin-top: 40px;
   text-align: center;
-  font-family: 'NanumSquareR', sans-serif;
+  font-family: "NanumSquareR", sans-serif;
 }
 
 .main-title2 {
@@ -290,7 +285,7 @@ p {
   /* 텍스트 세로 중앙 정렬 */
   text-align: center;
   margin-bottom: 10px;
-  font-family: 'NanumSquareR', sans-serif;
+  font-family: "NanumSquareR", sans-serif;
 }
 
 span {
@@ -329,7 +324,7 @@ span input {
   transform: translateY(-50%);
   padding: 5px 10px;
   font-size: 12px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -386,7 +381,7 @@ span input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -464,7 +459,6 @@ span input {
   /* 오른쪽 버튼 위치 */
 }
 
-
 .product-list {
   display: flex;
   flex-wrap: wrap;
@@ -522,9 +516,9 @@ span input {
 }
 
 .product-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .price-line {
@@ -554,14 +548,14 @@ span input {
 /* 상세 페이지 디자인 */
 
 .product-discription-card img {
-  width: 380px;;
+  width: 380px;
   height: 390px;
 }
 
 .product-discription-category {
   font-size: 15px;
   margin-bottom: 4px;
-  color: #666;;
+  color: #666;
 }
 
 .product-discription-name {
@@ -584,7 +578,7 @@ span input {
   text-align: right;
 }
 
-.product-discription-category-score div{
+.product-discription-category-score div {
   font-size: 10px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -642,9 +636,4 @@ span input {
   height: 16px;
   margin-bottom: 2px;
   /* 아이콘과 텍스트 간격 */
-}
-
-.page {
-  padding-bottom: 60px;
-  min-height: calc(100vh - 50px);
 }

@@ -13,6 +13,7 @@ import com.smhrd.mueossa.Repository.ProdImageRepository;
 import com.smhrd.mueossa.Repository.ProductRepository;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.model.FilterForm;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class FilterProductController {
@@ -31,6 +32,17 @@ public class FilterProductController {
     return "filterCategory";
   }
 
+  @GetMapping("/searchProduct")
+  public String getMethodName(@RequestParam("keyword") String keyword, Model model) {
+    List<ProductAndCategoryDTO> productAndCategoryDTO = prodFeelCategoryRepository
+        .findProductAndCategoryByKeyword(keyword);
+    for (ProductAndCategoryDTO product : productAndCategoryDTO) {
+      getFormattedPrice(product);
+    }
+    model.addAttribute("prodCateList", productAndCategoryDTO);
+    return "home";
+  }
+
   /*
    * 상품 필터링 과정
    * 선택한 카테고리와 제품 카테고리가 일치하는 것만 조회
@@ -46,7 +58,7 @@ public class FilterProductController {
       getFormattedPrice(product);
     }
     model.addAttribute("prodCateList", productAndCategoryDTO);
-    return "filterProduct";
+    return "home";
   }
 
   // formatting method

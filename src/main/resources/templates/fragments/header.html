@@ -9,8 +9,8 @@
             <h1>mueossa</h1>
         </a>
         <div class="search-place">
-            <form action="#" class="search-keyword">
-                <input type="text" placeholder="검색어를 입력하세요" />
+            <form th:action="@{/searchProduct}" class="search-keyword" method="get">
+                <input type="text" name="keyword" placeholder="검색어를 입력하세요" />
                 <button type="submit" class="search-button"></button>
             </form>
         </div>

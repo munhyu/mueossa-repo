@@ -54,7 +54,7 @@ public class ProductController {
     return "제품상세테스트";
   }
 
-  @GetMapping("제품나열테스트")
+  @GetMapping({"/", "goHome"})
   public String goJoin(Model model) {
 
     List<ProductAndCategoryDTO> prodCateList = prodFeelCategoryRepository.findProductAndCategory();
@@ -67,7 +67,7 @@ public class ProductController {
 
     model.addAttribute("prodCateList", prodCateList);
 
-    return "제품나열테스트";
+    return "home";
   }
 
   // formatting method

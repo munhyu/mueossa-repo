@@ -28,12 +28,6 @@ public class MainController {
     return "home";
   }
 
-  // 메인 페이지 이동
-  @GetMapping("/goHome")
-  public String goHome() {
-    return "home";
-  }
-
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
   public String goJoin() {

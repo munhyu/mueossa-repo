@@ -25,6 +25,11 @@ body {
   /* ✅ body 스크롤 막기 */
 }
 
+p {
+  display: block;
+  visibility: visible;
+  color: black; /* 텍스트 색상 */
+}
 .background {
   background-image: url('../images/bgimg.jpg');
   background-size: cover;
@@ -463,16 +468,27 @@ span input {
 .product-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
   justify-content: space-between;
-  padding: 0 8px;
+  padding: 0 4px;
 }
 
 .product-card {
-  background: white;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: relative;
+  background: rgba(255, 255, 255, 0.911);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  width: calc(33.33% - 16px);
+  width: calc(33.33% - 6px);
+}
+
+.product-card a {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  height: 100%;
+  padding: 5px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
 .product-card img {
@@ -482,23 +498,26 @@ span input {
 }
 
 .product-info {
+  position: relative;
   padding: 10px;
+  background-color: #f3f3f3d5;
   white-space: normal;
+  height: 100px;
 }
 
 .product-brand {
   font-size: 10px;
   font-weight: bold;
-  margin-bottom: 4px;
 }
 
 .product-name {
   font-size: 10px;
-  margin-bottom: 4px;
 }
 
 .product-rating {
   font-size: 8px;
+  font-weight: bold;
+  color: #666;
   margin-bottom: 4px;
 }
 
@@ -508,10 +527,72 @@ span input {
     margin-bottom: 4px;
 }
 
+.price-line {
+  position: absolute; /* 부모 요소(product-info)의 위치를 기준으로 설정 */
+  bottom: 0; /* 부모 요소의 하단에 고정 */
+  left: 0; /* 왼쪽 정렬 */
+  width: 100%; /* 부모 요소의 너비를 채움 */
+  height: 0px;
+  padding: 3px 8px; /* 내부 여백 */
+  display: flex; /* 내용 정렬 */
+  justify-content: space-between; /* 자식 요소 간격 균등 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+}
+
+.product-discount {
+  font-size: 9px;
+  color: red;
+  margin-top: 1px;
+}
+
 .product-price {
-  font-size: 12px;
+  font-size: 10px;
   font-weight: bold;
   color: #333;
+}
+
+/* 상세 페이지 디자인 */
+
+.product-discription-card img {
+  width: 380px;;
+  height: 390px;
+}
+
+.product-discription-category {
+  font-size: 15px;
+  margin-bottom: 4px;
+  color: #666;;
+}
+
+.product-discription-name {
+  font-size: 25px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+
+.product-discription-rating {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333;
+}
+
+.product-discription-price {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  text-align: right;
+}
+
+.product-discription-category-score div{
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  display: flex;
+}
+
+.product-discription-image img {
+  width: 380px;
 }
 
 .tabbar {

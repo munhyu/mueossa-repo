@@ -1,212 +1,91 @@
 <!-- layout 쓰는 파일-->
 
 <!DOCTYPE html>
-<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-<th:block layout:fragment="script"></th:block>
+<html
+  lang="ko"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+>
+  <th:block layout:fragment="script"></th:block>
 
-<th:block layout:fragment="css"></th:block>
+  <th:block layout:fragment="css"></th:block>
 
-<th:block layout:fragment="header"></th:block>
-
-
-<div layout:fragment="content">
-
+  <th:block layout:fragment="header"></th:block>
+  <!-- 콘텐츠 -->
+  <div layout:fragment="content">
     <div id="home" class="page active">
-        <div class="banner-slider">
-            <button class="prev-slide">〈</button> <!-- 이전 슬라이드 버튼 -->
-            <div class="slides">
-                <img src="/images/banner/무엇사_배너_디자인_01.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_02.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_03.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_04.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_05.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_06.jpg" alt="배너" />
-                <img src="/images/banner/무엇사_배너_디자인_07.jpg" alt="배너" />
-            </div>
-            <button class="next-slide">〉</button> <!-- 다음 슬라이드 버튼 -->
-        </div>
+      <div class="banner-slider">
+          <button class="prev-slide">〈</button> <!-- 이전 슬라이드 버튼 -->
+          <div class="slides">
+              <img src="/images/banner/무엇사_배너_디자인_01.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_02.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_03.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_04.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_05.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_06.jpg" alt="배너" />
+              <img src="/images/banner/무엇사_배너_디자인_07.jpg" alt="배너" />
+          </div>
+          <button class="next-slide">〉</button> <!-- 다음 슬라이드 버튼 -->
+      </div>
 
-        <div class="main-title">사용자의 취향에 맞는 추천 상품</div>
+      <div class="main-title">사용자의 취향에 맞는 추천 상품</div>
 
+      <div class="main-title2">사용자의 취향에 맞는 추천 상품</div>
 
-        <div class="main-title2">사용자의 취향에 맞는 추천 상품</div>
+      <div class="divider2"></div>
 
-        <div class="divider2"></div>
+      <div class="product-list">
+        <!-- 상품 카드 반복 -->
+        <!-- 반복적으로 생성 -->
+        <!-- 반복문처럼 생성된 카드들 -->
+        <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
+        <th:block th:each="product : ${prodCateList}">
+          <div class="product-card">
+            <a th:href="@{제품상세테스트(pId=${product.pId})}">
+              <img th:src="${product.pImage}" alt="상품 이미지" />
+              <div class="product-info">
+                <div class="product-brand" th:text="${product.pBrand}"></div>
+                <div class="product-name" th:text="${product.pName}"></div>
+                <div
+                  class="product-rating"
+                  name="pd_rating"
+                  th:text="${product.pRating}"
+                ></div>
+                <div class="price-line">
+                <span
+                  class="product-discount"
+                  name="discount"
+                  th:text="${product.pDiscount}"
+                ></span>
+                <span class="product-price" th:text="${product.pPrice}"></span>
+              </div>
+              </div>
+              <div>
+                <p th:if="${product.ctComf} == 'Y' ">편한</p>
+                <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
+                <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
+                <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
+                <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
+                <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
+                <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
+                <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
+                <p th:if="${product.ctModern} == 'Y' ">모던함</p>
+                <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
+                <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
+                <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
+                <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
+                <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
+                <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
+              </div>
+            </a>
 
-        <div class="product-list">
-            <!-- 상품 카드 반복 -->
-            <!-- 18개의 카드 -->
-            <!-- for demo purposes only -->
-            <!-- 각 카드마다 random 이미지 부여 -->
-            <!-- 반복적으로 생성 -->
-            <!-- 아래는 예시 -->
+          </div>
+        </th:block>
 
-            <!-- 반복문처럼 생성된 카드들 -->
-            <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <img src="https://picsum.photos/300/200?random=1" alt="상품 이미지" name="pd_image" />
-                <div class="product-info">
-                    <div class="product-brand">반스</div>
-                    <div class="product-name">올드스쿨</div>
-                    <div class="product-rating">⭐3.2</div>
-                    <div class="price-line">
-                        <span class="product-discount">10%</span>
-                        <span class="product-price">₩39,000</span>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- 생략된 나머지 카드들은 같은 형식으로 4~18까지 random 파라미터만 바꾸면 됨 -->
-        </div>
+        <!-- 생략된 나머지 카드들은 같은 형식으로 4~18까지 random 파라미터만 바꾸면 됨 -->
+      </div>
     </div>
+  </div>
 
-</div>
-
-<th:block layout:fragment="footer"></th:block>
-
+  <th:block layout:fragment="footer"></th:block>
 </html>

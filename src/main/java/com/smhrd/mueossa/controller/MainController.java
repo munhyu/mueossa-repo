@@ -8,6 +8,7 @@ public class MainController {
 
   //  '/'랑 /goHome'은 productCon에 있음
 
+
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
   public String goJoin() {

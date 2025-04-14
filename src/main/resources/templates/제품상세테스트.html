@@ -42,21 +42,43 @@
 
         <!-- 카테고리 점수 -->
         <div class="product-discription-category-score">
-          <div th:text="'편한: '+ ${prodFeelCategory.ctComf}"></div>
-          <div th:text="'푹신한: '+ ${prodFeelCategory.ctFluffy}"></div>
-          <div th:text="'부드러운: '+ ${prodFeelCategory.ctSoft}"></div>
-          <div th:text="'플랫한: '+ ${prodFeelCategory.ctFlat}"></div>
-          <div th:text="'예쁜: '+ ${prodFeelCategory.ctPretty}"></div>
-          <div th:text="'귀여운: '+ ${prodFeelCategory.ctCute}"></div>
-          <div th:text="'깔끔한: '+ ${prodFeelCategory.ctNeat}"></div>
-          <div th:text="'모던한: '+ ${prodFeelCategory.ctModern}"></div>
-          <div th:text="'휘뚜루마뚜루: '+ ${prodFeelCategory.ctHip}"></div>
-          <div th:text="'발볼이 넓은: '+ ${prodFeelCategory.ctWide}"></div>
-          <div th:text="'발볼이 좁은: '+ ${prodFeelCategory.ctNarrow}"></div>
-          <div th:text="'발볼이 보통: '+ ${prodFeelCategory.ctStandard}"></div>
-          <div th:text="'가격이 착한: '+ ${prodFeelCategory.ctCost}"></div>
-          <div th:text="'튼튼한: '+ ${prodFeelCategory.ctStrong}"></div>
-        </div>
+
+        <!-- 카테고리 백분율 상위 몇퍼센트인지-->
+        <div>
+          <h3>상위 %에 해당합니다</h3>
+          <div th:text="'편한: '+ ${prodPercent.ctComfPercentileRank}"></div>
+          <div
+            th:text="'푹신한: '+ ${prodPercent.ctFluffyPercentileRank}"
+          ></div>
+          <div
+            th:text="'부드러운: '+ ${prodPercent.ctSoftPercentileRank}"
+          ></div>
+          <div th:text="'플랫한: '+ ${prodPercent.ctFlatPercentileRank}"></div>
+          <div th:text="'예쁜: '+ ${prodPercent.ctPrettyPercentileRank}"></div>
+          <div th:text="'귀여운: '+ ${prodPercent.ctCutePercentileRank}"></div>
+          <div th:text="'깔끔한: '+ ${prodPercent.ctNeatPercentileRank}"></div>
+          <div
+            th:text="'모던한: '+ ${prodPercent.ctModernPercentileRank}"
+          ></div>
+          <div
+            th:text="'휘뚜루마뚜루: '+ ${prodPercent.ctHipPercentileRank}"
+          ></div>
+          <div
+            th:text="'발볼이 넓은: '+ ${prodPercent.ctWidePercentileRank}"
+          ></div>
+          <div
+            th:text="'발볼이 좁은: '+ ${prodPercent.ctNarrowPercentileRank}"
+          ></div>
+          <div
+            th:text="'발볼이 보통: '+ ${prodPercent.ctStandardPercentileRank}"
+          ></div>
+          <div
+            th:text="'가격이 착한: '+ ${prodPercent.ctCostPercentileRank}"
+          ></div>
+          <div
+            th:text="'튼튼한: '+ ${prodPercent.ctStrongPercentileRank}"
+          ></div>
+        </ㅇ>
 
         <!-- 제품 설명 이미지 -->
         <div class="product-discription-image"th:each="productImage : ${ProdImageList}">

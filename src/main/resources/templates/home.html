@@ -49,8 +49,25 @@
                 <div
                   class="product-rating"
                   name="pd_rating"
-                  th:text="${product.pRating}"
+                  th:text="|⭐${product.pRating}|"
                 ></div>
+                <div class="keywords">
+                    <p th:if="${product.ctComf} == 'Y' ">편한</p>
+                    <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
+                    <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
+                    <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
+                    <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
+                    <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
+                    <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
+                    <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
+                    <p th:if="${product.ctModern} == 'Y' ">모던함</p>
+                    <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
+                    <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
+                    <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
+                    <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
+                    <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
+                    <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
+                  </div>
                 <div class="price-line">
                 <span
                   class="product-discount"
@@ -60,23 +77,7 @@
                 <span class="product-price" th:text="${product.pPrice}"></span>
               </div>
               </div>
-              <div>
-                <p th:if="${product.ctComf} == 'Y' ">편한</p>
-                <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
-                <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
-                <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
-                <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
-                <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
-                <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
-                <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
-                <p th:if="${product.ctModern} == 'Y' ">모던함</p>
-                <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
-                <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
-                <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
-                <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
-                <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
-                <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
-              </div>
+              
             </a>
 
           </div>

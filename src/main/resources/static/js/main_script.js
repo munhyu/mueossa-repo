@@ -66,3 +66,4 @@ document.addEventListener("DOMContentLoaded", () => {
     // 자동 슬라이드 (3초마다)
     setInterval(showNextSlide, 3000);
 });
+

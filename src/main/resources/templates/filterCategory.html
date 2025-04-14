@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+>
+  <th:block layout:fragment="script"></th:block>
+
+  <th:block layout:fragment="css">
+    <style>
+      input[type="checkbox"],
+      input[type="radio"] {
+        display: none;
+        /* Hide the checkbox input */
+      }
+    </style>
+  </th:block>
+
+  <th:block layout:fragment="header"></th:block>
+
+  <div layout:fragment="content">
+    <div id="join" class="page">
+      <div class="section-title">당신의 취향을 선택하세요.</div>
+
+      <form
+        method="post"
+        th:action="@{/filterProduct}"
+        th:object="${FilterForm}"
+      >
+        <!-- 취향 선택 -->
+        <div class="preference-buttons">
+          <!-- 감성 카테고리 -->
+          <div>
+            <label for="comf" class="preference-button">편한</label>
+            <input type="checkbox" id="comf" name="ctComf" value="Y" />
+
+            <label for="fluffy" class="preference-button">푹신한</label>
+            <input type="checkbox" id="fluffy" name="ctFluffy" value="Y" />
+
+            <label for="light" class="preference-button">가벼운</label>
+            <input type="checkbox" id="light" name="ctLight" value="Y" />
+
+            <label for="soft" class="preference-button">부드러운</label>
+            <input type="checkbox" id="soft" name="ctSoft" value="Y" />
+
+            <label for="flat" class="preference-button">플랫한</label>
+            <input type="checkbox" id="flat" name="ctFlat" value="Y" />
+
+            <label for="pretty" class="preference-button">예쁜</label>
+            <input type="checkbox" id="pretty" name="ctPretty" value="Y" />
+
+            <label for="cute" class="preference-button">귀여운</label>
+            <input type="checkbox" id="cute" name="ctCute" value="Y" />
+
+            <label for="neat" class="preference-button">깔끔한</label>
+            <input type="checkbox" id="neat" name="ctNeat" value="Y" />
+
+            <label for="modern" class="preference-button">모던한</label>
+            <input type="checkbox" id="modern" name="ctModern" value="Y" />
+
+            <label for="wide" class="preference-button">발볼이 넓은</label>
+            <input type="checkbox" id="wide" name="ctWide" value="Y" />
+
+            <label for="narrow" class="preference-button">발볼이 좁은</label>
+            <input type="checkbox" id="narrow" name="ctNarrow" value="Y" />
+
+            <label for="standard" class="preference-button">발볼이 보통</label>
+            <input type="checkbox" id="standard" name="ctStandard" value="Y" />
+
+            <label for="hip" class="preference-button">휘뚜루마뚜루</label>
+            <input type="checkbox" id="hip" name="ctHip" value="Y" />
+
+            <label for="cost" class="preference-button">가격이 착한</label>
+            <input type="checkbox" id="cost" name="ctCost" value="Y" />
+
+            <label for="strong" class="preference-button">튼튼한</label>
+            <input type="checkbox" id="strong" name="ctStrong" value="Y" />
+          </div>
+
+          <!-- 신발 종류 구두, 부츠/워커, 스니커즈, 샌들/슬리퍼-->
+          <div>
+            <hr />
+            <input
+              type="radio"
+              id="shoesSneakers"
+              name="pGroup"
+              value="스니커즈"
+            />
+            <label for="shoesSneakers" class="preference-button"
+              >스니커즈</label
+            >
+            <input type="radio" id="shoesHeels" name="pGroup" value="구두" />
+            <label for="shoesHeels" class="preference-button">구두</label>
+            <input
+              type="radio"
+              id="shoesBoots"
+              name="pGroup"
+              value="부츠/워커"
+            />
+            <label for="shoesBoots" class="preference-button">부츠/워커</label>
+            <input
+              type="radio"
+              id="shoesSandals"
+              name="pGroup"
+              value="샌들/슬리퍼"
+            />
+            <label for="shoesSandals" class="preference-button"
+              >샌들/슬리퍼</label
+            >
+          </div>
+        </div>
+
+        <!-- 완료 버튼 -->
+        <div class="login-buttons">
+          <button type="submit">검색</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <th:block layout:fragment="footer"></th:block>
+</html>

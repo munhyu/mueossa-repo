@@ -6,8 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class MainController {
 
-  //  '/'랑 /goHome'은 productCon에 있음
-
+  // '/'랑 /goHome'은 productCon에 있음
 
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
@@ -22,9 +21,10 @@ public class MainController {
   }
 
   // 카테고리 페이지 이동
+  // 일단 임시로 바꿔둠 filterCategory로
   @GetMapping("/goCategory")
   public String goCategory() {
-    return "category";
+    return "filterCategory";
   }
 
   // 찜목록 페이지 이동

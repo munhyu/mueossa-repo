@@ -22,14 +22,8 @@
       <!-- email 입력 -->
       <span class="join-email">
         <div class="input-wrapper">
-          <input type="email" id="email" name="email" placeholder="변경할 email" required />
-          <button type="button" id="check" class="email-check-button check-button">중복확인</button>
-        </div>
-      </span>
-
-      <span class="join-email">
-        <div class="input-wrapper">
-          <input type="text" id="email_check" placeholder="EMAIL중복확인을 해주세요" readonly />
+          <input type="email" id="email" name="email" placeholder="변경할 email" th:value="${session.user.email}"
+            readonly />
         </div>
       </span>
 
@@ -40,12 +34,13 @@
 
       <!-- 비밀번호 확인 -->
       <span class="join-pw-confirm">
-        <input type="password" id="pw-confirm" name="pw-confirm" placeholder="변경할 Password 확인" required />
+        <input type="password" id="pwCheck" name="pwCheck" placeholder="변경할 Password 확인" required />
+        <input type="text" id="pwMatch" placeholder="" readonly />
       </span>
 
       <!-- 닉네임 입력 -->
       <span class="join-nickname">
-        <input type="text" id="nickname" name="nickname" placeholder="변경할 닉네임 입력" required />
+        <input type="text" id="nick" name="nick" placeholder="변경할 닉네임 입력" th:value="${session.user.nick}" required />
       </span>
 
       <div class="divider"></div>
@@ -55,7 +50,8 @@
         <a href="goLogin">로그인</a> |
         <a href="#">비밀번호 재설정</a> |
         <a href="#">계정 찾기</a> |
-        <a href="#">문의하기</a>
+        <a href="#">문의하기</a> |
+        <a href="userDelete">회원 탈퇴</a>
       </div>
 
       <!-- 완료 버튼 -->
@@ -72,43 +68,31 @@
 <th:block layout:fragment="script-footer">
 
   <script th:inline="javascript">
-    // 이메일 중복 체크 버튼 클릭 시 이메일 중복 체크
-    document.querySelector('#check').addEventListener('click', function () {
-      const email = document.querySelector('#email').value;
-      console.log(email);
-      if (email) {
-        const formData = new URLSearchParams();
-        formData.append('email', email);
+    // 비밀번호 확인 입력란에 비밀번호 일치 여부 확인
+    const pwInput = document.getElementById('pw');
+    const pwCheckInput = document.getElementById('pwCheck');
+    const pwMatchInput = document.getElementById('pwMatch'); // 결과를 표시할 필드
 
-        fetch('/checkEmail', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          body: formData.toString()
-        })
-          .then(response => response.json())
-          .then(data => {
-            if (data === false) {
-              $('#email_check').val('이미 사용 중인 이메일입니다.');
-
-            } else {
-              $('#email_check').val('사용 가능한 이메일입니다.');
-            }
-          })
-          .catch(error => console.error('Error:', error));
+    function checkPasswordMatch() {
+      if (pwInput.value !== pwCheckInput.value) {
+        pwMatchInput.value = '비밀번호가 일치하지 않습니다.';
+        pwMatchInput.style.color = 'red';
+        $('button[type="submit"]').attr('disabled', true);
       } else {
-        alert('이메일를 입력하세요.');
+        pwMatchInput.value = '비밀번호가 일치합니다.';
+        pwMatchInput.style.color = 'green';
+        $('button[type="submit"]').removeAttr('disabled')
       }
-    });
+    }
+
+    // 비밀번호 입력 필드와 확인 필드에 이벤트 리스너 추가
+    pwInput.addEventListener('input', checkPasswordMatch);
+    pwCheckInput.addEventListener('input', checkPasswordMatch);
+
   </script>
 
   <script th:inline="javascript">
 
-    // 이메일 입력 시 submit 버튼 비활성화
-    // $('#email').on('input', function () {
-    //   $('button[type="submit"]').attr('disabled', 'true');
-    // });
 
   </script>
 

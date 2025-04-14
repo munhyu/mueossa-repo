@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.smhrd.mueossa.Repository.SurveyRepository;
 import com.smhrd.mueossa.Repository.UserRepository;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
@@ -19,6 +20,9 @@ public class UserController {
 
   @Autowired
   private UserRepository userRepository;
+
+  @Autowired
+  private SurveyRepository surveyRepository;
 
   // 회원가입 처리
   @PostMapping("/userInsert")
@@ -34,9 +38,6 @@ public class UserController {
   // 로그인 처리
   @PostMapping("/userLogin")
   public String userLogin(User user, HttpSession session, Model model) {
-
-    // 비밀번호
-    System.out.println("로그인 시도: ID=" + user.getId() + ", PW=" + user.getPw());
     // SHA256 암호화
     String pw = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw());
 
@@ -56,45 +57,51 @@ public class UserController {
   @PostMapping("/checkId")
   @ResponseBody
   public boolean checkId(@RequestParam("id") String id) {
-    // Optional 처리
-    return userRepository.findById(id).isEmpty(); // 중복되지 않은 경우 true 반환
+    return userRepository.findById(id).isEmpty();
   }
 
   // 이메일 중복 체크
   @PostMapping("/checkEmail")
   @ResponseBody
   public boolean checkEmail(@RequestParam("email") String email) {
-    // return !userRepository.existsByEmail(email);
-    return userRepository.findByEmail(email).isEmpty(); // 중복되지 않은 경우 true 반환
+    return userRepository.findByEmail(email).isEmpty();
   }
 
   // 로그아웃 처리
   @GetMapping("/userLogout")
   public String userLogout(HttpSession session) {
-    session.invalidate(); // 세션 무효화
-    return "redirect:/goHome"; // 메인 페이지로 리다이렉트
+    session.invalidate();
+    return "redirect:/goHome";
   }
 
-  // // 회원 정보 수정 처리
-  // @PostMapping("/userUpdate")
-  // public String userUpdate(User user, HttpSession session) {
-  // TbUser loginUser = (TbUser) session.getAttribute("user");
-  // String userId = loginUser.getId();
-  // String pw =
-  // org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()); // 비밀번호
-  // 암호화
-  // String email = user.getEmail();
-  // String nick = user.getNick();
-  // TbUser tbUser = userRepository.findById(userId).orElse(null); // 사용자 정보 조회
+  // 회원 정보 수정 처리
+  @PostMapping("/userUpdate")
+  public String userUpdate(User user, HttpSession session) {
+    TbUser tbUser = new TbUser(user);
+    TbUser loginUser = (TbUser) session.getAttribute("user");
+    String userId = loginUser.getId();
+    String pw = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw());
 
-  // if (tbUser != null) {
-  // tbUser.setEmail(user.getEmail());
-  // tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
-  // tbUser.setNick(user.getNick());
-  // userRepository.save(tbUser); // 수정된 정보 저장
-  // session.setAttribute("user", tbUser); // 세션에 업데이트된 사용자 정보 저장
-  // }
-  // return"redirect:/goMypage"; // 마이페이지로 리다이렉트
-  // }
+    tbUser.setId(userId);
+    tbUser.setEmail(user.getEmail());
+    tbUser.setNick(user.getNick());
+    tbUser.setPw(pw);
+    tbUser.setGender(loginUser.getGender());
+    tbUser.setJoinedAt(loginUser.getJoinedAt());
+    tbUser.setType(loginUser.getType());
+    userRepository.save(tbUser);
+    return "redirect:/goMypage";
+  }
+
+  // 회원 탈퇴 처리
+  @GetMapping("/userDelete")
+  public String userDelete(HttpSession session) {
+    TbUser loginUser = (TbUser) session.getAttribute("user");
+    String userId = loginUser.getId();
+    surveyRepository.deleteById(userId);
+    userRepository.deleteById(userId);
+    session.invalidate();
+    return "redirect:/goHome";
+  }
 
 }

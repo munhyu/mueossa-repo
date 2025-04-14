@@ -1,7 +1,6 @@
 package com.smhrd.mueossa.entity;
 
 import com.smhrd.mueossa.model.ProdFeelCategory;
-import com.smhrd.mueossa.model.Product;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

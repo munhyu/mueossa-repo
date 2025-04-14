@@ -37,20 +37,20 @@ public class TbUser {
 	@NonNull
 	private String pw;
 
-	@Column(name = "u_nick")
+	@Column(name = "u_nick", length = 50)
 	@NonNull
 	private String nick;
 
-	@Column(name = "u_gender")
+	@Column(name = "u_gender", length = 1)
 	@NonNull
 	private String gender;
 
-	@Column(name = "joined_at")
+	@Column(name = "u_type", length = 1)
+	private String type;
+
+	@Column(name = "joined_at", nullable = true)
 	@CreationTimestamp
 	private Timestamp joinedAt;
-
-	@Column(name = "u_type")
-	private String type;
 
 	// 기타 등등 추가
 	public TbUser(User user) {

@@ -81,7 +81,6 @@ public class UserController {
     TbUser loginUser = (TbUser) session.getAttribute("user");
     String userId = loginUser.getId();
     String pw = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw());
-
     tbUser.setId(userId);
     tbUser.setEmail(user.getEmail());
     tbUser.setNick(user.getNick());
@@ -90,7 +89,7 @@ public class UserController {
     tbUser.setJoinedAt(loginUser.getJoinedAt());
     tbUser.setType(loginUser.getType());
     userRepository.save(tbUser);
-    return "redirect:/goMypage";
+    return "redirect:/goHome";
   }
 
   // 회원 탈퇴 처리

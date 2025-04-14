@@ -8,11 +8,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.smhrd.mueossa.Repository.SurveyRepository;
-import com.smhrd.mueossa.Repository.UserRepository;
 import com.smhrd.mueossa.entity.TbSurvey;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.Survey;
-import com.smhrd.mueossa.model.User;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -21,12 +19,6 @@ public class MainController {
 
   @Autowired
   private SurveyRepository surveyRepository;
-
-  // 기본 메인페이지
-  @GetMapping("/")
-  public String home() {
-    return "home";
-  }
 
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
@@ -64,34 +56,19 @@ public class MainController {
   }
 
   // 취향선택 페이지 이동
-  // @GetMapping("/goPreference")
-  // public String goPreference(HttpSession session, Model model, Survey survey) {
-  // TbUser loginUser = (TbUser) session.getAttribute("user");
-  // if (loginUser == null) {
-  // String userId = loginUser.getId();
-  // surveyRepository.findById(userId);
-  // return "redirect:/goLogin";
-  // } else {
-  // return "preference";
-  // }
-  // }
   @GetMapping("/goPreference")
-  public String goPreference(HttpSession session, Model model) {
+  public String goPreference(HttpSession session, Model model, Survey survey) {
     TbUser loginUser = (TbUser) session.getAttribute("user");
-    // 로그인하지 않은 경우 로그인 페이지로 리다이렉트
     if (loginUser == null) {
       return "redirect:/goLogin";
-    }
-    String userId = loginUser.getId();
-    // 사용자 ID로 Survey 데이터 조회
-    Optional<TbSurvey> surveyOptional = surveyRepository.findById(userId);
-    // Survey 데이터가 존재하면 모델에 추가
-    if (surveyOptional.isPresent()) {
-      model.addAttribute("survey", surveyOptional.get());
     } else {
-      model.addAttribute("survey", new TbSurvey()); // 빈 Survey 객체 추가
+      String userId = loginUser.getId();
+      surveyRepository.findById(userId);
+      Optional<TbSurvey> surveyOptional = surveyRepository.findById(userId);
+      System.out.println("설문???" + surveyOptional);
+      model.addAttribute("surveyOptional", surveyOptional);
+      return "preference";
     }
-    return "preference";
   }
 
   // 회원 정보 수정 페이지 이동

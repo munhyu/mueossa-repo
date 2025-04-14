@@ -24,8 +24,10 @@
             <!-- 취향 선택 -->
             <div class="preference-buttons">
 
+                <!-- <p text="{surveyOptional.fluffy}">fluffy 값 없음</p> -->
+
                 <label for="fluffy" class="preference-button">푹신한</label>
-                <input type="checkbox" id="fluffy" name="fluffy" value="Y" />
+                <input type="checkbox" id="fluffy" name="fluffy" value="Y" checked="${surveyOptional.fluffy=='Y'}" />
 
                 <label for="light" class="preference-button">가벼운</label>
                 <input type="checkbox" id="light" name="light" value="Y" />
@@ -78,7 +80,6 @@
             </div>
         </form>
     </div>
-
 
 </div>
 

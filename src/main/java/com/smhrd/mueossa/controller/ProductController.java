@@ -45,7 +45,7 @@ public class ProductController {
       model.addAttribute("prodFeelCategory", prodFeelCategory);
     });
 
-    // 각 카테고리 점수가 상위 %인지
+    // 각 카테고리 점수가 %인지
     Optional<ProdFeelCategoryPercentileDTO> prodPercentOpt = prodFeelCategoryRepository.findCategoryPercentiles(pId);
     prodPercentOpt.ifPresent(prodPercent -> {
       model.addAttribute("prodPercent", prodPercent);
@@ -54,7 +54,6 @@ public class ProductController {
     return "제품상세테스트";
   }
 
-  // home 페이지 이동
   @GetMapping({ "/", "goHome" })
   public String goJoin(Model model) {
 

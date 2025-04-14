@@ -26,6 +26,4 @@ public class Survey {
 	private String strong;
 	private String wide;
 
-	// 기타 등등 추가
-
 }

@@ -23,63 +23,63 @@ public class TbSurvey {
 	@Id
 	private String id;
 
-	@Column(name = "s_comf")
+	@Column(name = "s_comf", length = 1)
 	@NonNull
 	private String comf;
 
-	@Column(name = "s_cost")
+	@Column(name = "s_cost", length = 1)
 	@NonNull
 	private String cost;
 
-	@Column(name = "s_cute")
+	@Column(name = "s_cute", length = 1)
 	@NonNull
 	private String cute;
 
-	@Column(name = "s_flat")
+	@Column(name = "s_flat", length = 1)
 	@NonNull
 	private String flat;
 
-	@Column(name = "s_fluffy")
+	@Column(name = "s_fluffy", length = 1)
 	@NonNull
 	private String fluffy;
 
-	@Column(name = "s_hip")
+	@Column(name = "s_hip", length = 1)
 	@NonNull
 	private String hip;
 
-	@Column(name = "s_light")
+	@Column(name = "s_light", length = 1)
 	@NonNull
 	private String light;
 
-	@Column(name = "s_modern")
+	@Column(name = "s_modern", length = 1)
 	@NonNull
 	private String modern;
 
-	@Column(name = "s_narrow")
+	@Column(name = "s_narrow", length = 1)
 	@NonNull
 	private String narrow;
 
-	@Column(name = "s_neat")
+	@Column(name = "s_neat", length = 1)
 	@NonNull
 	private String neat;
 
-	@Column(name = "s_pretty")
+	@Column(name = "s_pretty", length = 1)
 	@NonNull
 	private String pretty;
 
-	@Column(name = "s_soft")
+	@Column(name = "s_soft", length = 1)
 	@NonNull
 	private String soft;
 
-	@Column(name = "s_standard")
+	@Column(name = "s_standard", length = 1)
 	@NonNull
 	private String standard;
 
-	@Column(name = "s_strong")
+	@Column(name = "s_strong", length = 1)
 	@NonNull
 	private String strong;
 
-	@Column(name = "s_wide")
+	@Column(name = "s_wide", length = 1)
 	@NonNull
 	private String wide;
 

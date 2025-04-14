@@ -48,7 +48,6 @@
         </div>
       </span>
 
-
       <!-- 비밀번호 입력 -->
       <span class="join-pw">
         <input type="password" id="pw" name="pw" placeholder="Password" required />
@@ -110,15 +109,15 @@
         })
           .then(response => response.json())
           .then(data => {
+            const idCheckField = document.querySelector('#id_check');
             if (data === false) {
-              $('#id_check').val('이미 사용 중인 아이디입니다.');
-
+              idCheckField.value = '이미 사용 중인 아이디입니다.';
+              idCheckField.style.color = 'red'; // 불가능한 경우 빨간색
+              $('button[type="submit"]').attr('disabled', true);
             } else {
-              $('#id_check').val('사용 가능한 아이디입니다.');
-              const emailCheck = $('#email_check').val();
-              if (emailCheck === '사용 가능한 이메일입니다.') {
-                $('button[type="submit"]').attr('disabled', false);
-              }
+              idCheckField.value = '사용 가능한 아이디입니다.';
+              idCheckField.style.color = 'green'; // 가능한 경우 초록색
+              $('button[type="submit"]').removeAttr('disabled')
             }
           })
           .catch(error => console.error('Error:', error));
@@ -127,7 +126,7 @@
       }
     });
 
-    // duplicate email check
+
     document.querySelector('.email-check-button').addEventListener('click', function () {
       const email = document.querySelector('#email').value;
       if (email) {
@@ -143,34 +142,21 @@
         })
           .then(response => response.json())
           .then(data => {
-            if (data == false) {
-              $('#email_check').val('이미 사용 중인 이메일입니다.');
+            const emailCheckField = document.querySelector('#email_check');
+            if (data === false) {
+              emailCheckField.value = '이미 사용 중인 이메일입니다.';
+              emailCheckField.style.color = 'red'; // 불가능한 경우 빨간색
+              $('button[type="submit"]').attr('disabled', true);
             } else {
-              $('#email_check').val('사용 가능한 이메일입니다.');
-              const idCheck = $('#id_check').val();
-              if (idCheck === '사용 가능한 아이디입니다.') {
-                $('button[type="submit"]').attr('disabled', false);
-              }
+              emailCheckField.value = '사용 가능한 이메일입니다.';
+              emailCheckField.style.color = 'green'; // 가능한 경우 초록색
+              $('button[type="submit"]').removeAttr('disabled')
             }
           })
           .catch(error => console.error('Error:', error));
       } else {
-        alert('이메일를 입력하세요.');
+        alert('이메일을 입력하세요.');
       }
-    });
-
-  </script>
-
-  <script th:inline="javascript">
-
-    // 아이디 입력 시 submit 버튼 비활성화
-    $('#id').on('input', function () {
-      $('button[type="submit"]').attr('disabled', 'true');
-    });
-
-    // 이메일 입력 시 submit 버튼 비활성화
-    $('#email').on('input', function () {
-      $('button[type="submit"]').attr('disabled', 'true');
     });
 
   </script>

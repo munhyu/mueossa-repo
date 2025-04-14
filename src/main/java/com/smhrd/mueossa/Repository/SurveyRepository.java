@@ -33,8 +33,4 @@ public interface SurveyRepository extends JpaRepository<TbSurvey, String> {
 	// 테이블 대신 entity 객체 사용, 컬럼 대신 필드 사용!
 	// update member set count = count +1 where idx = 2
 
-	// 회원가입 시 비밀번호 SHA2로 암호화해서 저장하기
-
-	// TbUser findById(String id);
-
 }

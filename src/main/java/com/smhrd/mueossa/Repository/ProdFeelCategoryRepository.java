@@ -8,10 +8,10 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.dto.ProdFeelCategoryPercentileDTO;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.entity.TbProdFeelCategory;
-import com.smhrd.mueossa.model.FilterForm;
 
 @Repository
 public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCategory, String> {

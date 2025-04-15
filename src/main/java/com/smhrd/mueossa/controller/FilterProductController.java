@@ -11,8 +11,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import com.smhrd.mueossa.Repository.ProdFeelCategoryRepository;
 import com.smhrd.mueossa.Repository.ProdImageRepository;
 import com.smhrd.mueossa.Repository.ProductRepository;
+import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
-import com.smhrd.mueossa.model.FilterForm;
+
+import jakarta.servlet.http.HttpSession;
+
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -48,8 +51,8 @@ public class FilterProductController {
    * 선택한 카테고리와 제품 카테고리가 일치하는 것만 조회
    * 카테고리 선택용 dto 만들기
    */
-  @PostMapping("/filterProduct")
-  public String goFilterProduct(FilterForm filterForm, Model model) {
+  @PostMapping({ "/filterProduct" })
+  public String goFilterProduct(FilterForm filterForm, Model model, HttpSession session) {
     List<ProductAndCategoryDTO> productAndCategoryDTO = prodFeelCategoryRepository
         .findProductAndCategoryByFilter(filterForm);
 
@@ -57,8 +60,32 @@ public class FilterProductController {
     for (ProductAndCategoryDTO product : productAndCategoryDTO) {
       getFormattedPrice(product);
     }
+
     model.addAttribute("prodCateList", productAndCategoryDTO);
-    return "home";
+    // 세션에 필터링된 상품 리스트 저장
+    session.setAttribute("filteredProducts", filterForm);
+    return "filterCategory";
+  }
+
+  @GetMapping({ "/goCategory" })
+  public String goFilterProduct(Model model, HttpSession session) {
+
+    List<ProductAndCategoryDTO> prodCateList = null;
+    // 세션에서 필터링된 상품 리스트가 있으면 그걸로 조회
+    if (session.getAttribute("filteredProducts") != null) {
+      FilterForm filterForm = (FilterForm) session.getAttribute("filteredProducts");
+      prodCateList = prodFeelCategoryRepository.findProductAndCategoryByFilter(filterForm);
+    } else {
+      // 필터링된 상품 리스트가 없으면 전체 상품 조회
+      prodCateList = prodFeelCategoryRepository.findProductAndCategory();
+    }
+
+    // 포맷팅
+    for (ProductAndCategoryDTO product : prodCateList) {
+      getFormattedPrice(product);
+    }
+    model.addAttribute("prodCateList", prodCateList);
+    return "filterCategory";
   }
 
   // formatting method

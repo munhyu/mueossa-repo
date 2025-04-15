@@ -22,6 +22,50 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".preference-button2");
+  const hiddenInput = document.getElementById("selectedPreferences");
+  const selectedValues = new Set(); // 선택된 취향을 저장할 Set
+
+  buttons.forEach(button => {
+      button.addEventListener("click", () => {
+          const value = button.getAttribute("data-value");
+
+          // 선택된 버튼 토글
+          if (button.classList.contains("selected")) {
+              button.classList.remove("selected");
+              selectedValues.delete(value); // 선택 해제
+          } else {
+              button.classList.add("selected");
+              selectedValues.add(value); // 선택 추가
+          }
+
+          // Set을 배열로 변환 후, 쉼표로 구분된 문자열로 저장
+          hiddenInput.value = Array.from(selectedValues).join(",");
+      });
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const buttons = document.querySelectorAll(".preference-toggle");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", () => {
+      // 클릭된 버튼이 이미 'selected' 클래스를 가지고 있는지 확인
+      if (button.classList.contains("selected")) {
+        button.classList.remove("selected"); // 'selected' 클래스 제거
+      } else {
+        // 모든 버튼에서 'selected' 클래스 제거
+        buttons.forEach((btn) => btn.classList.remove("selected"));
+
+        // 클릭된 버튼에 'selected' 클래스 추가
+        button.classList.add("selected");
+      }
+    });
+  });
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     const slides = document.querySelector('.slides');
     const prevButton = document.querySelector('.prev-slide');

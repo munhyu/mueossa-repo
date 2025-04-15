@@ -30,11 +30,7 @@
 </th:block>
 
 <th:block layout:fragment="css">
-    <style>
-        input {
-            display: none;
-        }
-    </style>
+    
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -47,6 +43,10 @@
         <form method="post" th:action="@{/surveyInsert}" th:object="${survey}">
             <div class="preference-buttons">
 
+
+                <label for="comf" class="preference-button">편한</label>
+                <input type="checkbox" id="comf" name="comf" value="Y"
+                    th:checked="${session.survey != null and session.survey.comf == 'Y'}" />
 
                 <label for="fluffy" class="preference-button">푹신한</label>
                 <input type="checkbox" id="fluffy" name="fluffy" value="Y"

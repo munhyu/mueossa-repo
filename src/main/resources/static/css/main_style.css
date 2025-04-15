@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'NanumSquareR';
-  src: url('../font/NanumSquareR.ttf') format('truetype');
+  font-family: "NanumSquareR";
+  src: url("../font/NanumSquareR.ttf") format("truetype");
   font-weight: normal;
   font-style: normal;
 }
@@ -28,10 +28,12 @@ body {
 p {
   display: block;
   visibility: visible;
-  color: black; /* 텍스트 색상 */
+  color: black;
+  /* 텍스트 색상 */
 }
+
 .background {
-  background-image: url('../images/bgimg.jpg');
+  background-image: url("../images/bgimg.jpg");
   background-size: cover;
   background-position: center;
   position: fixed;
@@ -107,7 +109,7 @@ p {
 }
 
 .search-button {
-  background-image: url('https://cdn-icons-png.flaticon.com/512/622/622669.png');
+  background-image: url("https://cdn-icons-png.flaticon.com/512/622/622669.png");
   background-color: transparent;
   background-repeat: no-repeat;
   background-size: contain;
@@ -135,11 +137,9 @@ p {
   height: 60px;
   display: block;
   cursor: pointer;
-
 }
 
 /* 마이페이지 스타일 */
-
 
 .mypage-button {
   width: 240px;
@@ -155,9 +155,8 @@ p {
 }
 
 .mypage-button:hover {
-  background-color: #4CAF50;
+  background-color: #4caf50;
 }
-
 
 /* 취향테이블 스타일 */
 
@@ -182,11 +181,11 @@ p {
 }
 
 .preference-button.selected {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid #4CAF50;
+  border: 1px solid #4caf50;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -238,7 +237,7 @@ p {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -269,8 +268,6 @@ p {
   margin-bottom: 20px;
 }
 
-
-
 .main-title {
   font-size: 18px;
   font-weight: bold;
@@ -279,7 +276,7 @@ p {
   /* 텍스트 세로 중앙 정렬 */
   margin-top: 40px;
   text-align: center;
-  font-family: 'NanumSquareR', sans-serif;
+  font-family: "NanumSquareR", sans-serif;
 }
 
 .main-title2 {
@@ -290,7 +287,7 @@ p {
   /* 텍스트 세로 중앙 정렬 */
   text-align: center;
   margin-bottom: 10px;
-  font-family: 'NanumSquareR', sans-serif;
+  font-family: "NanumSquareR", sans-serif;
 }
 
 span {
@@ -329,7 +326,7 @@ span input {
   transform: translateY(-50%);
   padding: 5px 10px;
   font-size: 12px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -386,7 +383,7 @@ span input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 5px;
@@ -463,7 +460,6 @@ span input {
   right: 2px;
   /* 오른쪽 버튼 위치 */
 }
-
 
 .product-list {
   display: flex;
@@ -560,21 +556,29 @@ span input {
 }
 
 .product-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .price-line {
-  position: absolute; /* 부모 요소(product-info)의 위치를 기준으로 설정 */
-  bottom: 0; /* 부모 요소의 하단에 고정 */
-  left: 0; /* 왼쪽 정렬 */
-  width: 100%; /* 부모 요소의 너비를 채움 */
+  position: absolute;
+  /* 부모 요소(product-info)의 위치를 기준으로 설정 */
+  bottom: 0;
+  /* 부모 요소의 하단에 고정 */
+  left: 0;
+  /* 왼쪽 정렬 */
+  width: 100%;
+  /* 부모 요소의 너비를 채움 */
   height: 0px;
-  padding: 3px 8px; /* 내부 여백 */
-  display: flex; /* 내용 정렬 */
-  justify-content: space-between; /* 자식 요소 간격 균등 배치 */
-  align-items: center; /* 세로 중앙 정렬 */
+  padding: 3px 8px;
+  /* 내부 여백 */
+  display: flex;
+  /* 내용 정렬 */
+  justify-content: space-between;
+  /* 자식 요소 간격 균등 배치 */
+  align-items: center;
+  /* 세로 중앙 정렬 */
 }
 
 .product-discount {
@@ -592,14 +596,14 @@ span input {
 /* 상세 페이지 디자인 */
 
 .product-discription-card img {
-  width: 380px;;
+  width: 380px;
   height: 390px;
 }
 
 .product-discription-category {
   font-size: 15px;
   margin-bottom: 4px;
-  color: #666;;
+  color: #666;
 }
 
 .product-discription-name {
@@ -623,6 +627,7 @@ span input {
 }
 
 .product-discription-category-score {
+.product-discription-category-score div {
   font-size: 10px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -745,4 +750,5 @@ span input {
 
 .top-button:hover {
   background-color: #a3a3a3; /* 호버 시 배경색 변경 */
+}
 }

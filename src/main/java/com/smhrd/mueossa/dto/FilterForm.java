@@ -1,4 +1,4 @@
-package com.smhrd.mueossa.model;
+package com.smhrd.mueossa.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

@@ -1,12 +1,22 @@
 package com.smhrd.mueossa.controller;
 
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import com.smhrd.mueossa.Repository.SurveyRepository;
+import com.smhrd.mueossa.entity.TbSurvey;
+import com.smhrd.mueossa.entity.TbUser;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class MainController {
 
-  // '/'랑 /goHome'은 productCon에 있음
+  @Autowired
+  private SurveyRepository surveyRepository;
 
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
@@ -17,20 +27,25 @@ public class MainController {
   // 로그인 페이지 이동
   @GetMapping("/goLogin")
   public String goLogin() {
-    return "login"; // main.html로 이동
+    return "login";
   }
 
   // 카테고리 페이지 이동
   // 일단 임시로 바꿔둠 filterCategory로
-  @GetMapping("/goCategory")
-  public String goCategory() {
-    return "filterCategory";
-  }
+  // @GetMapping("/goCategory")
+  // public String goCategory() {
+  // return "filterCategory";
+  // }
 
   // 찜목록 페이지 이동
   @GetMapping("/goWishlist")
-  public String goWishlist() {
-    return "wishlist";
+  public String goWishlist(HttpSession session) {
+    TbUser loginUser = (TbUser) session.getAttribute("user");
+    if (loginUser == null) {
+      return "redirect:/goLogin";
+    } else {
+      return "wishlist";
+    }
   }
 
   // 마이페이지 페이지 이동
@@ -41,14 +56,30 @@ public class MainController {
 
   // 취향선택 페이지 이동
   @GetMapping("/goPreference")
-  public String goPreference() {
+  public String goPreference(HttpSession session) {
+    TbUser loginUser = (TbUser) session.getAttribute("user");
+    if (loginUser == null) {
+      return "redirect:/goLogin";
+    }
+    String userId = loginUser.getId();
+    Optional<TbSurvey> surveyOptional = surveyRepository.findById(userId);
+    if (surveyOptional.isPresent()) {
+      session.setAttribute("survey", surveyOptional.get());
+    } else {
+      session.setAttribute("survey", null);
+    }
     return "preference";
   }
 
   // 회원 정보 수정 페이지 이동
   @GetMapping("/goUpdate")
-  public String goUpdate() {
-    return "update";
+  public String goUpdate(HttpSession session) {
+    TbUser loginUser = (TbUser) session.getAttribute("user");
+    if (loginUser == null) {
+      return "redirect:/goLogin";
+    } else {
+      return "update";
+    }
   }
 
 }

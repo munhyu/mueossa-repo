@@ -41,9 +41,14 @@
     <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
      <!--  -->
     <th:block th:each="product : ${prodCateList}">
-      <div class="product-card">
+      <div class="product-card" th:attr="data-pid=${product.pId}"> <!-- 찜버튼용 data-pid추가 -->
         <a th:href="@{제품상세테스트(pId=${product.pId})}">
           <img th:src="${product.pImage}" alt="상품 이미지" />
+          <!-- 찜버튼 임시 -->
+          <div class="wish-button">
+            <img th:src="${session.wishlist != null and #sets.contains(session.wishlist, product.pId)} ? '/images/hearts/heart.png' : '/images/hearts/like.png'"
+            alt="찜하기" class="heart-icon"/>
+       </div>
           <div class="product-info">
             <div class="product-brand" th:text="${product.pBrand}"></div>
             <div class="product-name" th:text="${product.pName}"></div>
@@ -81,5 +86,9 @@
 </div>
 
 <th:block layout:fragment="footer"></th:block>
+<th:block layout:fragment="script-footer">
+
+
+</th:block>
 
 </html>

@@ -13,7 +13,7 @@
   <th:block layout:fragment="header"></th:block>
   <!-- 콘텐츠 -->
   <div layout:fragment="content">
-    <div id="home" >
+    <div id="home">
       <div class="banner-slider">
         <button class="prev-slide">〈</button>
         <!-- 이전 슬라이드 버튼 -->
@@ -41,39 +41,33 @@
         <!-- 반복적으로 생성 -->
         <!-- 반복문처럼 생성된 카드들 -->
         <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
+        <!--  -->
         <th:block th:each="product : ${prodCateList}">
-          <div class="product-card">
-              <!-- 찜버튼 만들기 --> 
-              <div class="wish-button">
-                <img src="/images/hearts/like.png" alt="찜하기" class="heart-icon" />
-              </div>
+          <div class="product-card" th:attr="data-pid=${product.pId}">
+            <!-- 찜버튼용 data-pid추가 -->
             <a th:href="@{제품상세테스트(pId=${product.pId})}">
               <img th:src="${product.pImage}" alt="상품 이미지" />
+              <!-- 찜버튼 임시 -->
+              <div class="wish-button">
+                <img
+                  th:src="${session.wishlist != null and #sets.contains(session.wishlist, product.pId)} ? '/images/hearts/heart.png' : '/images/hearts/like.png'"
+                  alt="찜하기"
+                  class="heart-icon"
+                />
+              </div>
               <div class="product-info">
                 <div class="product-brand" th:text="${product.pBrand}"></div>
                 <div class="product-name" th:text="${product.pName}"></div>
                 <div
                   class="product-rating"
                   name="pd_rating"
-                  th:text="|⭐${product.pRating}|"
+                  th:text="${product.pRating}"
                 ></div>
-                <div class="keywords">
-                    <p th:if="${product.ctComf} == 'Y' ">편한</p>
-                    <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
-                    <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
-                    <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
-                    <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
-                    <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
-                    <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
-                    <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
-                    <p th:if="${product.ctModern} == 'Y' ">모던함</p>
-                    <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
-                    <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
-                    <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
-                    <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
-                    <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
-                    <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
-                  </div>
+                <div
+                  class="product-sentiment"
+                  name="sentiment"
+                  th:text="${product.sentiment}"
+                ></div>
                 <div class="price-line">
                   <span
                     class="product-discount"
@@ -86,7 +80,23 @@
                   ></span>
                 </div>
               </div>
-              
+              <div>
+                <p th:if="${product.ctComf} == 'Y' ">편한</p>
+                <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
+                <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
+                <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
+                <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
+                <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
+                <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
+                <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
+                <p th:if="${product.ctModern} == 'Y' ">모던함</p>
+                <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
+                <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
+                <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
+                <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
+                <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
+                <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
+              </div>
             </a>
           </div>
         </th:block>

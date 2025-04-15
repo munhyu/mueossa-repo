@@ -37,16 +37,16 @@ public class MainController {
   // return "filterCategory";
   // }
 
-  // 찜목록 페이지 이동
-  @GetMapping("/goWishlist")
-  public String goWishlist(HttpSession session) {
-    TbUser loginUser = (TbUser) session.getAttribute("user");
-    if (loginUser == null) {
-      return "redirect:/goLogin";
-    } else {
-      return "wishlist";
-    }
-  }
+  // // 찜목록 페이지 이동
+  // @GetMapping("/goWishlist")
+  // public String goWishlist(HttpSession session) {
+  // TbUser loginUser = (TbUser) session.getAttribute("user");
+  // if (loginUser == null) {
+  // return "redirect:/goLogin";
+  // } else {
+  // return "wishlist";
+  // }
+  // }
 
   // 마이페이지 페이지 이동
   @GetMapping("/goMypage")

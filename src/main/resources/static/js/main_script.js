@@ -67,3 +67,44 @@ document.addEventListener("DOMContentLoaded", () => {
     setInterval(showNextSlide, 3000);
 });
 
+// top button 
+document.addEventListener("DOMContentLoaded", () => {
+    const topButton = document.getElementById("topButton");
+    const mobileFrame = document.querySelector(".mobile-frame"); // .mobile-frame 요소 선택
+  
+    // 스크롤 이벤트
+    mobileFrame.addEventListener("scroll", () => {
+      if (mobileFrame.scrollTop > 200) {
+        topButton.style.display = "flex"; // 버튼 표시
+      } else {
+        topButton.style.display = "none"; // 버튼 숨김
+      }
+    });
+  
+    // 버튼 클릭 이벤트
+    topButton.addEventListener("click", () => {
+      mobileFrame.scrollTo({
+        top: 0,
+        behavior: "smooth", // 부드럽게 스크롤
+      });
+    });
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    // 모든 찜 버튼을 선택
+    const wishButtons = document.querySelectorAll(".wish-button");
+  
+    wishButtons.forEach((button) => {
+      const heartIcon = button.querySelector(".heart-icon");
+  
+      // 클릭 이벤트 추가
+      button.addEventListener("click", () => {
+        // 현재 이미지가 like.png인지 heart.png인지 확인
+        if (heartIcon.src.includes("like.png")) {
+          heartIcon.src = "/images/hearts/heart.png"; // heart.png로 변경
+        } else {
+          heartIcon.src = "/images/hearts/like.png"; // like.png로 변경
+        }
+      });
+    });
+  });

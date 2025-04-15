@@ -481,6 +481,23 @@ span input {
   width: calc(33.33% - 6px);
 }
 
+.wish-button {
+  position: absolute;
+  top: 151px;
+  right: 10px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  width: 10px;
+  height: 10px;
+  transition: transform 0.3s ease;
+}
+
+.wish-button:active {
+  transform: scale(3); 
+}
+
 .product-card a {
   text-decoration: none;
   color: inherit;
@@ -502,7 +519,7 @@ span input {
   padding: 10px;
   background-color: #f3f3f3d5;
   white-space: normal;
-  height: 100px;
+  height: 140px;
 }
 
 .product-brand {
@@ -708,7 +725,24 @@ span input {
   /* 아이콘과 텍스트 간격 */
 }
 
-.page {
-  padding-bottom: 60px;
-  min-height: calc(100vh - 50px);
+/* Top 버튼 스타일 */
+.top-button {
+  position: fixed; /* 화면에 고정 */
+  width: 30px; /* 버튼의 너비 */
+  right: 210px; /* 오른쪽 여백 */
+  bottom: 60px; /* 아래 여백 */
+  height: 30px; /* 버튼의 높이 */
+  background-color: #f5f5f5; /* 버튼 배경색 */
+  border: none; /* 테두리 제거 */
+  border-radius: 50%; /* 동그란 모양 */
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+  justify-content: center;
+  align-items: center;
+  font-size: 18px; /* 텍스트 크기 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+}
+
+.top-button:hover {
+  background-color: #a3a3a3; /* 호버 시 배경색 변경 */
 }

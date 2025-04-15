@@ -64,9 +64,7 @@ public class ProductController {
     for (ProductAndCategoryDTO product : prodCateList) {
       getFormattedPrice(product);
     }
-
     model.addAttribute("prodCateList", prodCateList);
-
     return "home";
   }
 

@@ -28,8 +28,10 @@ body {
 p {
   display: block;
   visibility: visible;
-  color: black; /* 텍스트 색상 */
+  color: black;
+  /* 텍스트 색상 */
 }
+
 .background {
   background-image: url('../images/bgimg.jpg');
   background-size: cover;
@@ -189,6 +191,7 @@ p {
   border: 1px solid #4CAF50;
   /* 선택된 버튼의 테두리 색상 */
 }
+
 
 /* 로그인 폼 스타일 */
 #login {
@@ -522,21 +525,29 @@ span input {
 }
 
 .product-title {
-    font-size: 14px;
-    font-weight: bold;
-    margin-bottom: 4px;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .price-line {
-  position: absolute; /* 부모 요소(product-info)의 위치를 기준으로 설정 */
-  bottom: 0; /* 부모 요소의 하단에 고정 */
-  left: 0; /* 왼쪽 정렬 */
-  width: 100%; /* 부모 요소의 너비를 채움 */
+  position: absolute;
+  /* 부모 요소(product-info)의 위치를 기준으로 설정 */
+  bottom: 0;
+  /* 부모 요소의 하단에 고정 */
+  left: 0;
+  /* 왼쪽 정렬 */
+  width: 100%;
+  /* 부모 요소의 너비를 채움 */
   height: 0px;
-  padding: 3px 8px; /* 내부 여백 */
-  display: flex; /* 내용 정렬 */
-  justify-content: space-between; /* 자식 요소 간격 균등 배치 */
-  align-items: center; /* 세로 중앙 정렬 */
+  padding: 3px 8px;
+  /* 내부 여백 */
+  display: flex;
+  /* 내용 정렬 */
+  justify-content: space-between;
+  /* 자식 요소 간격 균등 배치 */
+  align-items: center;
+  /* 세로 중앙 정렬 */
 }
 
 .product-discount {
@@ -554,14 +565,16 @@ span input {
 /* 상세 페이지 디자인 */
 
 .product-discription-card img {
-  width: 380px;;
+  width: 380px;
+  ;
   height: 390px;
 }
 
 .product-discription-category {
   font-size: 15px;
   margin-bottom: 4px;
-  color: #666;;
+  color: #666;
+  ;
 }
 
 .product-discription-name {
@@ -584,7 +597,7 @@ span input {
   text-align: right;
 }
 
-.product-discription-category-score div{
+.product-discription-category-score div {
   font-size: 10px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -642,9 +655,4 @@ span input {
   height: 16px;
   margin-bottom: 2px;
   /* 아이콘과 텍스트 간격 */
-}
-
-.page {
-  padding-bottom: 60px;
-  min-height: calc(100vh - 50px);
 }

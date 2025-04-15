@@ -26,49 +26,49 @@ public class TbProdFeelCategory {
 	private String pdId;
 
 	@Column(name = "ct_comf")
-	private float ctComf;
+	private Float ctComf;
 
 	@Column(name = "ct_fluffy")
-	private float ctFluffy;
+	private Float ctFluffy;
 
 	@Column(name = "ct_light")
-	private float ctLight;
+	private Float ctLight;
 
 	@Column(name = "ct_soft")
-	private float ctSoft;
+	private Float ctSoft;
 
 	@Column(name = "ct_flat")
-	private float ctFlat;
+	private Float ctFlat;
 
 	@Column(name = "ct_pretty")
-	private float ctPretty;
+	private Float ctPretty;
 
 	@Column(name = "ct_cute")
-	private float ctCute;
+	private Float ctCute;
 
 	@Column(name = "ct_neat")
-	private float ctNeat;
+	private Float ctNeat;
 
 	@Column(name = "ct_modern")
-	private float ctModern;
+	private Float ctModern;
 
 	@Column(name = "ct_hip")
-	private float ctHip;
+	private Float ctHip;
 
 	@Column(name = "ct_wide")
-	private float ctWide;
+	private Float ctWide;
 
 	@Column(name = "ct_narrow")
-	private float ctNarrow;
+	private Float ctNarrow;
 
 	@Column(name = "ct_standard")
-	private float ctStandard;
+	private Float ctStandard;
 
 	@Column(name = "ct_cost")
-	private float ctCost;
+	private Float ctCost;
 
 	@Column(name = "ct_strong")
-	private float ctStrong;
+	private Float ctStrong;
 
 	public TbProdFeelCategory(ProdFeelCategory prodFeelCategory) {
 		this.pdId = prodFeelCategory.getPdId();

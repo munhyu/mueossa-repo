@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector(".preference-buttons");
+            const labels = container.querySelectorAll("label");
+
+            labels.forEach(label => {
+                const input = document.getElementById(label.getAttribute("for"));
+
+                // 페이지 로드 시 이미 체크된 항목이면 selected 클래스 추가
+                if (input && input.checked) {
+                    label.classList.add("selected");
+                }
+
+                // 라벨 클릭 시 체크 상태 토글 및 스타일 반영
+                label.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (input) {
+                        input.checked = !input.checked;
+                        label.classList.toggle("selected", input.checked);
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</th:block>
 
 <th:block layout:fragment="css">
     <style>
-        input[type="checkbox"] {
+        input {
             display: none;
-            /* Hide the checkbox input */
         }
     </style>
-
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -20,54 +45,64 @@
         <div class="section-title">당신의 취향을 선택하세요.</div>
 
         <form method="post" th:action="@{/surveyInsert}" th:object="${survey}">
-
-            <!-- 취향 선택 -->
             <div class="preference-buttons">
 
-                <label  for="comf" class="preference-button">편한</label>
-                <input type="checkbox" id="comf" name="comf" value="Y" />
 
                 <label for="fluffy" class="preference-button">푹신한</label>
-                <input type="checkbox" id="fluffy" name="fluffy" value="Y" />
+                <input type="checkbox" id="fluffy" name="fluffy" value="Y"
+                    th:checked="${session.survey != null and session.survey.fluffy == 'Y'}" />
 
                 <label for="light" class="preference-button">가벼운</label>
-                <input type="checkbox" id="light" name="light" value="Y" />
+                <input type="checkbox" id="light" name="light" value="Y"
+                    th:checked="${session.survey != null and session.survey.light == 'Y'}" />
 
                 <label for="soft" class="preference-button">부드러운</label>
-                <input type="checkbox" id="soft" name="soft" value="Y" />
+                <input type="checkbox" id="soft" name="soft" value="Y"
+                    th:checked="${session.survey != null and session.survey.soft == 'Y'}" />
 
                 <label for="flat" class="preference-button">플랫한</label>
-                <input type="checkbox" id="flat" name="flat" value="Y" />
+                <input type="checkbox" id="flat" name="flat" value="Y"
+                    th:checked="${session.survey != null and session.survey.flat == 'Y'}" />
 
                 <label for="pretty" class="preference-button">예쁜</label>
-                <input type="checkbox" id="pretty" name="pretty" value="Y" />
+                <input type="checkbox" id="pretty" name="pretty" value="Y"
+                    th:checked="${session.survey != null and session.survey.pretty == 'Y'}" />
 
                 <label for="cute" class="preference-button">귀여운</label>
-                <input type="checkbox" id="cute" name="cute" value="Y" />
+                <input type="checkbox" id="cute" name="cute" value="Y"
+                    th:checked="${session.survey != null and session.survey.cute == 'Y'}" />
 
                 <label for="neat" class="preference-button">깔끔한</label>
-                <input type="checkbox" id="neat" name="neat" value="Y" />
+                <input type="checkbox" id="neat" name="neat" value="Y"
+                    th:checked="${session.survey != null and session.survey.neat == 'Y'}" />
 
                 <label for="modern" class="preference-button">모던한</label>
-                <input type="checkbox" id="modern" name="modern" value="Y" />
+                <input type="checkbox" id="modern" name="modern" value="Y"
+                    th:checked="${session.survey != null and session.survey.modern == 'Y'}" />
 
                 <label for="wide" class="preference-button">발볼이 넓은</label>
-                <input type="checkbox" id="wide" name="wide" value="Y" />
+                <input type="checkbox" id="wide" name="wide" value="Y"
+                    th:checked="${session.survey != null and session.survey.wide == 'Y'}" />
 
                 <label for="narrow" class="preference-button">발볼이 좁은</label>
-                <input type="checkbox" id="narrow" name="narrow" value="Y" />
+                <input type="checkbox" id="narrow" name="narrow" value="Y"
+                    th:checked="${session.survey != null and session.survey.narrow == 'Y'}" />
 
                 <label for="standard" class="preference-button">발볼이 보통</label>
-                <input type="checkbox" id="standard" name="standard" value="Y" />
+                <input type="checkbox" id="standard" name="standard" value="Y"
+                    th:checked="${session.survey != null and session.survey.standard == 'Y'}" />
 
                 <label for="hip" class="preference-button">휘뚜루마뚜루</label>
-                <input type="checkbox" id="hip" name="hip" value="Y" />
+                <input type="checkbox" id="hip" name="hip" value="Y"
+                    th:checked="${session.survey != null and session.survey.hip == 'Y'}" />
 
                 <label for="cost" class="preference-button">가격이 착한</label>
-                <input type="checkbox" id="cost" name="cost" value="Y" />
+                <input type="checkbox" id="cost" name="cost" value="Y"
+                    th:checked="${session.survey != null and session.survey.cost == 'Y'}" />
 
                 <label for="strong" class="preference-button">튼튼한</label>
-                <input type="checkbox" id="strong" name="strong" value="Y" />
+                <input type="checkbox" id="strong" name="strong" value="Y"
+                    th:checked="${session.survey != null and session.survey.strong == 'Y'}" />
 
             </div>
 

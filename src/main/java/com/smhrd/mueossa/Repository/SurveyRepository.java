@@ -1,5 +1,7 @@
 package com.smhrd.mueossa.Repository;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -32,5 +34,7 @@ public interface SurveyRepository extends JpaRepository<TbSurvey, String> {
 
 	// 테이블 대신 entity 객체 사용, 컬럼 대신 필드 사용!
 	// update member set count = count +1 where idx = 2
+
+	Optional<TbSurvey> findById(String id);
 
 }

@@ -1,0 +1,223 @@
+<!-- layout 쓰는 파일-->
+
+<!DOCTYPE html>
+<html
+  lang="ko"
+  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{layouts/layout}"
+>
+  <th:block layout:fragment="script"></th:block>
+
+  <th:block layout:fragment="css"></th:block>
+
+  <th:block layout:fragment="header"></th:block>
+  <!-- 콘텐츠 -->
+  <div layout:fragment="content">
+    <div id="home" class="page active">
+      <div class="product-list">
+        <!-- 상품 카드 반복 -->
+        <div class="product-discription-card">
+          <img th:src="${product.pImage}" alt="상품 이미지" />
+          <div class="product-discription-info">
+            <!-- 신발 종류 -->
+            <div
+              class="product-discription-category"
+              th:text="'카테고리: '+${product.pGroup} +' > '+ ${product.pType}"
+            ></div>
+            <div
+              class="product-discription-name"
+              th:text="${product.pName}"
+            ></div>
+            <div
+              class="product-discription-rating"
+              name="pd_rating"
+              th:text="|⭐${product.pRating}|"
+            ></div>
+            <div
+              class="product-discription-sentiment"
+              name="sentiment"
+              th:text="${product.sentiment}"
+            ></div>
+            <div
+              class="product-discription-discount"
+              name="discount"
+              th:text="${product.pDiscount}"
+            ></div>
+            <div
+              class="product-discription-price"
+              th:text="${product.pPrice}"
+            ></div>
+          </div>
+        </div>
+
+        <!-- 카테고리 백분율 상위 몇퍼센트인지-->
+
+        <div class="product-discription-category-score">
+          <h3>상위 %에 해당합니다</h3>
+
+          <div class="bar">
+            <span class="bar-label">편한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctComfPercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctComfPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">푹신한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctFluffyPercentileRank}* 0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctFluffyPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">부드러운</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctSoftPercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctSoftPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">플랫한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctFlatPercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctFlatPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">예쁜</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctPrettyPercentileRank}* 0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctPrettyPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">귀여운</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctCutePercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctCutePercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">깔끔한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctNeatPercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctNeatPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">모던한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctModernPercentileRank}* 0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctModernPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">휘뚜루마뚜루</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctHipPercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctHipPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">발볼이 넓은</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctWidePercentileRank}* 0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctWidePercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">발볼이 좁은</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctNarrowPercentileRank}* 0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctNarrowPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">발볼이 보통</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctStandardPercentileRank}* 0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctStandardPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">가격이 착한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctCostPercentileRank}*0.75) + '%;'"
+            >
+              <span th:text="${prodPercent.ctCostPercentileRank} + '%'"></span>
+            </div>
+          </div>
+
+          <div class="bar">
+            <span class="bar-label">튼튼한</span>
+            <div
+              class="bar-fill"
+              th:style="'width: ' + (${prodPercent.ctStrongPercentileRank}*0.75) + '%;'"
+            >
+              <span
+                th:text="${prodPercent.ctStrongPercentileRank} + '%'"
+              ></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 제품 설명 이미지 -->
+    <div
+      class="product-discription-image"
+      th:each="productImage : ${ProdImageList}"
+    >
+      <img th:src="${productImage.imgName}" alt="상품 이미지" />
+    </div>
+  </div>
+
+  <th:block layout:fragment="footer"></th:block>
+</html>

@@ -2,6 +2,7 @@ package com.smhrd.mueossa.Repository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -15,11 +16,7 @@ import com.smhrd.mueossa.entity.TbProdFeelCategory;
 
 @Repository
 public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCategory, String> {
-	/**
-	 * 상품 ID와 기준 점수를 받아 각 카테고리 점수가 기준 이상이면 'Y', 아니면 'N'을 반환합니다.
-	 * 
-	 * @return 각 카테고리 상태를 담은 DTO (Optional)
-	 */
+	// 상품 ID와 기준 점수를 받아 각 카테고리 점수가 기준 이상이면 'Y', 아니면 'N'을 반환
 	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
 			"   p.pId, " +
 			"   p.pBrand, " +
@@ -33,6 +30,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
@@ -48,7 +46,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where p.pId = :pId")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where p.pId = :pId ORDER BY p.sentiment DESC")
 	ProductAndCategoryDTO findProductAndCategoryByPId(String pId); // DTO로 반환
 
 	// product와 productCategory를 join하여 제품 정보와 카테고리 점수를 가져오는 쿼리
@@ -65,6 +63,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
@@ -80,7 +79,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId ORDER BY p.sentiment DESC")
 	List<ProductAndCategoryDTO> findProductAndCategory(); // DTO로 반환
 
 	// 제품 감성 카테고리 점수의 백분위수를 계산하는 쿼리
@@ -110,7 +109,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 
 	// 제품 필터링, 제품 카테고리 Y/N이 매개변수로 받은 값과 일치하는 제품을 조회하는 쿼리
 	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
-			"   p.pId, p.pBrand, p.pName, p.pLikes, p.pRating, p.pDiscount, p.pPrice, p.pGender, p.pLink, p.pImage, p.pGroup, p.pType, "
+			"   p.pId, p.pBrand, p.pName, p.pLikes, p.pRating, p.pDiscount, p.pPrice, p.pGender, p.pLink, p.pImage, p.pGroup, p.pType, p.sentiment, "
 			+
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
@@ -157,7 +156,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			+ // 발볼이 보통
 			"  AND (:#{#filterForm.ctCost} IS NULL OR :#{#filterForm.ctCost} != 'Y' OR (CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END) = 'Y') "
 			+ // 가격이 착한
-			"  AND (:#{#filterForm.ctStrong} IS NULL OR :#{#filterForm.ctStrong} != 'Y' OR (CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) = 'Y') ") // 튼튼한
+			"  AND (:#{#filterForm.ctStrong} IS NULL OR :#{#filterForm.ctStrong} != 'Y' OR (CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) = 'Y') ORDER BY p.sentiment DESC") // 튼튼한
 	List<ProductAndCategoryDTO> findProductAndCategoryByFilter(@Param("filterForm") FilterForm filterForm);
 
 	// 상품명, 브랜드, 그룹, 타입 검색
@@ -174,6 +173,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
@@ -189,7 +189,33 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId WHERE p.pName LIKE CONCAT('%', :Keyword, '%') OR p.pBrand LIKE CONCAT('%', :Keyword, '%') OR p.pGroup LIKE CONCAT('%', :Keyword, '%') OR p.pType LIKE CONCAT('%', :Keyword, '%')")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId " +
+			"WHERE p.pName LIKE CONCAT('%', :Keyword, '%') OR p.pBrand LIKE CONCAT('%', :Keyword, '%') OR p.pGroup LIKE CONCAT('%', :Keyword, '%') OR p.pType LIKE CONCAT('%', :Keyword, '%') ORDER BY p.sentiment DESC")
 	List<ProductAndCategoryDTO> findProductAndCategoryByKeyword(@Param("Keyword") String Keyword); // DTO로 반환
+	// ...existing code...
+	// 상품명, 브랜드, 그룹, 타입 검색 (공백으로 구분된 키워드 중 하나라도 포함 시 검색)
+
+	// 여러 pId로 ProductAndCategoryDTO 리스트 조회 (JPQL 사용)
+	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
+			"   p.pId, p.pBrand, p.pName, p.pLikes, p.pRating, p.pDiscount, p.pPrice, p.pGender, p.pLink, p.pImage, p.pGroup, p.pType, p.sentiment, "
+			+
+			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctSoft >= 0.48 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctFlat >= 1.74 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctPretty >= 34.96 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctCute >= 1.14 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctNeat >= 2.19 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctModern >= 0.52 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctHip >= 17.95 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctWide >= 14.14 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctNarrow >= 10.36 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctStandard >= 19.8 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " +
+			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " +
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId " +
+			"WHERE p.pId IN :pIds ORDER BY p.sentiment DESC") // WHERE 절 추가
+	List<ProductAndCategoryDTO> findByPIdIn(@Param("pIds") Set<String> pIds);
 
 }

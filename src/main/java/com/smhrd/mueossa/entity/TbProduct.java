@@ -58,6 +58,9 @@ public class TbProduct {
 	@Column(name = "pd_type")
 	private String pType;
 
+	@Column(name = "sentiment")
+	private int sentiment;
+
 	public TbProduct(Product product) {
 		this.pId = product.getPId();
 		this.pBrand = product.getPBrand();
@@ -71,6 +74,7 @@ public class TbProduct {
 		this.pImage = product.getPImage();
 		this.pGroup = product.getPGroup();
 		this.pType = product.getPType();
+		this.sentiment = product.getSentiment();
 	}
 
 }

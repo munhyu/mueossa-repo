@@ -30,23 +30,9 @@ public class MainController {
     return "login";
   }
 
-  // 카테고리 페이지 이동
-  // 일단 임시로 바꿔둠 filterCategory로
-  // @GetMapping("/goCategory")
-  // public String goCategory() {
-  // return "filterCategory";
-  // }
+  // 카테고리 FilterPdoductController에 있음
 
-  // 찜목록 페이지 이동
-  @GetMapping("/goWishlist")
-  public String goWishlist(HttpSession session) {
-    TbUser loginUser = (TbUser) session.getAttribute("user");
-    if (loginUser == null) {
-      return "redirect:/goLogin";
-    } else {
-      return "wishlist";
-    }
-  }
+  // 찜목록 ProductController에 있음
 
   // 마이페이지 페이지 이동
   @GetMapping("/goMypage")

@@ -20,6 +20,7 @@ public class ProductAndCategoryDTO {
   private String pImage;
   private String pGroup;
   private String pType;
+  private int sentiment;
 
   private String ctComf;
 

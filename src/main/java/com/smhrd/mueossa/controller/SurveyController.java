@@ -6,6 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.smhrd.mueossa.Repository.SurveyRepository;
+import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.entity.TbSurvey;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.Survey;
@@ -57,6 +58,11 @@ public class SurveyController {
     if (tbSurvey.getWide() == null)
       tbSurvey.setWide("N");
     surveyRepository.save(tbSurvey);
+
+    // 설문조사 결과를 세션에 저장
+    FilterForm filterForm = new FilterForm(tbSurvey);
+    session.setAttribute("filteredProducts", filterForm);
+
     return "redirect:/goHome";
   }
 

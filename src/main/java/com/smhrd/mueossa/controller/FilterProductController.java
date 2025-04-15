@@ -11,49 +11,22 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smhrd.mueossa.Repository.ProdFeelCategoryRepository;
-import com.smhrd.mueossa.Repository.ProdImageRepository;
-import com.smhrd.mueossa.Repository.ProductRepository;
 import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 
 import jakarta.servlet.http.HttpSession;
 
-import org.springframework.web.bind.annotation.RequestParam;
-
 @Controller
 public class FilterProductController {
 
   @Autowired
-  private ProductRepository productRepository;
-
-  @Autowired
-  private ProdImageRepository prodImageRepository;
-
-  @Autowired
   private ProdFeelCategoryRepository prodFeelCategoryRepository;
 
-  @GetMapping("/filterCategory")
-  public String goFilterTest() {
-    return "filterCategory";
-  }
-
-  // @GetMapping("/searchProduct")
-  // public String getMethodName(@RequestParam("keyword") String keyword, Model
-  // model) {
-  // List<ProductAndCategoryDTO> productAndCategoryDTO =
-  // prodFeelCategoryRepository
-  // .findProductAndCategoryByKeyword(keyword);
-  // for (ProductAndCategoryDTO product : productAndCategoryDTO) {
-  // getFormattedPrice(product);
-  // }
-  // model.addAttribute("prodCateList", productAndCategoryDTO);
-  // return "home";
-  // }
   @GetMapping("/searchProduct")
-  public String searchProduct(@RequestParam("keyword") String keyword, Model model) { // 메서드 이름 변경: getMethodName ->
-                                                                                      // searchProduct
+  public String searchProduct(@RequestParam("keyword") String keyword, Model model) {
     List<ProductAndCategoryDTO> finalResults = new ArrayList<>();
     Set<String> processedProductIds = new HashSet<>(); // 중복 제거용 Set
 
@@ -84,8 +57,9 @@ public class FilterProductController {
       getFormattedPrice(product);
     }
 
-    model.addAttribute("prodCateList", finalResults); // 최종 결과 리스트를 모델에 추가
-    return "home"; // 결과를 보여줄 뷰 이름
+    // 최종 결과 리스트를 모델에 추가
+    model.addAttribute("prodCateList", finalResults);
+    return "home";
   }
 
   /*

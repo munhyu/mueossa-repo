@@ -189,6 +189,84 @@ p {
   /* 선택된 버튼의 테두리 색상 */
 }
 
+.preference-buttons input {
+  display: none;
+}
+
+.preference-button2 {
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  background-color: #ffffffb6;
+  margin: 5px;
+  margin-left: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s, ease, color 0.3s, ease;
+}
+
+.preference-button2:hover {
+  background-color: #f0f0f0;
+}
+
+.preference-button2.selected {
+  background-color: #4caf50;
+  /* 선택된 버튼의 배경색 */
+  color: white;
+  /* 선택된 버튼의 텍스트 색상 */
+  border: 1px solid #4caf50;
+  /* 선택된 버튼의 테두리 색상 */
+}
+
+.preference-buttons2 input {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+.preference-toggle {
+  width: 100px;
+  height: 25px;
+  border-radius: 10px;
+  background-color: #ffffffb6;
+  margin: 5px;
+  margin-left: 20px;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  display: inline-block;
+  text-align: center;
+  line-height: 25px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s, ease, color 0.3s, ease;
+}
+
+.preference-toggle:hover {
+  background-color: #f0f0f0;
+}
+
+.preference-toggle.selected {
+  background-color: #4caf50;
+  /* 선택된 버튼의 배경색 */
+  color: white;
+  /* 선택된 버튼의 텍스트 색상 */
+  border: 1px solid #4caf50;
+  /* 선택된 버튼의 테두리 색상 */
+}
+
+
+
 /* 로그인 폼 스타일 */
 #login {
   padding: 20px;
@@ -260,6 +338,13 @@ p {
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 50%;
+}
+
+.section-title2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 50px;
 }
 
 .section-title2 {

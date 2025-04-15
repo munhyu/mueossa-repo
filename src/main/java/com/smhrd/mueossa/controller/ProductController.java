@@ -2,7 +2,6 @@ package com.smhrd.mueossa.controller;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,7 +26,6 @@ import com.smhrd.mueossa.dto.ProdFeelCategoryPercentileDTO;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.entity.TbProdImage;
 import com.smhrd.mueossa.entity.TbProduct;
-import com.smhrd.mueossa.entity.TbUser;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -44,8 +41,21 @@ public class ProductController {
   @Autowired
   private ProdFeelCategoryRepository prodFeelCategoryRepository;
 
+  @GetMapping({ "/", "goHome" })
+  public String goHome(Model model) {
+
+    List<ProductAndCategoryDTO> prodCateList = prodFeelCategoryRepository.findProductAndCategory();
+
+    // 상품 리스트에서 가격, 이름 등 포맷팅 메서드
+    for (ProductAndCategoryDTO product : prodCateList) {
+      getFormattedPrice(product);
+    }
+    model.addAttribute("prodCateList", prodCateList);
+    return "home";
+  }
+
   // 상품 아이디로 상품 상세 페이지 이동
-  @GetMapping("/제품상세테스트")
+  @GetMapping("/productInfo")
   public String goProductList(@RequestParam("pId") String pId, Model model) {
 
     productRepository.findById(pId).ifPresent(product -> {
@@ -66,21 +76,7 @@ public class ProductController {
       model.addAttribute("prodPercent", prodPercent);
     });
 
-    return "제품상세테스트";
-  }
-
-  @GetMapping({ "/", "goHome" })
-  public String goJoin(Model model) {
-
-    List<ProductAndCategoryDTO> prodCateList = prodFeelCategoryRepository.findProductAndCategory();
-
-    // pPrice를 세자리 수 마다 , 를 넣기
-    // pName의 최대 글자 수를 제한
-    for (ProductAndCategoryDTO product : prodCateList) {
-      getFormattedPrice(product);
-    }
-    model.addAttribute("prodCateList", prodCateList);
-    return "home";
+    return "productInfo";
   }
 
   // 찜 상태 토글 API

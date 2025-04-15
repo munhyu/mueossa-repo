@@ -1,6 +1,5 @@
 package com.smhrd.mueossa.Repository;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -17,11 +16,7 @@ import com.smhrd.mueossa.entity.TbProdFeelCategory;
 
 @Repository
 public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCategory, String> {
-	/**
-	 * 상품 ID와 기준 점수를 받아 각 카테고리 점수가 기준 이상이면 'Y', 아니면 'N'을 반환합니다.
-	 * 
-	 * @return 각 카테고리 상태를 담은 DTO (Optional)
-	 */
+	// 상품 ID와 기준 점수를 받아 각 카테고리 점수가 기준 이상이면 'Y', 아니면 'N'을 반환
 	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
 			"   p.pId, " +
 			"   p.pBrand, " +

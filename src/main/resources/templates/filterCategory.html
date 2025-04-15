@@ -6,21 +6,13 @@
 >
   <th:block layout:fragment="script"></th:block>
 
-  <th:block layout:fragment="css">
-    <style>
-      input[type="checkbox"],
-      input[type="radio"] {
-        display: none;
-        /* Hide the checkbox input */
-      }
-    </style>
-  </th:block>
+  <th:block layout:fragment="css"> </th:block>
 
   <th:block layout:fragment="header"></th:block>
 
   <div layout:fragment="content">
     <div id="category" class="page">
-      <div class="section-title">당신의 취향을 선택하세요.</div>
+      <div class="section-title2">당신의 취향을 선택하세요.</div>
 
       <form
         method="post"
@@ -28,12 +20,12 @@
         th:object="${FilterForm}"
       >
         <!-- 취향 선택 -->
-        <div class="preference-buttons">
+        <div class="preference-buttons2">
           <!-- 감성 카테고리 -->
           <div>
             <label
               for="comf"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctComf == 'Y'} ? 'selected' : ''"
             >
               편한
@@ -48,7 +40,7 @@
 
             <label
               for="fluffy"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctFluffy == 'Y'} ? 'selected' : ''"
             >
               푹신한
@@ -63,7 +55,7 @@
 
             <label
               for="light"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctLight == 'Y'} ? 'selected' : ''"
             >
               가벼운
@@ -78,7 +70,7 @@
 
             <label
               for="soft"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctSoft == 'Y'} ? 'selected' : ''"
             >
               부드러운
@@ -93,7 +85,7 @@
 
             <label
               for="flat"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''"
             >
               플랫한
@@ -108,7 +100,7 @@
 
             <label
               for="pretty"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctPretty == 'Y'} ? 'selected' : ''"
             >
               예쁜
@@ -123,7 +115,7 @@
 
             <label
               for="cute"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctCute == 'Y'} ? 'selected' : ''"
             >
               귀여운
@@ -138,7 +130,7 @@
 
             <label
               for="neat"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctNeat == 'Y'} ? 'selected' : ''"
             >
               깔끔한
@@ -153,7 +145,7 @@
 
             <label
               for="modern"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctModern == 'Y'} ? 'selected' : ''"
             >
               모던한
@@ -168,7 +160,7 @@
 
             <label
               for="wide"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''"
             >
               발볼이 넓은
@@ -183,7 +175,7 @@
 
             <label
               for="narrow"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''"
             >
               발볼이 좁은
@@ -198,7 +190,7 @@
 
             <label
               for="standard"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''"
             >
               발볼이 보통
@@ -213,7 +205,7 @@
 
             <label
               for="hip"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctHip == 'Y'} ? 'selected' : ''"
             >
               휘뚜루마뚜루
@@ -228,7 +220,7 @@
 
             <label
               for="cost"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctCost == 'Y'} ? 'selected' : ''"
             >
               가격이 착한
@@ -243,7 +235,7 @@
 
             <label
               for="strong"
-              class="preference-button"
+              class="preference-button2"
               th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''"
             >
               튼튼한
@@ -269,7 +261,7 @@
             />
             <label
               for="shoesSneakers"
-              class="preference-button"
+              class="preference-toggle"
               th:classappend="${session.filteredProducts?.pGroup == '스니커즈'} ? 'selected' : ''"
               >스니커즈</label
             >
@@ -282,7 +274,7 @@
             />
             <label
               for="shoesHeels"
-              class="preference-button"
+              class="preference-toggle"
               th:classappend="${session.filteredProducts?.pGroup == '구두'} ? 'selected' : ''"
               >구두</label
             >
@@ -295,7 +287,7 @@
             />
             <label
               for="shoesBoots"
-              class="preference-button"
+              class="preference-toggle"
               th:classappend="${session.filteredProducts?.pGroup == '부츠/워커'} ? 'selected' : ''"
               >부츠/워커</label
             >
@@ -308,7 +300,7 @@
             />
             <label
               for="shoesSandals"
-              class="preference-button"
+              class="preference-toggle"
               th:classappend="${session.filteredProducts?.pGroup == '샌들/슬리퍼'} ? 'selected' : ''"
               >샌들/슬리퍼</label
             >
@@ -320,65 +312,7 @@
           <button type="submit">검색</button>
         </div>
       </form>
-
-      <div class="product-list">
-        <!-- 상품 카드 반복 -->
-        <!-- 반복적으로 생성 -->
-        <!-- 반복문처럼 생성된 카드들 -->
-        <!-- 아래 예시로 18개 중 1~3만 예시로 작성 -->
-        <th:block th:each="product : ${prodCateList}">
-          <div class="product-card">
-            <a th:href="@{제품상세테스트(pId=${product.pId})}">
-              <img th:src="${product.pImage}" alt="상품 이미지" />
-              <div class="product-info">
-                <div class="product-brand" th:text="${product.pBrand}"></div>
-                <div class="product-name" th:text="${product.pName}"></div>
-                <div
-                  class="product-rating"
-                  name="pd_rating"
-                  th:text="${product.pRating}"
-                ></div>
-                <div
-                  class="product-sentiment"
-                  name="sentiment"
-                  th:text="${product.sentiment}"
-                ></div>
-
-                <div class="price-line">
-                  <span
-                    class="product-discount"
-                    name="discount"
-                    th:text="${product.pDiscount}"
-                  ></span>
-                  <span
-                    class="product-price"
-                    th:text="${product.pPrice}"
-                  ></span>
-                </div>
-              </div>
-              <div>
-                <p th:if="${product.ctComf} == 'Y' ">편한</p>
-                <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>
-                <p th:if="${product.ctLight} == 'Y' ">가벼운</p>
-                <p th:if="${product.ctSoft} == 'Y' ">부드러운</p>
-                <p th:if="${product.ctFlat} == 'Y' ">플랫한</p>
-                <p th:if="${product.ctPretty} == 'Y' ">예쁜</p>
-                <p th:if="${product.ctCute} == 'Y' ">귀여운</p>
-                <p th:if="${product.ctNeat} == 'Y' ">깔끔한</p>
-                <p th:if="${product.ctModern} == 'Y' ">모던함</p>
-                <p th:if="${product.ctHip} == 'Y' ">휘뚜루마뚜루</p>
-                <p th:if="${product.ctWide} == 'Y' ">발볼이 넓은</p>
-                <p th:if="${product.ctNarrow} == 'Y' ">발볼이 좁은</p>
-                <p th:if="${product.ctStandard} == 'Y' ">발볼이 보통</p>
-                <p th:if="${product.ctCost} == 'Y' ">가격이 착한</p>
-                <p th:if="${product.ctStrong} == 'Y' ">튼튼한</p>
-              </div>
-            </a>
-          </div>
-        </th:block>
-
-        <!-- 생략된 나머지 카드들은 같은 형식으로 4~18까지 random 파라미터만 바꾸면 됨 -->
-      </div>
+      <th:block th:replace="~{fragments/productList :: productList}"></th:block>
     </div>
   </div>
 

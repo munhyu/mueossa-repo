@@ -1,7 +1,6 @@
 package com.smhrd.mueossa.dto;
 
 import com.smhrd.mueossa.entity.TbSurvey;
-import com.smhrd.mueossa.model.Survey;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

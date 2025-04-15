@@ -78,7 +78,8 @@ public class UserController {
   // 로그아웃 처리
   @GetMapping("/userLogout")
   public String userLogout(HttpSession session) {
-    session.invalidate();
+    // 세션에서 사용자 정보 삭제
+    session.removeAttribute("user");
     return "redirect:/goHome";
   }
 

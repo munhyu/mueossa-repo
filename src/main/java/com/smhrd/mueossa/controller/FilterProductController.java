@@ -1,6 +1,10 @@
 package com.smhrd.mueossa.controller;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -35,15 +39,53 @@ public class FilterProductController {
     return "filterCategory";
   }
 
+  // @GetMapping("/searchProduct")
+  // public String getMethodName(@RequestParam("keyword") String keyword, Model
+  // model) {
+  // List<ProductAndCategoryDTO> productAndCategoryDTO =
+  // prodFeelCategoryRepository
+  // .findProductAndCategoryByKeyword(keyword);
+  // for (ProductAndCategoryDTO product : productAndCategoryDTO) {
+  // getFormattedPrice(product);
+  // }
+  // model.addAttribute("prodCateList", productAndCategoryDTO);
+  // return "home";
+  // }
   @GetMapping("/searchProduct")
-  public String getMethodName(@RequestParam("keyword") String keyword, Model model) {
-    List<ProductAndCategoryDTO> productAndCategoryDTO = prodFeelCategoryRepository
-        .findProductAndCategoryByKeyword(keyword);
-    for (ProductAndCategoryDTO product : productAndCategoryDTO) {
+  public String searchProduct(@RequestParam("keyword") String keyword, Model model) { // 메서드 이름 변경: getMethodName ->
+                                                                                      // searchProduct
+    List<ProductAndCategoryDTO> finalResults = new ArrayList<>();
+    Set<String> processedProductIds = new HashSet<>(); // 중복 제거용 Set
+
+    // 입력된 키워드를 공백 기준으로 분리 (연속된 공백도 처리)
+    String[] individualKeywords = keyword.trim().split("\\s+");
+
+    for (String individualKeyword : individualKeywords) {
+      if (!individualKeyword.isEmpty()) { // 빈 키워드는 무시
+        // 각 개별 키워드로 검색 수행
+        List<ProductAndCategoryDTO> currentResults = prodFeelCategoryRepository
+            .findProductAndCategoryByKeyword(individualKeyword);
+
+        // 결과 병합 (중복 제거)
+        for (ProductAndCategoryDTO product : currentResults) {
+          if (processedProductIds.add(product.getPId())) { // Set에 pId 추가 성공 시 (중복 아님) True
+            finalResults.add(product);
+          }
+        }
+      }
+    }
+
+    // 최종 결과 리스트를 sentiment 기준으로 내림차순 정렬 (필요한 경우)
+    finalResults.sort(
+        Comparator.comparing(ProductAndCategoryDTO::getSentiment, Comparator.nullsLast(Comparator.reverseOrder())));
+
+    // 결과 포맷팅
+    for (ProductAndCategoryDTO product : finalResults) {
       getFormattedPrice(product);
     }
-    model.addAttribute("prodCateList", productAndCategoryDTO);
-    return "home";
+
+    model.addAttribute("prodCateList", finalResults); // 최종 결과 리스트를 모델에 추가
+    return "home"; // 결과를 보여줄 뷰 이름
   }
 
   /*
@@ -112,7 +154,7 @@ public class FilterProductController {
     if (brand.length() > 8) {
       brand = brand.substring(0, 8) + "...";
     }
-    //  브랜드 다시 set
+    // 브랜드 다시 set
     product.setPBrand(brand);
     // 글자 다시 설정
     product.setPName(name);

@@ -49,7 +49,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where p.pId = :pId")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where p.pId = :pId ORDER BY p.sentiment DESC")
 	ProductAndCategoryDTO findProductAndCategoryByPId(String pId); // DTO로 반환
 
 	// product와 productCategory를 join하여 제품 정보와 카테고리 점수를 가져오는 쿼리
@@ -82,7 +82,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId ORDER BY p.sentiment DESC")
 	List<ProductAndCategoryDTO> findProductAndCategory(); // DTO로 반환
 
 	// 제품 감성 카테고리 점수의 백분위수를 계산하는 쿼리
@@ -106,7 +106,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"        (1 - PERCENT_RANK() OVER (ORDER BY ct_strong DESC)) * 100 AS ctStrongPercentileRank " +
 			"    FROM tb_prod_feel_category" + // 전체 테이블에서 백분위수 계산
 			") AS ranked_data " + // 서브쿼리 결과
-			"WHERE ranked_data.pd_id = :pd_id", // 서브쿼리 결과에서 필터링
+			"WHERE ranked_data.pd_id = :pd_id ORDER BY p.sentiment DESC", // 서브쿼리 결과에서 필터링
 			nativeQuery = true)
 	Optional<ProdFeelCategoryPercentileDTO> findCategoryPercentiles(@Param("pd_id") String pd_id);
 
@@ -159,7 +159,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			+ // 발볼이 보통
 			"  AND (:#{#filterForm.ctCost} IS NULL OR :#{#filterForm.ctCost} != 'Y' OR (CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END) = 'Y') "
 			+ // 가격이 착한
-			"  AND (:#{#filterForm.ctStrong} IS NULL OR :#{#filterForm.ctStrong} != 'Y' OR (CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) = 'Y') ") // 튼튼한
+			"  AND (:#{#filterForm.ctStrong} IS NULL OR :#{#filterForm.ctStrong} != 'Y' OR (CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) = 'Y') ORDER BY p.sentiment DESC") // 튼튼한
 	List<ProductAndCategoryDTO> findProductAndCategoryByFilter(@Param("filterForm") FilterForm filterForm);
 
 	// 상품명, 브랜드, 그룹, 타입 검색
@@ -192,7 +192,10 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   CASE WHEN pfc.ctStandard >= 23.66 THEN 'Y' ELSE 'N' END, " + // 발볼이 보통
 			"   CASE WHEN pfc.ctCost >= 10.1 THEN 'Y' ELSE 'N' END, " + // 가격이 착한
 			"   CASE WHEN pfc.ctStrong >= 3.12 THEN 'Y' ELSE 'N' END) " + // 튼튼한
-			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId WHERE p.pName LIKE CONCAT('%', :Keyword, '%') OR p.pBrand LIKE CONCAT('%', :Keyword, '%') OR p.pGroup LIKE CONCAT('%', :Keyword, '%') OR p.pType LIKE CONCAT('%', :Keyword, '%')")
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId " +
+			"WHERE p.pName LIKE CONCAT('%', :Keyword, '%') OR p.pBrand LIKE CONCAT('%', :Keyword, '%') OR p.pGroup LIKE CONCAT('%', :Keyword, '%') OR p.pType LIKE CONCAT('%', :Keyword, '%') ORDER BY p.sentiment DESC")
 	List<ProductAndCategoryDTO> findProductAndCategoryByKeyword(@Param("Keyword") String Keyword); // DTO로 반환
+	// ...existing code...
+	// 상품명, 브랜드, 그룹, 타입 검색 (공백으로 구분된 키워드 중 하나라도 포함 시 검색)
 
 }

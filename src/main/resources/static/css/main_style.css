@@ -491,7 +491,7 @@ span input {
 }
 
 .wish-button:active {
-  transform: scale(3); 
+  transform: scale(3);
 }
 
 .product-card a {
@@ -541,7 +541,6 @@ span input {
   display: flex;
   flex-wrap: wrap;
   gap: 1px;
-  
 }
 
 .keywords p {
@@ -626,7 +625,6 @@ span input {
   text-align: right;
 }
 
-.product-discription-category-score {
 .product-discription-category-score div {
   font-size: 10px;
   font-weight: bold;
@@ -635,7 +633,7 @@ span input {
   max-width: 600px;
 }
 
-.product-discription-category-score h3{
+.product-discription-category-score h3 {
   font-size: 15px;
   font-weight: bold;
   margin-bottom: 4px;
@@ -661,7 +659,7 @@ span input {
 .bar-fill {
   width: 0;
   height: 20px;
-  background-color: #1DCD9F;
+  background-color: #1dcd9f;
   text-align: right;
   border-radius: 5px;
   transition: width 3s ease-in-out;
@@ -750,5 +748,4 @@ span input {
 
 .top-button:hover {
   background-color: #a3a3a3; /* 호버 시 배경색 변경 */
-}
 }

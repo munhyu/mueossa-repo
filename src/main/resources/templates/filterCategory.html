@@ -338,6 +338,12 @@
                   name="pd_rating"
                   th:text="${product.pRating}"
                 ></div>
+                <div
+                  class="product-sentiment"
+                  name="sentiment"
+                  th:text="${product.sentiment}"
+                ></div>
+
                 <div class="price-line">
                   <span
                     class="product-discount"
@@ -374,10 +380,7 @@
         <!-- 생략된 나머지 카드들은 같은 형식으로 4~18까지 random 파라미터만 바꾸면 됨 -->
       </div>
     </div>
-    
   </div>
 
-
-  
   <th:block layout:fragment="footer"></th:block>
 </html>

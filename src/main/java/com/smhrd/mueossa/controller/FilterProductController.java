@@ -102,9 +102,18 @@ public class FilterProductController {
       }
     }
     // pName의 최대 글자 수를 제한
-    if (name.length() > 10) {
-      name = name.substring(0, 10) + "...";
+    if (name.length() > 9) {
+      name = name.substring(0, 9) + "...";
     }
+
+    String brand = product.getPBrand();
+
+    // pBrand의 최대 글자 수를 제한
+    if (brand.length() > 8) {
+      brand = brand.substring(0, 8) + "...";
+    }
+    //  브랜드 다시 set
+    product.setPBrand(brand);
     // 글자 다시 설정
     product.setPName(name);
 

@@ -33,6 +33,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
@@ -65,6 +66,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +
@@ -110,7 +112,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 
 	// 제품 필터링, 제품 카테고리 Y/N이 매개변수로 받은 값과 일치하는 제품을 조회하는 쿼리
 	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
-			"   p.pId, p.pBrand, p.pName, p.pLikes, p.pRating, p.pDiscount, p.pPrice, p.pGender, p.pLink, p.pImage, p.pGroup, p.pType, "
+			"   p.pId, p.pBrand, p.pName, p.pLikes, p.pRating, p.pDiscount, p.pPrice, p.pGender, p.pLink, p.pImage, p.pGroup, p.pType, p.sentiment, "
 			+
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
@@ -174,6 +176,7 @@ public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCate
 			"   p.pImage, " +
 			"   p.pGroup, " +
 			"   p.pType, " +
+			"   p.sentiment, " +
 			"   CASE WHEN pfc.ctComf >= 26.47 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctFluffy >= 1.28 THEN 'Y' ELSE 'N' END, " +
 			"   CASE WHEN pfc.ctLight >= 2.4 THEN 'Y' ELSE 'N' END, " +

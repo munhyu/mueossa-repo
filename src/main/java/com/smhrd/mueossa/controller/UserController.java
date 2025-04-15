@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smhrd.mueossa.Repository.SurveyRepository;
 import com.smhrd.mueossa.Repository.UserRepository;
+import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
 
@@ -47,9 +48,10 @@ public class UserController {
       session.setAttribute("user", tbUser); // 세션에 사용자 정보 저장
 
       // // 로그인한 사용자의 설문조사 정보 가져오기
-      // surveyRepository.findById(tbUser.getId()).ifPresent(survey -> {
-      // session.setAttribute("filteredProducts", survey); // 세션에 설문조사 정보 저장
-      // });
+      surveyRepository.findById(tbUser.getId()).ifPresent(survey -> {
+        FilterForm filterForm = new FilterForm(survey);
+        session.setAttribute("filteredProducts", filterForm); // 세션에 설문조사 정보 저장
+      });
 
       return "redirect:/goHome"; // 메인 페이지로 리다이렉트
     } else {

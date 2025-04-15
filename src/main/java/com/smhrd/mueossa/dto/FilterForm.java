@@ -1,5 +1,8 @@
 package com.smhrd.mueossa.dto;
 
+import com.smhrd.mueossa.entity.TbSurvey;
+import com.smhrd.mueossa.model.Survey;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -55,4 +58,22 @@ public class FilterForm {
 
   // 튼튼한
   private String ctStrong;
+
+  // survey로 만드는 생성자
+  public FilterForm(TbSurvey survey) {
+    this.ctComf = survey.getComf();
+    this.ctFluffy = survey.getFluffy();
+    this.ctLight = survey.getLight();
+    this.ctSoft = survey.getSoft();
+    this.ctFlat = survey.getFlat();
+    this.ctPretty = survey.getCute();
+    this.ctNeat = survey.getNeat();
+    this.ctModern = survey.getModern();
+    this.ctHip = survey.getHip();
+    this.ctWide = survey.getWide();
+    this.ctNarrow = survey.getNarrow();
+    this.ctStandard = survey.getStandard();
+    this.ctCost = survey.getCost();
+    this.ctStrong = survey.getStrong();
+  }
 }

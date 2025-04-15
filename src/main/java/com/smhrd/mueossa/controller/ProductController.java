@@ -82,11 +82,20 @@ public class ProductController {
       }
     }
     // pName의 최대 글자 수를 제한
-    if (name.length() > 10) {
-      name = name.substring(0, 10) + "...";
+    if (name.length() > 9) {
+      name = name.substring(0, 9) + "...";
     }
     // 글자 다시 설정
     product.setPName(name);
+
+    String brand = product.getPBrand();
+
+    // pBrand의 최대 글자 수를 제한
+    if (brand.length() > 8) {
+      brand = brand.substring(0, 8) + "...";
+    }
+    //  브랜드 다시 set
+    product.setPBrand(brand);
 
     // 문자열을 숫자로 변환
     int priceValue = Integer.parseInt(price);

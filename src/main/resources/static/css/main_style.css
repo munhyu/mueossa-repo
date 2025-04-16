@@ -61,13 +61,16 @@ p {
 }
 
 .topbar {
-  background: white;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 14px 16px;
-  height: 50px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  position: sticky; /* 모바일 프레임 내부에서 고정 */
+  top: 0; /* 모바일 프레임의 최상단에 고정 */
+  z-index: 1000; /* 다른 요소 위에 표시 */
+  background: white; /* 헤더 배경색 */
+  display: flex; /* 내부 요소를 가로로 배치 */
+  align-items: center; /* 세로 중앙 정렬 */
+  justify-content: space-between; /* 내부 요소 간격 조정 */
+  padding: 14px 16px; /* 내부 여백 */
+  height: 50px; /* 헤더 높이 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* 그림자 효과 */
 }
 
 .topbar a {
@@ -181,11 +184,11 @@ p {
 }
 
 .preference-button.selected {
-  background-color: #4caf50;
+  background-color: #10B981;
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid #4caf50;
+  border: 1px solid #f0f0f0;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -194,12 +197,12 @@ p {
 }
 
 .preference-button2 {
-  width: 100px;
+  width: 80px;
   height: 25px;
   border-radius: 10px;
   background-color: #ffffffb6;
-  margin: 5px;
-  margin-left: 20px;
+  margin-top : 5px;
+  margin-left: 35px;
   font-family: Arial, sans-serif;
   font-size: 12px;
   display: inline-block;
@@ -215,11 +218,12 @@ p {
 }
 
 .preference-button2.selected {
-  background-color: #4caf50;
+  background-color: #10B981
+  ;
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid #4caf50;
+  border: 1px solid #f0f0f0;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -236,12 +240,12 @@ p {
 
 
 .preference-toggle {
-  width: 100px;
+  width: 80px;
   height: 25px;
   border-radius: 10px;
   background-color: #ffffffb6;
-  margin: 5px;
-  margin-left: 20px;
+  margin-top: 5px;
+  margin-left: 35px;
   font-family: Arial, sans-serif;
   font-size: 12px;
   display: inline-block;
@@ -257,11 +261,11 @@ p {
 }
 
 .preference-toggle.selected {
-  background-color: #4caf50;
+  background-color: #10B981       ;
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid #4caf50;
+  border: 1px solid #f0f0f0;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -315,15 +319,39 @@ p {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .login-buttons button:hover {
-  background-color: #4caf4fb0;
+  background-color: #7268F6;
+  color: rgba(0, 0, 0, 0.808)
+}
+
+.login-buttons2{
+  margin-top: 20px;
+}
+
+.login-buttons2 button {
+  width: 50%;
+  padding: 10px;
+  font-size: 16px;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid #ecedee;
+  border-radius: 5px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
+.login-buttons2 button:hover {
+  background-color: #ecedeeb9;
+  color: rgba(0, 0, 0, 0.808)
 }
 
 /* 회원가입 폼 스타일 */
@@ -345,12 +373,21 @@ p {
   font-weight: bold;
   margin-bottom: 20px;
   margin-top: 50px;
+  text-align: center;
 }
 
-.section-title2 {
-  font-size: 24px;
-  font-weight: bold;
+.section-title3 {
+  font-size: 20px;
+  margin-top: 20px;
   margin-bottom: 20px;
+  text-align: center;
+}
+
+.section-title4 {
+  font-size: 20px;
+  margin-bottom: 20px;
+  margin-top: 50px;
+  text-align: center;
 }
 
 .main-title {
@@ -440,6 +477,13 @@ span input {
   border-top: 2px solid #ccc;
   margin: 0px 120px;
   margin-bottom: 30px;
+}
+
+.divider3 {
+  border-top: 2px solid #ccc;
+  margin: 0px 40px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .join-links {
@@ -589,10 +633,16 @@ span input {
   transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-.product-card img {
+.product-image {
   width: 100%;
-  height: auto;
+  height: 133px;
   display: block;
+}
+
+.heart-icon {
+  width: 10px;
+  height: 10px;
+  margin-bottom: 20px;
 }
 
 .product-info {
@@ -725,6 +775,28 @@ span input {
   color: #333;
 }
 
+.product-link {
+  display: inline-block; /* 박스형식으로 만들기 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  font-size: 10px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: white; /* 텍스트 색상 */
+  background-color: #4caf50; /* 버튼 배경색 */
+  padding: 5px 10px; /* 내부 여백 */
+  border: 1px solid #4caf50; /* 테두리 */
+  border-radius: 5px; /* 둥근 모서리 */
+  text-decoration: none; /* 링크 밑줄 제거 */
+  cursor: pointer; /* 마우스 커서를 포인터로 변경 */
+  float: right; /* 오른쪽 정렬 */
+  transition: background-color 0.3s ease, color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+.product-link:hover {
+  background-color: #45a049; /* 호버 시 배경색 변경 */
+  color: white; /* 호버 시 텍스트 색상 */
+}
+
 .bar {
   display: flex;
   align-items: center;
@@ -816,10 +888,10 @@ span input {
 /* Top 버튼 스타일 */
 .top-button {
   position: fixed; /* 화면에 고정 */
-  width: 30px; /* 버튼의 너비 */
+  width: 20px; /* 버튼의 너비 */
   right: 210px; /* 오른쪽 여백 */
   bottom: 60px; /* 아래 여백 */
-  height: 30px; /* 버튼의 높이 */
+  height: 20px; /* 버튼의 높이 */
   background-color: #f5f5f5; /* 버튼 배경색 */
   border: none; /* 테두리 제거 */
   border-radius: 50%; /* 동그란 모양 */
@@ -827,10 +899,33 @@ span input {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
   justify-content: center;
   align-items: center;
-  font-size: 18px; /* 텍스트 크기 */
+  font-size: 10px; /* 텍스트 크기 */
   z-index: 1000; /* 다른 요소 위에 표시 */
 }
 
 .top-button:hover {
   background-color: #a3a3a3; /* 호버 시 배경색 변경 */
 }
+
+
+
+
+
+
+.error-message {
+  font-size: 14px;
+  margin-bottom: 15px;
+  text-align: center;
+  padding: 10px;
+}
+
+.error-message p {
+  color: rgb(238, 62, 62);
+}
+
+
+
+
+
+
+

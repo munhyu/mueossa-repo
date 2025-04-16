@@ -2,7 +2,85 @@
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
 <th:block layout:fragment="script"></th:block>
 
-<th:block layout:fragment="css"></th:block>
+<th:block layout:fragment="css">
+  <style>
+    /* 모달 배경 */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: hidden;
+      /* 혹시나 내부 스크롤 방지 */
+    }
+
+    .modal-content {
+      background-color: white;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-sizing: border-box;
+    }
+
+    .modal-content p {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      line-height: 1.4;
+    }
+
+    /* 버튼 영역 */
+    .modal-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .modal-buttons button {
+      flex: 1;
+      padding: 10px 0;
+      font-size: 14px;
+      font-weight: 600;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .confirm-button {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .cancel-button {
+      background-color: #f44336;
+      color: white;
+    }
+
+    /* 진짜 작은 화면 대응 (ex. iPhone SE) */
+    @media (max-width: 360px) {
+      .modal-content {
+        padding: 12px;
+      }
+
+      .modal-content p {
+        font-size: 14px;
+      }
+
+      .modal-buttons button {
+        font-size: 13px;
+        padding: 9px 0;
+      }
+    }
+  </style>
+</th:block>
 
 <th:block layout:fragment="header"></th:block>
 
@@ -11,6 +89,18 @@
 
   <div id="join" class="page">
     <div class="section-title">회원 정보 수정</div>
+
+    <div th:fragment="confirmDeleteModal">
+      <div id="custom-modal" class="modal" style="display: none;">
+        <div class="modal-content">
+          <p>정말로 회원 탈퇴하시겠습니까?</p>
+          <div class="modal-buttons">
+            <button id="modal-confirm" class="confirm-button">확인</button>
+            <button id="modal-cancel" class="cancel-button">취소</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <!-- 회원가입 폼 위에 에러 메시지 출력 -->
     <div th:if="${error != null and error != ''}" class="error-message">
@@ -89,10 +179,29 @@
     pwCheckInput.addEventListener('input', checkPasswordMatch);
 
   </script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const deleteButton = document.querySelector('a[href="userDelete"]');
+      const modal = document.getElementById('custom-modal');
+      const confirmButton = document.getElementById('modal-confirm');
+      const cancelButton = document.getElementById('modal-cancel');
 
-  <script th:inline="javascript">
+      // 회원 탈퇴 버튼 클릭 시 모달 표시
+      deleteButton.addEventListener('click', function (event) {
+        event.preventDefault();
+        modal.style.display = 'flex'; // 모달 표시
+      });
 
+      // 확인 버튼 클릭 시 회원 탈퇴 처리
+      confirmButton.addEventListener('click', function () {
+        window.location.href = "/userDelete"; // 회원 탈퇴 URL로 이동
+      });
 
+      // 취소 버튼 클릭 시 모달 닫기
+      cancelButton.addEventListener('click', function () {
+        modal.style.display = 'none'; // 모달 숨기기
+      });
+    });
   </script>
 
 </th:block>

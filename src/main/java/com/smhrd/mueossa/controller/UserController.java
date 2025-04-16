@@ -118,6 +118,7 @@ public class UserController {
     TbUser loginUser = (TbUser) session.getAttribute("user");
     String userId = loginUser.getId();
     surveyRepository.deleteById(userId);
+    wishlistRepository.qdeleteById(userId);
     userRepository.deleteById(userId);
     session.invalidate();
     return "redirect:/goHome";

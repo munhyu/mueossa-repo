@@ -27,6 +27,12 @@ public interface WishlistRepository extends JpaRepository<TbWishlist, Integer> {
 	@Query(value = "delete from tb_wishlist where u_id = :userId and pd_id = :pId", nativeQuery = true)
 	void qdeleteByIdAndPId(String userId, String pId);
 
+	// 유저 id로 전부 제거
+	@Transactional
+	@Modifying
+	@Query(value = "delete from tb_wishlist where u_id = :userId", nativeQuery = true)
+	void qdeleteById(String userId);
+
 	// insert
 	@Transactional
 	@Modifying

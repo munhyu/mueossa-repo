@@ -28,7 +28,7 @@ public class TbProdImage {
 	@Column(name = "pd_id")
 	private String pId;
 
-	@Column(name = "img_name")
+	@Column(name = "img_name", length = 1000)
 	private String imgName;
 
 	public TbProdImage(ProdImage prodImage) {

@@ -27,7 +27,8 @@
             <div
               class="product-discription-name"
               th:text="${product.pName}"
-            ></div>
+              ></div>
+              <a th:href="${product.pLink}" class="product-link">구매 링크</a>
             <div
               class="product-discription-rating"
               name="pd_rating"
@@ -49,7 +50,7 @@
             ></div>
           </div>
         </div>
-
+        
         <!-- 카테고리 백분율 상위 몇퍼센트인지-->
 
         <div class="product-discription-category-score">

@@ -11,12 +11,23 @@
 
 <th:block layout:fragment="content">
 
-  <!-- 여기 로그인이에요! -->
-  <div id="login" class="page">
-    <div class="section-title">LOGIN</div>
 
+
+
+
+
+<!-- 여기 로그인이에요! -->
+<div id="login" class="page">
+  <div class="section-title">LOGIN</div>
+  
+  <!-- 에러 메시지 -->
+  <div th:if="${error}" class="error-message">
+    <p th:text="${error}"></p>
+  </div>
+
+    <!-- 로그인 폼 -->
     <form method="post" th:action="@{/userLogin}" th:object="${user}">
-      <!-- 아이디 또는 이메일 입력 -->
+      <!-- 아이디 입력 -->
       <span class="login-id">
         <input type="text" id="login-id" name="id" placeholder="ID" required />
       </span>
@@ -36,7 +47,7 @@
 
       <!-- 로그인 버튼 -->
       <div class="login-buttons">
-        <button type="submit">로그인</button>
+        <button type="submit" >로그인</button>
       </div>
     </form>
   </div>

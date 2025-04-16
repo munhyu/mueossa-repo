@@ -6,7 +6,6 @@
         <div class="product-card" th:attr="data-pid=${product.pId}">
           <!-- 찜버튼용 data-pid추가 -->
           <a th:href="@{productInfo(pId=${product.pId})}">
-            <img class="product-image"th:src="${product.pImage}" alt="상품 이미지" />
             <!-- 찜버튼 -->
             <div class="wish-button">
               <img
@@ -15,6 +14,7 @@
                 class="heart-icon"
               />
             </div>
+            <img class="product-image"th:src="${product.pImage}" alt="상품 이미지" />
             <div class="product-info">
               <div class="product-brand" th:text="${product.pBrand}"></div>
               <div class="product-name" th:text="${product.pName}"></div>

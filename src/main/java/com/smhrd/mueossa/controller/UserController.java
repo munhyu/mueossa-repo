@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.smhrd.mueossa.Repository.SurveyRepository;
 import com.smhrd.mueossa.Repository.UserRepository;
+import com.smhrd.mueossa.Repository.WishlistRepository;
 import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
@@ -24,6 +25,9 @@ public class UserController {
 
   @Autowired
   private SurveyRepository surveyRepository;
+
+  @Autowired
+  private WishlistRepository wishlistRepository;
 
   // 회원가입 처리
   @PostMapping("/userInsert")
@@ -53,6 +57,11 @@ public class UserController {
         session.setAttribute("filteredProducts", filterForm); // 세션에 설문조사 정보 저장
       });
 
+      // // 로그인한 사용자의 찜 목록 가져오기
+      wishlistRepository.qfindProductIdsByUserId(tbUser.getId()).ifPresent(wishlist -> {
+        session.setAttribute("wishlist", wishlist); // 세션에 찜 목록 저장
+      });
+
       return "redirect:/goHome"; // 메인 페이지로 리다이렉트
     } else {
       System.out.println("로그인 실패");
@@ -80,6 +89,8 @@ public class UserController {
   public String userLogout(HttpSession session) {
     // 세션에서 사용자 정보 삭제
     session.removeAttribute("user");
+    session.removeAttribute("filteredProducts"); // 설문조사 정보 삭제
+    session.removeAttribute("wishlist"); // 찜 목록 삭제
     return "redirect:/goHome";
   }
 
@@ -107,6 +118,7 @@ public class UserController {
     TbUser loginUser = (TbUser) session.getAttribute("user");
     String userId = loginUser.getId();
     surveyRepository.deleteById(userId);
+    wishlistRepository.qdeleteById(userId);
     userRepository.deleteById(userId);
     session.invalidate();
     return "redirect:/goHome";

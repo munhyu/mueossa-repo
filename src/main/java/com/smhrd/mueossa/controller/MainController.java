@@ -18,6 +18,12 @@ public class MainController {
   @Autowired
   private SurveyRepository surveyRepository;
 
+  // modaltest로 이동
+  @GetMapping("/goModalTest")
+  public String goModalTest() {
+    return "modaltest"; // modaltest.html로 이동
+  }
+
   // 회원가입 페이지 이동
   @GetMapping("/goJoin")
   public String goJoin() {

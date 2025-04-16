@@ -43,19 +43,19 @@ public class TbProduct {
 	@Column(name = "pd_price")
 	private String pPrice;
 
-	@Column(name = "pd_gender")
+	@Column(name = "pd_gender", columnDefinition = "CHAR(1)")
 	private String pGender;
 
-	@Column(name = "pd_link")
+	@Column(name = "pd_link", length = 1000)
 	private String pLink;
 
-	@Column(name = "pd_image")
+	@Column(name = "pd_image", length = 1000)
 	private String pImage;
 
-	@Column(name = "pd_group")
+	@Column(name = "pd_group", length = 50)
 	private String pGroup;
 
-	@Column(name = "pd_type")
+	@Column(name = "pd_type", length = 50)
 	private String pType;
 
 	@Column(name = "sentiment")

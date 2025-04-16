@@ -22,10 +22,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.smhrd.mueossa.Repository.ProdFeelCategoryRepository;
 import com.smhrd.mueossa.Repository.ProdImageRepository;
 import com.smhrd.mueossa.Repository.ProductRepository;
+import com.smhrd.mueossa.Repository.WishlistRepository;
 import com.smhrd.mueossa.dto.ProdFeelCategoryPercentileDTO;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.entity.TbProdImage;
 import com.smhrd.mueossa.entity.TbProduct;
+import com.smhrd.mueossa.entity.TbUser;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -40,6 +42,9 @@ public class ProductController {
 
   @Autowired
   private ProdFeelCategoryRepository prodFeelCategoryRepository;
+
+  @Autowired
+  private WishlistRepository wishlistRepository;
 
   @GetMapping({ "/", "goHome" })
   public String goHome(Model model) {
@@ -85,6 +90,7 @@ public class ProductController {
   public ResponseEntity<Map<String, Object>> toggleWishlist(@RequestBody Map<String, String> payload,
       HttpSession session) {
     Map<String, Object> response = new HashMap<>();
+    // 로그인 체크
 
     try {
       // payload에서 pId 값(String) 가져오기
@@ -105,13 +111,33 @@ public class ProductController {
       }
 
       boolean added;
-      // 찜 목록에 상품 ID(String) 추가 또는 제거
-      if (wishlist.contains(pId)) {
-        wishlist.remove(pId);
-        added = false; // 제거됨
+
+      // 로그인 체크
+      if (session.getAttribute("user") == null) {
+        // 찜 목록에 상품 ID(String) 추가 또는 제거
+        if (wishlist.contains(pId)) {
+          wishlist.remove(pId);
+          added = false; // 제거됨
+        } else {
+          wishlist.add(pId);
+          added = true; // 추가됨
+        }
       } else {
-        wishlist.add(pId);
-        added = true; // 추가됨
+        // 회원 아이디 가져오기
+        String userId = ((TbUser) session.getAttribute("user")).getId();
+        // 찜 목록에 상품 ID(String) 추가 또는 제거
+        if (wishlist.contains(pId)) {
+          wishlist.remove(pId);
+          added = false; // 제거됨
+          // DB에서 삭제
+          wishlistRepository.qdeleteByIdAndPId(userId, pId);
+        } else {
+          wishlist.add(pId);
+          added = true; // 추가됨
+          // DB에 추가
+          wishlistRepository.qinsertByIdAndPId(userId, pId);
+        }
+
       }
 
       // 변경된 찜 목록을 세션에 다시 저장

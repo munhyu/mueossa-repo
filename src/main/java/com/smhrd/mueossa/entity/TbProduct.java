@@ -37,13 +37,13 @@ public class TbProduct {
 	@Column(name = "pd_rating")
 	private float pRating;
 
-	@Column(name = "pd_discount")
+	@Column(name = "pd_discount", length = 10)
 	private String pDiscount;
 
 	@Column(name = "pd_price")
 	private String pPrice;
 
-	@Column(name = "pd_gender", columnDefinition = "CHAR(1)")
+	@Column(name = "pd_gender", length = 1)
 	private String pGender;
 
 	@Column(name = "pd_link", length = 1000)

@@ -13,6 +13,8 @@
   --color-secondary-dark: #6B9AB8;    /* 서브 포인트 hover/active 상태 */
 
   --color-accent: #7C3AED;            /* 감성적 강조 컬러 (세일, 이벤트 배너 포인트 등) */
+  --color-brown: #B17457;           /* 브라운 계열 (브라운 색상) */
+  --color-green: #10B981;            /* 그린 계열 (그린 색상) */
 }
 
 
@@ -21,7 +23,6 @@
 .tabbar {
   position: fixed;
   bottom: 13px;
-  left: 680px;
   width: 360px;
   height: 50px;
   display: flex;
@@ -30,7 +31,6 @@
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
   background-color: var(--color-background); /* 배경색 */
   border-top: 1px solid var(--color-border-light); /* 상단 경계선 */
-  padding: 10px 0;
   border-radius: 20px;
   margin-left: 15px;
   z-index: 1000;
@@ -54,7 +54,7 @@
 }
 
 .tab-item.active {
-  color: var(--color-primary); /* 활성화된 텍스트 색상 */
+  color: var(--color-secondary-dark); /* 활성화된 텍스트 색상 */
 }
 
 .tab-item.active img {
@@ -233,7 +233,8 @@ p {
 }
 
 .mypage-button:hover {
-  background-color: #4caf50;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background)
 }
 
 /* 취향테이블 스타일 */
@@ -259,7 +260,7 @@ p {
 }
 
 .preference-button.selected {
-  background-color: #10B981;
+  background-color: var(--color-secondary-dark);
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
@@ -293,10 +294,9 @@ p {
 }
 
 .preference-button2.selected {
-  background-color: #10B981
-  ;
+  background-color: var(--color-secondary-dark);
   /* 선택된 버튼의 배경색 */
-  color: white;
+  color: var(--color-background);
   /* 선택된 버튼의 텍스트 색상 */
   border: 1px solid #f0f0f0;
   /* 선택된 버튼의 테두리 색상 */
@@ -336,7 +336,7 @@ p {
 }
 
 .preference-toggle.selected {
-  background-color: #10B981       ;
+  background-color: var(--color-secondary-dark);
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */
@@ -402,8 +402,8 @@ p {
 }
 
 .login-buttons button:hover {
-  background-color: #7268F6;
-  color: rgba(0, 0, 0, 0.808)
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background);
 }
 
 .login-buttons2{
@@ -425,7 +425,7 @@ p {
 }
 
 .login-buttons2 button:hover {
-  background-color: #ecedeeb9;
+  background-color: var(--color-secondary-dark);
   color: rgba(0, 0, 0, 0.808)
 }
 
@@ -501,6 +501,30 @@ span input {
   box-sizing: border-box;
 }
 
+/* .join-email {
+  
+  display: block;
+  margin-bottom: 15px;
+} */
+
+/* .join-pw {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+} */
+
+/* .join-pw-confirm {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+} */
+
 .input-wrapper {
   position: relative;
   width: 100%;
@@ -561,6 +585,8 @@ span input {
   margin-bottom: 20px;
 }
 
+
+
 .join-links {
   margin: 20px 0;
   font-size: 12px;
@@ -587,15 +613,16 @@ span input {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  background-color: #4caf50;
-  color: white;
-  border: none;
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid #ccc;
   border-radius: 5px;
   cursor: pointer;
 }
 
 .join-buttons button:hover {
-  background-color: #45a049;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-background)
 }
 
 .banner-slider {
@@ -741,6 +768,13 @@ span input {
   font-size: 8px;
   font-weight: bold;
   color: #666;
+  margin-bottom: 4px;
+}
+
+.product-sentiment {
+  font-size: 8px;
+  font-weight: bold;
+  color: var(--color-text-main);
   margin-bottom: 4px;
 }
 

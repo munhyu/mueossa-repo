@@ -24,7 +24,7 @@ import lombok.RequiredArgsConstructor;
 @Table(name = "tb_user")
 public class TbUser {
 
-	@Column(name = "u_id")
+	@Column(name = "u_id", length = 50)
 	@NonNull
 	@Id
 	private String id;

@@ -1,3 +1,24 @@
+/* 컬러 팔레트 */
+:root {
+  --color-background: #FFFFFF;        /* 전체 페이지 기본 배경 */
+  --color-section-bg: #F7F6F3;        /* 카드/섹션 배경 (구역 나눔용) */
+  --color-text-main: #1E1E1E;         /* 메인 텍스트 색상 (제목, 본문 등) */
+  --color-text-subtle: #7E7E7E;       /* 서브 텍스트 색상 (설명글 등) */
+  --color-border-light: #E0E0E0;      /* 카드/버튼 경계선 등 구분용 테두리 */
+
+  --color-primary: #FFB800;           /* 메인 포인트 컬러 (버튼, 강조 텍스트, 찜 아이콘 등) */
+  --color-primary-dark: #B76E00;      /* 포인트 hover/active 상태용 (버튼 클릭 시 등) */
+
+  --color-secondary: #A3C4DC;         /* 서브 포인트 (배너 강조, 카테고리 강조 등) */
+  --color-secondary-dark: #6B9AB8;    /* 서브 포인트 hover/active 상태 */
+
+  --color-accent: #7C3AED;            /* 감성적 강조 컬러 (세일, 이벤트 배너 포인트 등) */
+}
+
+
+
+
+
 @font-face {
   font-family: "NanumSquareR";
   src: url("../font/NanumSquareR.ttf") format("truetype");
@@ -31,6 +52,15 @@ p {
   color: black;
   /* 텍스트 색상 */
 }
+
+
+
+
+
+
+
+
+
 
 .background {
   background-image: url("../images/bgimg.jpg");
@@ -109,6 +139,7 @@ p {
   height: 28px;
   font-size: 12px;
   color: #333;
+  padding-left: 10px;
 }
 
 .search-button {
@@ -608,8 +639,8 @@ span input {
 
 .wish-button {
   position: absolute;
-  top: 151px;
-  right: 10px;
+  top: 120px;
+  right: 13px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -620,7 +651,7 @@ span input {
 }
 
 .wish-button:active {
-  transform: scale(3);
+  transform: scale(1.6);
 }
 
 .product-card a {
@@ -640,8 +671,8 @@ span input {
 }
 
 .heart-icon {
-  width: 10px;
-  height: 10px;
+  width: 13px;
+  height: 13px;
   margin-bottom: 20px;
 }
 
@@ -921,6 +952,67 @@ span input {
 
 .error-message p {
   color: rgb(238, 62, 62);
+}
+
+
+/* 모달 배경 */
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  overflow: hidden;
+  /* 혹시나 내부 스크롤 방지 */
+}
+
+.modal-content {
+  background-color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  width: 90%;
+  max-width: 400px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.modal-content p {
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+/* 버튼 영역 */
+.modal-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.modal-buttons button {
+  flex: 1;
+  padding: 10px 0;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f44336;
+  color: white;
 }
 
 

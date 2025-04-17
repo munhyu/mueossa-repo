@@ -1,328 +1,172 @@
 <!DOCTYPE html>
-<html
-  lang="ko"
-  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-  layout:decorate="~{layouts/layout}"
->
-  <th:block layout:fragment="script"></th:block>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script"></th:block>
 
-  <th:block layout:fragment="css"> </th:block>
+<th:block layout:fragment="css"> </th:block>
 
-  <th:block layout:fragment="header"></th:block>
+<th:block layout:fragment="header"></th:block>
 
-  <div layout:fragment="content">
-    <div id="category" class="page">
-      <div class="section-title4">키워드를 선택하세요</div>
+<div layout:fragment="content">
+  <div id="category" class="page">
+    <div class="section-title4">키워드를 선택하세요</div>
 
-      <div class="divider3"></div>
-      
-
-      <form
-        method="post"
-        th:action="@{/filterProduct}"
-        th:object="${FilterForm}"
-      >
-        <!-- 취향 선택 -->
-        <div class="preference-buttons2">
-          <!-- 감성 카테고리 -->
-          <div>
-            <label
-              for="comf"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctComf == 'Y'} ? 'selected' : ''"
-            >
-              편한
-            </label>
-            <input
-              type="checkbox"
-              id="comf"
-              name="ctComf"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctComf == 'Y'}"
-            />
-
-            <label
-              for="fluffy"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctFluffy == 'Y'} ? 'selected' : ''"
-            >
-              푹신한
-            </label>
-            <input
-              type="checkbox"
-              id="fluffy"
-              name="ctFluffy"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctFluffy == 'Y'}"
-            />
-
-            <label
-              for="light"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctLight == 'Y'} ? 'selected' : ''"
-            >
-              가벼운
-            </label>
-            <input
-              type="checkbox"
-              id="light"
-              name="ctLight"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctLight == 'Y'}"
-            />
-
-            <label
-              for="soft"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctSoft == 'Y'} ? 'selected' : ''"
-            >
-              부드러운
-            </label>
-            <input
-              type="checkbox"
-              id="soft"
-              name="ctSoft"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctSoft == 'Y'}"
-            />
-
-            <label
-              for="flat"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''"
-            >
-              플랫한
-            </label>
-            <input
-              type="checkbox"
-              id="flat"
-              name="ctFlat"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctFlat == 'Y'}"
-            />
-
-            <label
-              for="pretty"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctPretty == 'Y'} ? 'selected' : ''"
-            >
-              예쁜
-            </label>
-            <input
-              type="checkbox"
-              id="pretty"
-              name="ctPretty"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctPretty == 'Y'}"
-            />
-
-            <label
-              for="cute"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctCute == 'Y'} ? 'selected' : ''"
-            >
-              귀여운
-            </label>
-            <input
-              type="checkbox"
-              id="cute"
-              name="ctCute"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctCute == 'Y'}"
-            />
-
-            <label
-              for="neat"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctNeat == 'Y'} ? 'selected' : ''"
-            >
-              깔끔한
-            </label>
-            <input
-              type="checkbox"
-              id="neat"
-              name="ctNeat"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctNeat == 'Y'}"
-            />
-
-            <label
-              for="modern"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctModern == 'Y'} ? 'selected' : ''"
-            >
-              모던한
-            </label>
-            <input
-              type="checkbox"
-              id="modern"
-              name="ctModern"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctModern == 'Y'}"
-            />
-
-            <label
-              for="wide"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''"
-            >
-              발볼이 넓은
-            </label>
-            <input
-              type="checkbox"
-              id="wide"
-              name="ctWide"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctWide == 'Y'}"
-            />
-
-            <label
-              for="narrow"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''"
-            >
-              발볼이 좁은
-            </label>
-            <input
-              type="checkbox"
-              id="narrow"
-              name="ctNarrow"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctNarrow == 'Y'}"
-            />
-
-            <label
-              for="standard"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''"
-            >
-              발볼이 보통
-            </label>
-            <input
-              type="checkbox"
-              id="standard"
-              name="ctStandard"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctStandard == 'Y'}"
-            />
-
-            <label
-              for="hip"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctHip == 'Y'} ? 'selected' : ''"
-            >
-              휘뚜루마뚜루
-            </label>
-            <input
-              type="checkbox"
-              id="hip"
-              name="ctHip"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctHip == 'Y'}"
-            />
-
-            <label
-              for="cost"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctCost == 'Y'} ? 'selected' : ''"
-            >
-              가격이 착한
-            </label>
-            <input
-              type="checkbox"
-              id="cost"
-              name="ctCost"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctCost == 'Y'}"
-            />
-
-            <label
-              for="strong"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''"
-            >
-              튼튼한
-            </label>
-            <input
-              type="checkbox"
-              id="strong"
-              name="ctStrong"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctStrong == 'Y'}"
-            />
-          </div>
-
-          <!-- 신발 종류 구두, 부츠/워커, 스니커즈, 샌들/슬리퍼-->
-          <div>
-            <br>
-            <div class="divider3"></div>
-            <div class="section-title3">신발의 종류를 선택하세요</div>
-            <input
-              type="radio"
-              id="shoesSneakers"
-              name="pGroup"
-              value="스니커즈"
-              th:checked="${session.filteredProducts?.pGroup == '스니커즈'}"
-            />
-            <label
-              for="shoesSneakers"
-              class="preference-toggle"
-              th:classappend="${session.filteredProducts?.pGroup == '스니커즈'} ? 'selected' : ''"
-              >스니커즈</label
-            >
-            <input
-              type="radio"
-              id="shoesHeels"
-              name="pGroup"
-              value="구두"
-              th:checked="${session.filteredProducts?.pGroup == '구두'}"
-            />
-            <label
-              for="shoesHeels"
-              class="preference-toggle"
-              th:classappend="${session.filteredProducts?.pGroup == '구두'} ? 'selected' : ''"
-              >구두</label
-            >
-            <input
-              type="radio"
-              id="shoesBoots"
-              name="pGroup"
-              value="부츠/워커"
-              th:checked="${session.filteredProducts?.pGroup == '부츠/워커'}"
-            />
-            <label
-              for="shoesBoots"
-              class="preference-toggle"
-              th:classappend="${session.filteredProducts?.pGroup == '부츠/워커'} ? 'selected' : ''"
-              >부츠/워커</label
-            >
-            <input
-              type="radio"
-              id="shoesSandals"
-              name="pGroup"
-              value="샌들/슬리퍼"
-              th:checked="${session.filteredProducts?.pGroup == '샌들/슬리퍼'}"
-            />
-            <label
-              for="shoesSandals"
-              class="preference-toggle"
-              th:classappend="${session.filteredProducts?.pGroup == '샌들/슬리퍼'} ? 'selected' : ''"
-              >샌들/슬리퍼</label
-            >
-          </div>
+    <div class="divider3"></div>
 
 
+    <form method="post" th:action="@{/filterProduct}" th:object="${FilterForm}">
+      <!-- 취향 선택 -->
+      <div class="preference-buttons2">
+        <!-- 감성 카테고리 -->
+        <div>
+          <label for="comf" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctComf == 'Y'} ? 'selected' : ''">
+            편한
+          </label>
+          <input type="checkbox" id="comf" name="ctComf" value="Y"
+            th:checked="${session.filteredProducts?.ctComf == 'Y'}" />
+
+          <label for="fluffy" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctFluffy == 'Y'} ? 'selected' : ''">
+            푹신한
+          </label>
+          <input type="checkbox" id="fluffy" name="ctFluffy" value="Y"
+            th:checked="${session.filteredProducts?.ctFluffy == 'Y'}" />
+
+          <label for="light" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctLight == 'Y'} ? 'selected' : ''">
+            가벼운
+          </label>
+          <input type="checkbox" id="light" name="ctLight" value="Y"
+            th:checked="${session.filteredProducts?.ctLight == 'Y'}" />
+
+          <label for="soft" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctSoft == 'Y'} ? 'selected' : ''">
+            부드러운
+          </label>
+          <input type="checkbox" id="soft" name="ctSoft" value="Y"
+            th:checked="${session.filteredProducts?.ctSoft == 'Y'}" />
+
+          <label for="flat" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''">
+            플랫한
+          </label>
+          <input type="checkbox" id="flat" name="ctFlat" value="Y"
+            th:checked="${session.filteredProducts?.ctFlat == 'Y'}" />
+
+          <label for="pretty" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctPretty == 'Y'} ? 'selected' : ''">
+            예쁜
+          </label>
+          <input type="checkbox" id="pretty" name="ctPretty" value="Y"
+            th:checked="${session.filteredProducts?.ctPretty == 'Y'}" />
+
+          <label for="cute" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctCute == 'Y'} ? 'selected' : ''">
+            귀여운
+          </label>
+          <input type="checkbox" id="cute" name="ctCute" value="Y"
+            th:checked="${session.filteredProducts?.ctCute == 'Y'}" />
+
+          <label for="neat" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctNeat == 'Y'} ? 'selected' : ''">
+            깔끔한
+          </label>
+          <input type="checkbox" id="neat" name="ctNeat" value="Y"
+            th:checked="${session.filteredProducts?.ctNeat == 'Y'}" />
+
+          <label for="modern" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctModern == 'Y'} ? 'selected' : ''">
+            모던한
+          </label>
+          <input type="checkbox" id="modern" name="ctModern" value="Y"
+            th:checked="${session.filteredProducts?.ctModern == 'Y'}" />
+
+          <label for="wide" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''">
+            발볼이 넓은
+          </label>
+          <input type="checkbox" id="wide" name="ctWide" value="Y"
+            th:checked="${session.filteredProducts?.ctWide == 'Y'}" />
+
+          <label for="narrow" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''">
+            발볼이 좁은
+          </label>
+          <input type="checkbox" id="narrow" name="ctNarrow" value="Y"
+            th:checked="${session.filteredProducts?.ctNarrow == 'Y'}" />
+
+          <label for="standard" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''">
+            발볼이 보통
+          </label>
+          <input type="checkbox" id="standard" name="ctStandard" value="Y"
+            th:checked="${session.filteredProducts?.ctStandard == 'Y'}" />
+
+          <label for="hip" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctHip == 'Y'} ? 'selected' : ''">
+            휘뚜루마뚜루
+          </label>
+          <input type="checkbox" id="hip" name="ctHip" value="Y"
+            th:checked="${session.filteredProducts?.ctHip == 'Y'}" />
+
+          <label for="cost" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctCost == 'Y'} ? 'selected' : ''">
+            가격이 착한
+          </label>
+          <input type="checkbox" id="cost" name="ctCost" value="Y"
+            th:checked="${session.filteredProducts?.ctCost == 'Y'}" />
+
+          <label for="strong" class="preference-button2"
+            th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''">
+            튼튼한
+          </label>
+          <input type="checkbox" id="strong" name="ctStrong" value="Y"
+            th:checked="${session.filteredProducts?.ctStrong == 'Y'}" />
+        </div>
+
+        <!-- 신발 종류 구두, 부츠/워커, 스니커즈, 샌들/슬리퍼-->
+        <div>
+          <br>
           <div class="divider3"></div>
+          <div class="section-title3">신발의 종류를 선택하세요</div>
+
+          <input type="radio" id="shoesSneakers" name="pGroup" value="스니커즈"
+            th:checked="${session.filteredProducts?.pGroup == '스니커즈'}" />
+          <label for="shoesSneakers" class="preference-toggle"
+            th:classappend="${session.filteredProducts?.pGroup == '스니커즈'} ? 'selected' : ''">스니커즈</label>
+
+          <input type="radio" id="shoesHeels" name="pGroup" value="구두"
+            th:checked="${session.filteredProducts?.pGroup == '구두'}" />
+          <label for="shoesHeels" class="preference-toggle"
+            th:classappend="${session.filteredProducts?.pGroup == '구두'} ? 'selected' : ''">구두</label>
+
+          <input type="radio" id="shoesBoots" name="pGroup" value="부츠/워커"
+            th:checked="${session.filteredProducts?.pGroup == '부츠/워커'}" />
+          <label for="shoesBoots" class="preference-toggle"
+            th:classappend="${session.filteredProducts?.pGroup == '부츠/워커'} ? 'selected' : ''">부츠/워커</label>
+
+          <input type="radio" id="shoesSandals" name="pGroup" value="샌들/슬리퍼"
+            th:checked="${session.filteredProducts?.pGroup == '샌들/슬리퍼'}" />
+          <label for="shoesSandals" class="preference-toggle"
+            th:classappend="${session.filteredProducts?.pGroup == '샌들/슬리퍼'} ? 'selected' : ''">샌들/슬리퍼</label>
+
         </div>
 
-        <!-- 완료 버튼 -->
-        <div class="login-buttons2">
-          <button type="submit">검색</button>
-        </div>
-      </form>
-      <th:block th:replace="~{fragments/productList :: productList}"></th:block>
-    </div>
+
+        <div class="divider3"></div>
+      </div>
+
+      <!-- 완료 버튼 -->
+      <div class="login-buttons2">
+        <button type="submit">검색</button>
+      </div>
+    </form>
+    <th:block th:replace="~{fragments/productList :: productList}"></th:block>
   </div>
+</div>
 
-  <th:block layout:fragment="footer"></th:block>
+<th:block layout:fragment="footer"></th:block>
+<script></script>
+<th:block layout:fragment="script-footer"></th:block>
+
 </html>

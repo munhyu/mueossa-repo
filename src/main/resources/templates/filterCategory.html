@@ -166,36 +166,7 @@
 <th:block layout:fragment="footer"></th:block>
 
 <th:block layout:fragment="script">
-  <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const radioLabels = document.querySelectorAll('label.preference-toggle');
 
-      radioLabels.forEach(label => {
-        label.addEventListener('click', function (e) {
-          const inputId = label.getAttribute('for');
-          const radioInput = document.getElementById(inputId);
-
-          if (radioInput.checked) {
-            // 잠깐 비활성화했다가 다시 활성화해서 취소 가능하게 함
-            radioInput.checked = false;
-
-            // name을 잠시 비워줬다가 복원해서 그룹을 깨고 다시 묶음
-            const name = radioInput.name;
-            radioInput.name = '';
-            setTimeout(() => {
-              radioInput.name = name;
-            });
-
-            // 선택된 class도 제거 (UI 변경용, 선택된 상태일 때만 있었을 테니까)
-            label.classList.remove('selected');
-
-            // 이벤트 전파 막아서 라벨이 다시 체크하지 않도록
-            e.preventDefault();
-          }
-        });
-      });
-    });
-  </script>
 
 </th:block>
 

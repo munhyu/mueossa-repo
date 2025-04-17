@@ -153,4 +153,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+// 탭 활성화 스크립트
+  document.addEventListener("DOMContentLoaded", () => {
+    // 현재 URL 경로 가져오기
+    const currentPath = window.location.pathname;
 
+    // 모든 탭 항목 가져오기
+    const tabs = document.querySelectorAll(".tab-item");
+
+    // 모든 탭에서 active 클래스 제거
+    tabs.forEach((tab) => {
+        tab.classList.remove("active");
+    });
+
+    // 현재 경로에 따라 활성화된 탭에 active 클래스 추가
+    if (currentPath.includes("goHome")) {
+        document.getElementById("home").classList.add("active");
+    } else if (currentPath.includes("goCategory")) {
+        document.getElementById("category").classList.add("active");
+    } else if (currentPath.includes("goWishlist")) {
+        document.getElementById("wishlist").classList.add("active");
+    } else if (currentPath.includes("goMypage")) {
+        document.getElementById("mypage").classList.add("active");
+    }
+});

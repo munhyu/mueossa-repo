@@ -27,8 +27,8 @@
             <div
               class="product-discription-name"
               th:text="${product.pName}"
-              ></div>
-              <a th:href="${product.pLink}" class="product-link">구매 링크</a>
+            ></div>
+            <a th:href="${product.pLink}" class="product-link">구매 링크</a>
             <div
               class="product-discription-rating"
               name="pd_rating"
@@ -50,7 +50,32 @@
             ></div>
           </div>
         </div>
-        
+        <!-- ... (기존 상품 상세 정보 표시) ... -->
+
+        <!-- 유사 상품 추천 섹션 -->
+        <div class="similar-products-section" style="margin-top: 40px">
+          <h2 style="text-align: center; margin-bottom: 20px">
+            이런 상품은 어때요?
+          </h2>
+          <!-- productList 프래그먼트 재사용 -->
+          <th:block
+            th:if="${similarProducts != null and !similarProducts.isEmpty()}"
+          >
+            <!-- productList 프래그먼트에 전달할 변수 설정 -->
+            <th:block th:with="prodCateList=${similarProducts}">
+              <th:block
+                th:replace="~{fragments/productList :: productList}"
+              ></th:block>
+            </th:block>
+          </th:block>
+          <th:block
+            th:if="${similarProducts == null or similarProducts.isEmpty()}"
+          >
+            <p style="text-align: center">유사한 상품을 찾을 수 없습니다.</p>
+          </th:block>
+        </div>
+
+        <!-- ... (기존 스크립트 등) ... -->
         <!-- 카테고리 백분율 상위 몇퍼센트인지-->
 
         <div class="product-discription-category-score">

@@ -28,11 +28,15 @@ import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.entity.TbProdImage;
 import com.smhrd.mueossa.entity.TbProduct;
 import com.smhrd.mueossa.entity.TbUser;
+import com.smhrd.mueossa.service.ProductRecommendationService;
 
 import jakarta.servlet.http.HttpSession;
 
 @Controller
 public class ProductController {
+
+  @Autowired
+  private ProductRecommendationService productRecommendationService; // 서비스 주입
 
   @Autowired
   private ProductRepository productRepository;
@@ -80,6 +84,10 @@ public class ProductController {
     prodPercentOpt.ifPresent(prodPercent -> {
       model.addAttribute("prodPercent", prodPercent);
     });
+
+    // 유사 상품 추천 로직 호출
+    List<ProductAndCategoryDTO> similarProducts = productRecommendationService.findSimilarProducts(pId, 5); // 상위 5개
+    model.addAttribute("similarProducts", similarProducts);
 
     return "productInfo";
   }

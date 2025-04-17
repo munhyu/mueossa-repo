@@ -153,4 +153,80 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+// 탭 활성화 스크립트
+document.addEventListener("DOMContentLoaded", () => {
+  // 현재 URL 경로 가져오기
+  const currentPath = window.location.pathname;
+
+  // 현재 경로 출력
+  console.log("현재 경로:", currentPath);
+
+  // 모든 탭 항목 가져오기
+  const tabs = document.querySelectorAll(".tab-item");
+
+  // 모든 탭에서 active 클래스 제거
+  tabs.forEach((tab) => {
+      tab.classList.remove("active");
+  });
+
+  // 각 탭의 href 값과 현재 경로 비교
+  tabs.forEach((tab) => {
+      const tabPath = tab.getAttribute("href");
+
+      // 탭 경로 출력
+      console.log("탭 경로:", tabPath);
+
+      // 현재 경로와 href 값이 일치하면 active 클래스 추가
+      if (currentPath.includes(tabPath)) {
+          console.log(`활성화된 탭: ${tabPath}`);
+          tab.classList.add("active");
+      }
+  });
+
+  // 현재 경로에 따라 활성화된 탭에 active 클래스 추가
+  if (currentPath.includes("/goHome")) {
+      console.log("홈 탭 활성화");
+      document.getElementById("home").classList.add("active");
+  } else if (currentPath.includes("/goCategory")) {
+      console.log("카테고리 탭 활성화");
+      document.getElementById("category").classList.add("active");
+  } else if (currentPath.includes("/goWishlist")) {
+      console.log("찜 탭 활성화");
+      document.getElementById("wishlist").classList.add("active");
+  } else if (currentPath.includes("/goMypage")) {
+      console.log("마이페이지 탭 활성화");
+      document.getElementById("mypage").classList.add("active");
+  }
+});
+
+// 카테고리 버튼 스크립트
+document.addEventListener('DOMContentLoaded', function () {
+  const radioLabels = document.querySelectorAll('label.preference-toggle');
+
+  radioLabels.forEach(label => {
+    label.addEventListener('click', function (e) {
+      const inputId = label.getAttribute('for');
+      const radioInput = document.getElementById(inputId);
+
+      if (radioInput.checked) {
+        // 잠깐 비활성화했다가 다시 활성화해서 취소 가능하게 함
+        radioInput.checked = false;
+
+        // name을 잠시 비워줬다가 복원해서 그룹을 깨고 다시 묶음
+        const name = radioInput.name;
+        radioInput.name = '';
+        setTimeout(() => {
+          radioInput.name = name;
+        });
+
+        // 선택된 class도 제거 (UI 변경용, 선택된 상태일 때만 있었을 테니까)
+        label.classList.remove('selected');
+
+        // 이벤트 전파 막아서 라벨이 다시 체크하지 않도록
+        e.preventDefault();
+      }
+    });
+  });
+});
+
 

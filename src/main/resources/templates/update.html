@@ -47,6 +47,10 @@
       <!-- 비밀번호 확인 -->
       <span class="join-pw-confirm">
         <input type="password" id="pwCheck" name="pwCheck" placeholder="변경할 Password 확인" required />
+      </span>
+
+      <!-- 비밀번호 확인 체크 -->
+      <span>
         <input type="text" id="pwMatch" placeholder="" readonly />
       </span>
 
@@ -100,8 +104,6 @@
     pwInput.addEventListener('input', checkPasswordMatch);
     pwCheckInput.addEventListener('input', checkPasswordMatch);
 
-  </script>
-  <script>
     document.addEventListener("DOMContentLoaded", function () {
       const deleteButton = document.querySelector('a[href="userDelete"]');
       const modal = document.getElementById('custom-modal');

@@ -154,26 +154,47 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 // 탭 활성화 스크립트
-  document.addEventListener("DOMContentLoaded", () => {
-    // 현재 URL 경로 가져오기
-    const currentPath = window.location.pathname;
+document.addEventListener("DOMContentLoaded", () => {
+  // 현재 URL 경로 가져오기
+  const currentPath = window.location.pathname;
 
-    // 모든 탭 항목 가져오기
-    const tabs = document.querySelectorAll(".tab-item");
+  // 현재 경로 출력
+  console.log("현재 경로:", currentPath);
 
-    // 모든 탭에서 active 클래스 제거
-    tabs.forEach((tab) => {
-        tab.classList.remove("active");
-    });
+  // 모든 탭 항목 가져오기
+  const tabs = document.querySelectorAll(".tab-item");
 
-    // 현재 경로에 따라 활성화된 탭에 active 클래스 추가
-    if (currentPath.includes("goHome")) {
-        document.getElementById("home").classList.add("active");
-    } else if (currentPath.includes("goCategory")) {
-        document.getElementById("category").classList.add("active");
-    } else if (currentPath.includes("goWishlist")) {
-        document.getElementById("wishlist").classList.add("active");
-    } else if (currentPath.includes("goMypage")) {
-        document.getElementById("mypage").classList.add("active");
-    }
+  // 모든 탭에서 active 클래스 제거
+  tabs.forEach((tab) => {
+      tab.classList.remove("active");
+  });
+
+  // 각 탭의 href 값과 현재 경로 비교
+  tabs.forEach((tab) => {
+      const tabPath = tab.getAttribute("href");
+
+      // 탭 경로 출력
+      console.log("탭 경로:", tabPath);
+
+      // 현재 경로와 href 값이 일치하면 active 클래스 추가
+      if (currentPath.includes(tabPath)) {
+          console.log(`활성화된 탭: ${tabPath}`);
+          tab.classList.add("active");
+      }
+  });
+
+  // 현재 경로에 따라 활성화된 탭에 active 클래스 추가
+  if (currentPath.includes("/goHome")) {
+      console.log("홈 탭 활성화");
+      document.getElementById("home").classList.add("active");
+  } else if (currentPath.includes("/goCategory")) {
+      console.log("카테고리 탭 활성화");
+      document.getElementById("category").classList.add("active");
+  } else if (currentPath.includes("/goWishlist")) {
+      console.log("찜 탭 활성화");
+      document.getElementById("wishlist").classList.add("active");
+  } else if (currentPath.includes("/goMypage")) {
+      console.log("마이페이지 탭 활성화");
+      document.getElementById("mypage").classList.add("active");
+  }
 });

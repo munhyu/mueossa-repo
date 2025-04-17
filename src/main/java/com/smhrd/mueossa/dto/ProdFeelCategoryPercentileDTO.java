@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class ProdFeelCategoryPercentileDTO {
-  private int pdId;
+  private String pdId;
   private int ctComfPercentileRank;
   private int ctFluffyPercentileRank;
   private int ctLightPercentileRank;
@@ -23,7 +23,7 @@ public class ProdFeelCategoryPercentileDTO {
   private int ctCostPercentileRank;
   private int ctStrongPercentileRank;
 
-  public ProdFeelCategoryPercentileDTO(int pdId, Double ctComfPercentileRank, Double ctFluffyPercentileRank,
+  public ProdFeelCategoryPercentileDTO(String pdId, Double ctComfPercentileRank, Double ctFluffyPercentileRank,
       Double ctLightPercentileRank, Double ctSoftPercentileRank, Double ctFlatPercentileRank,
       Double ctPrettyPercentileRank, Double ctCutePercentileRank, Double ctNeatPercentileRank,
       Double ctModernPercentileRank, Double ctHipPercentileRank, Double ctWidePercentileRank,

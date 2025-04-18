@@ -3,19 +3,16 @@ package com.smhrd.mueossa.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.smhrd.mueossa.Repository.SurveyRepository;
 import com.smhrd.mueossa.Repository.UserRepository;
-import com.smhrd.mueossa.Repository.WishlistRepository;
-import com.smhrd.mueossa.dto.FilterForm;
-import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.model.User;
+import com.smhrd.mueossa.service.UserService;
 
 import jakarta.servlet.http.HttpSession;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class UserController {
@@ -24,50 +21,43 @@ public class UserController {
   private UserRepository userRepository;
 
   @Autowired
-  private SurveyRepository surveyRepository;
-
-  @Autowired
-  private WishlistRepository wishlistRepository;
-
-  // 회원가입 처리
-  @PostMapping("/userInsert")
-  public String userInsert(User user, Model model) {
-    TbUser tbUser = new TbUser(user);
-    tbUser.setType("U");
-    // SHA256 암호화
-    tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
-    userRepository.save(tbUser);
-    return "redirect:/goLogin";
-  }
+  private UserService userService;
 
   // 로그인 처리
   @PostMapping("/userLogin")
   public String userLogin(User user, HttpSession session, Model model) {
-    // SHA256 암호화
-    String pw = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw());
+    return userService.loginUser(user, session, model) ? "redirect:/goHome" : "login";
+  }
 
-    TbUser tbUser = userRepository.findByIdAndPw(user.getId(), pw);
-    if (tbUser != null) {
-      System.out.println("로그인 성공");
-      session.setAttribute("user", tbUser); // 세션에 사용자 정보 저장
+  // 로그아웃 처리(세션 유저 정보 삭제)
+  @GetMapping("/userLogout")
+  public String userLogout(HttpSession session) {
+    userService.removeUserSessionData(session);
+    return "redirect:/goHome";
+  }
 
-      // // 로그인한 사용자의 설문조사 정보 가져오기
-      surveyRepository.findById(tbUser.getId()).ifPresent(survey -> {
-        FilterForm filterForm = new FilterForm(survey);
-        session.setAttribute("filteredProducts", filterForm); // 세션에 설문조사 정보 저장
-      });
+  // 회원가입 처리
+  @PostMapping("/userInsert")
+  public String userInsert(User user, Model model) {
+    userService.joinTbUser(user);
+    return "redirect:/goLogin";
+  }
 
-      // // 로그인한 사용자의 찜 목록 가져오기
-      wishlistRepository.qfindProductIdsByUserId(tbUser.getId()).ifPresent(wishlist -> {
-        session.setAttribute("wishlist", wishlist); // 세션에 찜 목록 저장
-      });
+  // 회원 정보 수정 처리
+  @PostMapping("/userUpdate")
+  public String userUpdate(User user, HttpSession session) {
+    userService.updateUserData(user, session);
+    return "redirect:/goHome";
+  }
 
-      return "redirect:/goHome"; // 메인 페이지로 리다이렉트
-    } else {
-      System.out.println("로그인 실패");
-      model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
-      return "login"; // 에러 메시지와 함께 main.html로 이동
-    }
+  // 회원 탈퇴 처리
+  @GetMapping("/userDelete")
+  public String userDelete(HttpSession session) {
+    // DB의 유저 정보 삭제
+    userService.deleteUserRelatedData(session);
+    // 세션에 저장된 유저 정보 삭제
+    userService.removeUserSessionData(session);
+    return "redirect:/goHome";
   }
 
   // 아이디 중복 체크
@@ -82,46 +72,6 @@ public class UserController {
   @ResponseBody
   public boolean checkEmail(@RequestParam("email") String email) {
     return userRepository.findByEmail(email).isEmpty();
-  }
-
-  // 로그아웃 처리
-  @GetMapping("/userLogout")
-  public String userLogout(HttpSession session) {
-    // 세션에서 사용자 정보 삭제
-    session.removeAttribute("user");
-    session.removeAttribute("filteredProducts"); // 설문조사 정보 삭제
-    session.removeAttribute("wishlist"); // 찜 목록 삭제
-    return "redirect:/goHome";
-  }
-
-  // 회원 정보 수정 처리
-  @PostMapping("/userUpdate")
-  public String userUpdate(User user, HttpSession session) {
-    TbUser tbUser = new TbUser(user);
-    TbUser loginUser = (TbUser) session.getAttribute("user");
-    String userId = loginUser.getId();
-    String pw = org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw());
-    tbUser.setId(userId);
-    tbUser.setEmail(user.getEmail());
-    tbUser.setNick(user.getNick());
-    tbUser.setPw(pw);
-    tbUser.setGender(loginUser.getGender());
-    tbUser.setJoinedAt(loginUser.getJoinedAt());
-    tbUser.setType(loginUser.getType());
-    userRepository.save(tbUser);
-    return "redirect:/goHome";
-  }
-
-  // 회원 탈퇴 처리
-  @GetMapping("/userDelete")
-  public String userDelete(HttpSession session) {
-    TbUser loginUser = (TbUser) session.getAttribute("user");
-    String userId = loginUser.getId();
-    surveyRepository.deleteById(userId);
-    wishlistRepository.qdeleteById(userId);
-    userRepository.deleteById(userId);
-    session.invalidate();
-    return "redirect:/goHome";
   }
 
 }

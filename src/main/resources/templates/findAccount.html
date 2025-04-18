@@ -1,0 +1,136 @@
+<!-- layout 쓰는 파일-->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script">
+  <script th:inline="javascript">
+    function openModal() {
+      document.getElementById('authModal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('authModal').style.display = 'none';
+      document.getElementById('authCodeInput').value = '';
+      document.getElementById('authError').style.display = 'none';
+    }
+    function submitAuthCode() {
+      var code = document.getElementById('authCodeInput').value;
+      if (!/^\d{6}$/.test(code)) {
+        document.getElementById('authError').innerText = '6자리 숫자를 입력하세요.';
+        document.getElementById('authError').style.display = 'block';
+        return;
+      }
+    }
+  </script>
+
+  <!-- checkCode가 있을 때만 모달 자동 실행 -->
+  <script th:if="${checkCode != null}">
+    document.addEventListener("DOMContentLoaded", function () {
+      openModal();
+    });
+  </script>
+
+</th:block>
+
+<th:block layout:fragment="css">
+
+  <style>
+    .modal {
+      position: fixed;
+      z-index: 999;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background: rgba(0, 0, 0, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      width: 320px;
+      position: relative;
+      text-align: center;
+    }
+
+    .close {
+      position: absolute;
+      right: 16px;
+      top: 10px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .modal-buttons button {
+      margin: 10px 8px 0 8px;
+    }
+  </style>
+</th:block>
+
+<th:block layout:fragment="header"></th:block>
+
+<th:block layout:fragment="content">
+
+  <!-- 여기 로그인이에요! -->
+  <div id="login" class="page">
+    <div class="section-title">계정 찾기</div>
+
+    <!-- 모달 -->
+    <div id="authModal" class="modal" style="display:none;">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <h3>인증코드 입력</h3>
+        <p th:text="'이메일로 6자리 인증코드를 전송했습니다. 아래에 인증코드를 입력하세요.'">
+          이메일로 6자리 인증코드를 전송했습니다. 아래에 인증코드를 입력하세요.
+        </p>
+        <input type="text" id="authCodeInput" maxlength="6" placeholder="6자리 숫자 입력" required pattern="\d{6}">
+        <div class="modal-buttons">
+          <button type="button" onclick="submitAuthCode()">확인</button>
+          <button type="button" onclick="closeModal()">취소</button>
+        </div>
+        <div id="authError" style="color:red; margin-top:10px; display:none;"></div>
+      </div>
+    </div>
+
+
+    <!-- 에러 메시지 -->
+    <div th:if="${error}" class="error-message">
+      <p th:text="${error}"></p>
+    </div>
+
+    <!-- 계정 찾기 폼 -->
+    <form method="post" th:action="@{/findAccount}" th:object="${user}">
+      <!-- 이메일 입력 -->
+      <span class="find-email">
+        <input type="email" id="email" name="email" placeholder="이메일 입력" required />
+      </span>
+      <!-- 닉네임 입력 -->
+      <span class="find-nickname">
+        <input type="text" id="nickname" name="nick" placeholder="닉네임 입력" required />
+      </span>
+
+      <div class="divider"></div>
+
+      <!-- 하단 링크 -->
+      <div class="login-links">
+        <a href="goJoin">회원가입</a> |
+        <a href="goLogin">로그인</a> |
+        <a href="#">문의하기</a>
+      </div>
+
+      <!-- 이메일 찾기 버튼 -->
+      <div class="login-buttons">
+        <button type="submit">계정 찾기</button>
+      </div>
+    </form>
+  </div>
+
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+</html>

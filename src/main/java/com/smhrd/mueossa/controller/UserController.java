@@ -50,6 +50,13 @@ public class UserController {
     return "redirect:/goHome";
   }
 
+  // 비밀번호 수정
+  @PostMapping("/userPwUpdate")
+  public String userPwUpdate(@RequestParam("id") String id, @RequestParam("pw") String pw) {
+    userSvc.updateUserPw(id, pw);
+    return "redirect:/goLogin";
+  }
+
   // 회원 탈퇴 처리
   @GetMapping("/userDelete")
   public String userDelete(HttpSession session) {

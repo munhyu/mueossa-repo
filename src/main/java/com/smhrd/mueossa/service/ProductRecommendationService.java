@@ -1,14 +1,21 @@
 // filepath: c:\Users\smhrd\Desktop\mueossa-repo\src\main\java\com\smhrd\mueossa\service\ProductRecommendationService.java
 package com.smhrd.mueossa.service;
 
-import com.smhrd.mueossa.Repository.ProdFeelCategoryRepository;
-import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
-import com.smhrd.mueossa.entity.TbProdFeelCategory;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.smhrd.mueossa.Repository.ProdFeelCategoryRepository;
+import com.smhrd.mueossa.dto.ProdCategoryAndGroupDTO;
+import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 
 @Service
 public class ProductRecommendationService {
@@ -16,22 +23,25 @@ public class ProductRecommendationService {
   @Autowired
   private ProdFeelCategoryRepository prodFeelCategoryRepository; // TbProdFeelCategory Repository
 
-  // 유사 상품 추천 메서드 (pdId 타입을 String으로 변경)
   public List<ProductAndCategoryDTO> findSimilarProducts(String targetProductId, int limit) {
     // 1. 기준 상품 정보 조회 (TbProdFeelCategory 엔티티 조회로 수정)
-    Optional<TbProdFeelCategory> targetProductOpt = prodFeelCategoryRepository.findById(targetProductId);
+
+    Optional<ProdCategoryAndGroupDTO> targetProductOpt = prodFeelCategoryRepository
+        .qfindProductAndCategoryBypId(targetProductId);
     if (targetProductOpt.isEmpty()) {
       return Collections.emptyList(); // 기준 상품 없으면 빈 리스트 반환
     }
-    // TbProdFeelCategory 타입으로 기준 상품 정보 저장
-    TbProdFeelCategory targetProduct = targetProductOpt.get();
+    // ProdCategoryAndGroupDTO 타입으로 기준 상품 정보 저장
+    ProdCategoryAndGroupDTO targetProduct = targetProductOpt.get();
 
-    // 2. 전체 상품 정보 조회 (성능 주의!)
-    List<TbProdFeelCategory> allProducts = prodFeelCategoryRepository.findAll();
+    // 2. 전체 상품 정보 조회
+    // pGroup이 일치하는 상품 조회
+    String pGroup = targetProductOpt.isPresent() ? targetProductOpt.get().getPGroup() : "";
+    List<ProdCategoryAndGroupDTO> allProducts = prodFeelCategoryRepository.qfindProductAndCategoryBypGroup(pGroup);
 
     // 3. 거리 계산 (상품 ID(String)와 거리 매핑)
     Map<String, Double> distances = new HashMap<>();
-    for (TbProdFeelCategory product : allProducts) {
+    for (ProdCategoryAndGroupDTO product : allProducts) {
       if (product.getPdId().equals(targetProductId)) {
         continue; // 기준 상품 제외
       }
@@ -66,8 +76,8 @@ public class ProductRecommendationService {
     return similarProducts;
   }
 
-  // 유클리드 거리 계산 (변경 없음)
-  private double calculateEuclideanDistance(TbProdFeelCategory p1, TbProdFeelCategory p2) {
+  // 유클리드 거리 계산
+  private double calculateEuclideanDistance(ProdCategoryAndGroupDTO p1, ProdCategoryAndGroupDTO p2) {
     double sumOfSquares = 0;
     sumOfSquares += Math.pow(p1.getCtComf() - p2.getCtComf(), 2);
     sumOfSquares += Math.pow(p1.getCtFluffy() - p2.getCtFluffy(), 2);

@@ -29,6 +29,7 @@ import com.smhrd.mueossa.entity.TbProdImage;
 import com.smhrd.mueossa.entity.TbProduct;
 import com.smhrd.mueossa.entity.TbUser;
 import com.smhrd.mueossa.service.ProductRecommendationService;
+import com.smhrd.mueossa.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -50,18 +51,26 @@ public class ProductController {
   @Autowired
   private WishlistRepository wishlistRepository;
 
+  @Autowired
+  private ProductService productService;
+
   @GetMapping({ "/", "goHome" })
   public String goHome(Model model) {
 
-    List<ProductAndCategoryDTO> prodCateList = prodFeelCategoryRepository.findProductAndCategory();
-
-    // 상품 리스트에서 가격, 이름 등 포맷팅 메서드
-    for (ProductAndCategoryDTO product : prodCateList) {
-      getFormattedPrice(product);
-    }
-    model.addAttribute("prodCateList", prodCateList);
+    productService.loadProductAndCategoryData(model);
     return "home";
   }
+
+  // public void loadProductAndCategoryData(Model model) {
+  // List<ProductAndCategoryDTO> prodCateList =
+  // prodFeelCategoryRepository.findProductAndCategory();
+
+  // // 상품 리스트에서 가격, 이름 등 포맷팅 메서드
+  // for (ProductAndCategoryDTO product : prodCateList) {
+  // getFormattedPrice(product);
+  // }
+  // model.addAttribute("prodCateList", prodCateList);
+  // }
 
   // 상품 아이디로 상품 상세 페이지 이동
   @GetMapping("/productInfo")
@@ -86,7 +95,7 @@ public class ProductController {
     });
 
     // 유사 상품 추천 로직 호출
-    List<ProductAndCategoryDTO> similarProducts = productRecommendationService.findSimilarProducts(pId, 5); // 상위 5개
+    List<ProductAndCategoryDTO> similarProducts = productRecommendationService.findSimilarProducts(pId, 3); // 상위 5개
     model.addAttribute("similarProducts", similarProducts);
 
     return "productInfo";

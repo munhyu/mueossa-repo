@@ -61,42 +61,11 @@ public class ProductController {
     return "home";
   }
 
-  // public void loadProductAndCategoryData(Model model) {
-  // List<ProductAndCategoryDTO> prodCateList =
-  // prodFeelCategoryRepository.findProductAndCategory();
-
-  // // 상품 리스트에서 가격, 이름 등 포맷팅 메서드
-  // for (ProductAndCategoryDTO product : prodCateList) {
-  // getFormattedPrice(product);
-  // }
-  // model.addAttribute("prodCateList", prodCateList);
-  // }
-
   // 상품 아이디로 상품 상세 페이지 이동
   @GetMapping("/productInfo")
   public String goProductList(@RequestParam("pId") String pId, Model model) {
 
-    productRepository.findById(pId).ifPresent(product -> {
-      getFormattedPrice(product);
-      model.addAttribute("product", product);
-    });
-
-    List<TbProdImage> ProdImageList = prodImageRepository.findAllBypId(pId);
-    model.addAttribute("ProdImageList", ProdImageList);
-
-    prodFeelCategoryRepository.findById(pId).ifPresent(prodFeelCategory -> {
-      model.addAttribute("prodFeelCategory", prodFeelCategory);
-    });
-
-    // 각 카테고리 점수가 하위 몇 %인지
-    Optional<ProdFeelCategoryPercentileDTO> prodPercentOpt = prodFeelCategoryRepository.findCategoryPercentiles(pId);
-    prodPercentOpt.ifPresent(prodPercent -> {
-      model.addAttribute("prodPercent", prodPercent);
-    });
-
-    // 유사 상품 추천 로직 호출
-    List<ProductAndCategoryDTO> similarProducts = productRecommendationService.findSimilarProducts(pId, 3); // 상위 5개
-    model.addAttribute("similarProducts", similarProducts);
+    productService.loadProductInsights(pId, model);
 
     return "productInfo";
   }
@@ -106,6 +75,11 @@ public class ProductController {
   @ResponseBody
   public ResponseEntity<Map<String, Object>> toggleWishlist(@RequestBody Map<String, String> payload,
       HttpSession session) {
+
+    return toggleWishlist(payload, session);
+  }
+
+  private ResponseEntity<Map<String, Object>> toggleWishlist(Map<String, String> payload, HttpSession session) {
     Map<String, Object> response = new HashMap<>();
     // 로그인 체크
 
@@ -225,31 +199,6 @@ public class ProductController {
     }
     // 브랜드 다시 set
     product.setPBrand(brand);
-
-    // 문자열을 숫자로 변환
-    int priceValue = Integer.parseInt(price);
-
-    // 숫자를 세자리마다 콤마로 포맷팅
-    String formattedPrice = String.format("%,d원", priceValue);
-
-    // 포맷팅된 값을 다시 설정
-    product.setPPrice(formattedPrice);
-  }
-
-  private void getFormattedPrice(TbProduct product) {
-    String price = product.getPPrice();
-    String name = product.getPName();
-
-    // pName의 _가 포함되어 있으면 _를 공백으로 변경
-    // pName의 시작이 [이면 ]까지 제거
-    if (name.startsWith("[")) {
-      int endIndex = name.indexOf("]");
-      if (endIndex != -1) {
-        name = name.substring(endIndex + 1).trim();
-      }
-    }
-    // 글자 다시 설정
-    product.setPName(name);
 
     // 문자열을 숫자로 변환
     int priceValue = Integer.parseInt(price);

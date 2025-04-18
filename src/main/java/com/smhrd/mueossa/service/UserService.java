@@ -92,4 +92,15 @@ public class UserService {
     tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(user.getPw()));
     userRepository.save(tbUser);
   }
+
+  /** id와 pw를 입력받아 새로운 pw로 수정 */
+  public void updateUserPw(String id, String pw) {
+    TbUser tbUser = userRepository.findById(id).orElse(null);
+    if (tbUser != null) {
+      tbUser.setPw(org.apache.commons.codec.digest.DigestUtils.sha256Hex(pw));
+      userRepository.save(tbUser);
+    } else {
+      System.out.println("사용자를 찾을 수 없습니다.");
+    }
+  }
 }

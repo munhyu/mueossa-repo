@@ -16,19 +16,19 @@ import jakarta.servlet.http.HttpSession;
 public class FilterProductController {
 
   @Autowired
-  private FilterProductService filterProductService;
+  private FilterProductService filterProdSvc;
 
   // 상품 검색 기능
   @GetMapping("/searchProduct")
   public String searchProduct(@RequestParam("keyword") String keyword, Model model) {
-    filterProductService.searchProductsModelAdd(keyword, model);
+    filterProdSvc.searchProductsModelAdd(keyword, model);
     return "home";
   }
 
   // 카테고리 페이지
   @PostMapping({ "/filterProduct" })
   public String goFilterProduct(FilterForm filterForm, Model model, HttpSession session) {
-    filterProductService.loadAndSaveFilteredProductCategories(filterForm, model, session);
+    filterProdSvc.loadAndSaveFilteredProductCategories(filterForm, model, session);
     return "filterCategory";
   }
 
@@ -36,7 +36,7 @@ public class FilterProductController {
   @GetMapping({ "/goCategory" })
   public String goFilterProduct(Model model, HttpSession session) {
 
-    filterProductService.loadProductAndCategoryData(model, session);
+    filterProdSvc.loadProductAndCategoryData(model, session);
     return "filterCategory";
   }
 

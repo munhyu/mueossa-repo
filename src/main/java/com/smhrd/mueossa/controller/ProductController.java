@@ -20,12 +20,12 @@ import jakarta.servlet.http.HttpSession;
 public class ProductController {
 
   @Autowired
-  private ProductService productService;
+  private ProductService prodSvc;
 
   @GetMapping({ "/", "goHome" })
   public String goHome(Model model) {
 
-    productService.loadProductAndCategoryData(model);
+    prodSvc.loadProductAndCategoryData(model);
     return "home";
   }
 
@@ -33,7 +33,7 @@ public class ProductController {
   @GetMapping("/productInfo")
   public String goProductList(@RequestParam("pId") String pId, Model model) {
 
-    productService.loadProductInsights(pId, model);
+    prodSvc.loadProductInsights(pId, model);
 
     return "productInfo";
   }
@@ -44,13 +44,13 @@ public class ProductController {
   public ResponseEntity<Map<String, Object>> toggleWishlist(@RequestBody Map<String, String> payload,
       HttpSession session) {
 
-    return productService.toggleWishlistResponse(payload, session);
+    return prodSvc.toggleWishlistResponse(payload, session);
   }
 
   // 찜목록 페이지 이동 (기존 로직 수정)
   @GetMapping("/goWishlist")
   public String goWishlist(HttpSession session, Model model) { // Model 파라미터 추가
-    productService.loadWishlistProducts(session, model);
+    prodSvc.loadWishlistProducts(session, model);
 
     return "wishlist"; // wishlist.html 뷰 반환
   }

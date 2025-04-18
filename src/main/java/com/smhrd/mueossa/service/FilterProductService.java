@@ -23,7 +23,7 @@ public class FilterProductService {
   private ProdFeelCategoryRepository prodFeelCategoryRepository;
 
   @Autowired
-  private ProductService productService;
+  private ProductService prodSvc;
 
   /** 세션의 카테고리 필터링 불러오기 */
   public void loadProductAndCategoryData(Model model, HttpSession session) {
@@ -39,7 +39,7 @@ public class FilterProductService {
 
     // 포맷팅
     for (ProductAndCategoryDTO product : prodCateList) {
-      productService.getFormattedPrice(product);
+      prodSvc.getFormattedPrice(product);
     }
     model.addAttribute("prodCateList", prodCateList);
   }
@@ -55,7 +55,7 @@ public class FilterProductService {
 
     // 포맷팅
     for (ProductAndCategoryDTO product : productAndCategoryDTO) {
-      productService.getFormattedPrice(product);
+      prodSvc.getFormattedPrice(product);
     }
 
     model.addAttribute("prodCateList", productAndCategoryDTO);
@@ -92,7 +92,7 @@ public class FilterProductService {
 
     // 결과 포맷팅
     for (ProductAndCategoryDTO product : finalResults) {
-      productService.getFormattedPrice(product);
+      prodSvc.getFormattedPrice(product);
     }
 
     // 최종 결과 리스트를 모델에 추가

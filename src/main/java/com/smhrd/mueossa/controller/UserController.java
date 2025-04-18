@@ -21,32 +21,32 @@ public class UserController {
   private UserRepository userRepository;
 
   @Autowired
-  private UserService userService;
+  private UserService userSvc;
 
   // 로그인 처리
   @PostMapping("/userLogin")
   public String userLogin(User user, HttpSession session, Model model) {
-    return userService.loginUser(user, session, model) ? "redirect:/goHome" : "login";
+    return userSvc.loginUser(user, session, model) ? "redirect:/goHome" : "login";
   }
 
   // 로그아웃 처리(세션 유저 정보 삭제)
   @GetMapping("/userLogout")
   public String userLogout(HttpSession session) {
-    userService.removeUserSessionData(session);
+    userSvc.removeUserSessionData(session);
     return "redirect:/goHome";
   }
 
   // 회원가입 처리
   @PostMapping("/userInsert")
   public String userInsert(User user, Model model) {
-    userService.joinTbUser(user);
+    userSvc.joinTbUser(user);
     return "redirect:/goLogin";
   }
 
   // 회원 정보 수정 처리
   @PostMapping("/userUpdate")
   public String userUpdate(User user, HttpSession session) {
-    userService.updateUserData(user, session);
+    userSvc.updateUserData(user, session);
     return "redirect:/goHome";
   }
 
@@ -54,9 +54,9 @@ public class UserController {
   @GetMapping("/userDelete")
   public String userDelete(HttpSession session) {
     // DB의 유저 정보 삭제
-    userService.deleteUserRelatedData(session);
+    userSvc.deleteUserRelatedData(session);
     // 세션에 저장된 유저 정보 삭제
-    userService.removeUserSessionData(session);
+    userSvc.removeUserSessionData(session);
     return "redirect:/goHome";
   }
 

@@ -15,8 +15,8 @@
   --color-accent: #7C3AED;            /* 감성적 강조 컬러 (세일, 이벤트 배너 포인트 등) */
   --color-brown: #B17457;           /* 브라운 계열 (브라운 색상) */
   --color-green: #10B981;            /* 그린 계열 (그린 색상) */
-  --color-card-white: rgb(250, 250, 250);
-  --color-card-gray: rgb(240, 240, 240);
+  --color-card-white: rgb(250, 250, 250); /* 카드 배경색 (흰색) */
+  --color-card-gray: rgb(240, 240, 240); /* 카드 배경색 (회색) */
 }
 
 

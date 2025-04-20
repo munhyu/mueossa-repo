@@ -20,105 +20,120 @@
         <div>
           <label for="comf" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctComf == 'Y'} ? 'selected' : ''">
-            편한
+            <img src="/images/category-icons/comfortable.jpg" alt=" ">
+          <span>편한</span>
           </label>
           <input type="checkbox" id="comf" name="ctComf" value="Y"
             th:checked="${session.filteredProducts?.ctComf == 'Y'}" />
 
           <label for="fluffy" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctFluffy == 'Y'} ? 'selected' : ''">
-            푹신한
+            <img src="/images/category-icons/fluffy.jpg" alt=" ">
+          <span>폭신한</span>
           </label>
           <input type="checkbox" id="fluffy" name="ctFluffy" value="Y"
             th:checked="${session.filteredProducts?.ctFluffy == 'Y'}" />
 
           <label for="light" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctLight == 'Y'} ? 'selected' : ''">
-            가벼운
+            <img src="/images/category-icons/light.jpg" alt=" ">
+          <span>가벼운</span>
           </label>
           <input type="checkbox" id="light" name="ctLight" value="Y"
             th:checked="${session.filteredProducts?.ctLight == 'Y'}" />
 
           <label for="soft" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctSoft == 'Y'} ? 'selected' : ''">
-            부드러운
+            <img src="/images/category-icons/soft.jpg" alt=" ">
+          <span>부드러운</span>
           </label>
           <input type="checkbox" id="soft" name="ctSoft" value="Y"
             th:checked="${session.filteredProducts?.ctSoft == 'Y'}" />
 
           <label for="flat" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''">
-            플랫한
+            <img src="/images/category-icons/flat.jpg" alt=" ">
+          <span>편안한</span>
           </label>
           <input type="checkbox" id="flat" name="ctFlat" value="Y"
             th:checked="${session.filteredProducts?.ctFlat == 'Y'}" />
 
           <label for="pretty" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctPretty == 'Y'} ? 'selected' : ''">
-            예쁜
+            <img src="/images/category-icons/pretty.jpg" alt=" ">
+          <span>예쁜</span>
           </label>
           <input type="checkbox" id="pretty" name="ctPretty" value="Y"
             th:checked="${session.filteredProducts?.ctPretty == 'Y'}" />
 
           <label for="cute" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctCute == 'Y'} ? 'selected' : ''">
-            귀여운
+            <img src="/images/category-icons/cute.jpg" alt=" ">
+          <span>귀여운</span>
           </label>
           <input type="checkbox" id="cute" name="ctCute" value="Y"
             th:checked="${session.filteredProducts?.ctCute == 'Y'}" />
 
           <label for="neat" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctNeat == 'Y'} ? 'selected' : ''">
-            깔끔한
+           <img src="/images/category-icons/neat.jpg" alt=" ">
+          <span>깔끔한</span>
           </label>
           <input type="checkbox" id="neat" name="ctNeat" value="Y"
             th:checked="${session.filteredProducts?.ctNeat == 'Y'}" />
 
           <label for="modern" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctModern == 'Y'} ? 'selected' : ''">
-            모던한
+            <img src="/images/category-icons/modern.jpg" alt=" ">
+          <span>모던한</span>
           </label>
           <input type="checkbox" id="modern" name="ctModern" value="Y"
             th:checked="${session.filteredProducts?.ctModern == 'Y'}" />
 
           <label for="wide" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''">
-            발볼이 넓은
+            <img src="/images/category-icons/wide feet.jpg" alt=" ">
+          <span>발볼이 넓은</span>
           </label>
           <input type="checkbox" id="wide" name="ctWide" value="Y"
             th:checked="${session.filteredProducts?.ctWide == 'Y'}" />
 
           <label for="narrow" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''">
-            발볼이 좁은
+            <img src="/images/category-icons/narrow feet.jpg" alt=" ">
+          <span>발볼이 좁은</span>
           </label>
           <input type="checkbox" id="narrow" name="ctNarrow" value="Y"
             th:checked="${session.filteredProducts?.ctNarrow == 'Y'}" />
 
           <label for="standard" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''">
-            발볼이 보통
+            <img src="/images/category-icons/normal feet.jpg" alt=" ">
+          <span>발볼이 보통인</span>
           </label>
           <input type="checkbox" id="standard" name="ctStandard" value="Y"
             th:checked="${session.filteredProducts?.ctStandard == 'Y'}" />
 
           <label for="hip" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctHip == 'Y'} ? 'selected' : ''">
-            휘뚜루마뚜루
+            <img src="/images/category-icons/go-to.jpg" alt=" ">
+          <span>휘뚜루마뚜루</span>
           </label>
           <input type="checkbox" id="hip" name="ctHip" value="Y"
             th:checked="${session.filteredProducts?.ctHip == 'Y'}" />
 
           <label for="cost" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctCost == 'Y'} ? 'selected' : ''">
-            가격이 착한
+            <img src="/images/category-icons/value.jpg" alt=" ">
+          <span>가격이 착한</span>
           </label>
           <input type="checkbox" id="cost" name="ctCost" value="Y"
             th:checked="${session.filteredProducts?.ctCost == 'Y'}" />
 
           <label for="strong" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''">
-            튼튼한
+            <img src="/images/category-icons/durable.jpg" alt=" ">
+          <span>튼튼한</span>
           </label>
           <input type="checkbox" id="strong" name="ctStrong" value="Y"
             th:checked="${session.filteredProducts?.ctStrong == 'Y'}" />

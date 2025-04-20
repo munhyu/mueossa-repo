@@ -18,16 +18,16 @@
             <div class="product-info">
               <div class="product-brand" th:text="${product.pBrand}"></div>
               <div class="product-name" th:text="${product.pName}"></div>
-              <div
+              <span
                 class="product-rating"
                 name="pd_rating"
                 th:text="|⭐${product.pRating}|"
-              ></div>
-              <div
+              ></span>
+              <span
                 class="product-sentiment"
                 name="sentiment"
                 th:text="|💖${product.sentiment}|"  
-              ></div>
+              ></span>
               <div class="keywords">
                 <p th:if="${product.ctComf} == 'Y' ">편한</p>
                 <p th:if="${product.ctFluffy} == 'Y' ">푹신한</p>

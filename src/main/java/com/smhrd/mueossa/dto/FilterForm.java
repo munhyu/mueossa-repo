@@ -65,7 +65,8 @@ public class FilterForm {
     this.ctLight = survey.getLight();
     this.ctSoft = survey.getSoft();
     this.ctFlat = survey.getFlat();
-    this.ctPretty = survey.getCute();
+    this.ctPretty = survey.getPretty();
+    this.ctCute = survey.getCute();
     this.ctNeat = survey.getNeat();
     this.ctModern = survey.getModern();
     this.ctHip = survey.getHip();

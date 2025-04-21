@@ -10,13 +10,60 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.smhrd.mueossa.dto.FilterForm;
+import com.smhrd.mueossa.dto.ProdCategoryAndGroupDTO;
 import com.smhrd.mueossa.dto.ProdFeelCategoryPercentileDTO;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;
 import com.smhrd.mueossa.entity.TbProdFeelCategory;
 
 @Repository
 public interface ProdFeelCategoryRepository extends JpaRepository<TbProdFeelCategory, String> {
+
+	// id로 조회 - ProdFeelCategory와 Product를 join하여 pGroup정보를 같이 얻는 쿼리
+	@Query("SELECT NEW com.smhrd.mueossa.dto.ProdCategoryAndGroupDTO(" +
+			"   pfc.pdId, " +
+			"   p.pGroup, " +
+			"   pfc.ctComf, " +
+			"   pfc.ctFluffy, " +
+			"   pfc.ctLight, " +
+			"   pfc.ctSoft, " +
+			"   pfc.ctFlat, " +
+			"   pfc.ctPretty, " +
+			"   pfc.ctCute, " +
+			"   pfc.ctNeat, " +
+			"   pfc.ctModern, " +
+			"   pfc.ctHip, " +
+			"   pfc.ctWide, " +
+			"   pfc.ctNarrow, " +
+			"   pfc.ctStandard, " +
+			"   pfc.ctCost, " +
+			"   pfc.ctStrong) " + // sentiment는 Product에서 가져옴
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where pfc.pdId = :pdId")
+	Optional<ProdCategoryAndGroupDTO> qfindProductAndCategoryBypId(String pdId); // DTO로 반환
+
+	// pGroup으로 조회 - ProdFeelCategory와 Product를 join하여 pGroup정보를 같이 얻는 쿼리
+	@Query("SELECT NEW com.smhrd.mueossa.dto.ProdCategoryAndGroupDTO(" +
+			"   pfc.pdId, " +
+			"   p.pGroup, " +
+			"   pfc.ctComf, " +
+			"   pfc.ctFluffy, " +
+			"   pfc.ctLight, " +
+			"   pfc.ctSoft, " +
+			"   pfc.ctFlat, " +
+			"   pfc.ctPretty, " +
+			"   pfc.ctCute, " +
+			"   pfc.ctNeat, " +
+			"   pfc.ctModern, " +
+			"   pfc.ctHip, " +
+			"   pfc.ctWide, " +
+			"   pfc.ctNarrow, " +
+			"   pfc.ctStandard, " +
+			"   pfc.ctCost, " +
+			"   pfc.ctStrong) " + // sentiment는 Product에서 가져옴
+			"FROM TbProduct p JOIN TbProdFeelCategory pfc ON p.pId = pfc.pdId where p.pGroup = :pGroup")
+	List<ProdCategoryAndGroupDTO> qfindProductAndCategoryBypGroup(String pGroup); // DTO로 반환
+
 	// 상품 ID와 기준 점수를 받아 각 카테고리 점수가 기준 이상이면 'Y', 아니면 'N'을 반환
+	// 아이디로 하나 반환
 	@Query("SELECT NEW com.smhrd.mueossa.dto.ProductAndCategoryDTO(" +
 			"   p.pId, " +
 			"   p.pBrand, " +

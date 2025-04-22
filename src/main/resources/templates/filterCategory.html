@@ -16,11 +16,7 @@
 
       <div class="divider3"></div>
 
-      <form
-        method="post"
-        th:action="@{/filterProduct}"
-        th:object="${FilterForm}"
-      >
+      <form>
         <!-- 취향 선택 -->
         <div class="preference-buttons2">
           <!-- 감성 카테고리 -->
@@ -338,11 +334,6 @@
 
           <div class="divider3"></div>
         </div>
-
-        <!-- 완료 버튼 -->
-        <div class="login-buttons2">
-          <button type="submit">검색</button>
-        </div>
       </form>
       <th:block th:replace="~{fragments/productList :: productList}"></th:block>
     </div>
@@ -407,6 +398,8 @@
         radioLabels.forEach((label) => {
           label.addEventListener("click", filterProducts);
         });
+
+        filterProducts(); // 초기 필터링 적용
       });
     </script>
   </th:block>

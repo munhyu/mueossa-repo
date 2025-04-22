@@ -46,52 +46,7 @@
 </th:block>
 
 <th:block layout:fragment="css">
-  <style>
-    .modal {
-      position: fixed;
-      z-index: 999;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      overflow: auto;
-      background: rgba(0, 0, 0, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .modal-content {
-      background: #fff;
-      padding: 30px;
-      border-radius: 8px;
-      width: 320px;
-      position: relative;
-      text-align: center;
-    }
-
-    .close {
-      position: absolute;
-      right: 16px;
-      top: 10px;
-      font-size: 24px;
-      cursor: pointer;
-    }
-
-    .modal-buttons button {
-      margin: 10px 8px 0 8px;
-    }
-
-    #authSuccess {
-      color: green;
-      margin-top: 10px;
-      display: none;
-    }
-
-    #authForm {
-      display: none;
-    }
-  </style>
+  
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -102,13 +57,13 @@
     <div class="section-title">계정 찾기</div>
 
     <!-- 모달 -->
-    <div id="authModal" class="modal" style="display:none;">
-      <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
+    <div id="authModal" class="email-modal" style="display:none;">
+      <div class="email-modal-content">
+        <span class="email-close" onclick="closeModal()">&times;</span>
         <h3>인증코드 입력</h3>
         <p>이메일로 6자리 인증코드를 전송했습니다. 아래에 인증코드를 입력하세요.</p>
         <input type="text" id="authCodeInput" maxlength="6" placeholder="6자리 숫자 입력" required pattern="\d{6}">
-        <div class="modal-buttons" id="authBtnGroup">
+        <div class="email-modal-buttons" id="authBtnGroup">
           <button type="button" onclick="submitAuthCode()">확인</button>
           <button type="button" onclick="closeModal()">취소</button>
         </div>
@@ -122,8 +77,8 @@
               <form th:action="@{/userPwUpdate}" method="post">
                 <!-- <span><b>비밀번호:[[${user.pw}]]</b></span><br> -->
                 <input type="hidden" th:value="${user.id}" name="id" />
-                <input type="password" name="pw" />
-                <button type="submit">비밀번호 변경</button>
+                <input class="email-pw" type="password" name="pw" />
+                <button class="email-submit"type="submit">비밀번호 변경</button>
               </form>
               <!-- <span><b><a th:href="@{/}">비밀번호 변경</a></b></span> -->
             </th:block>

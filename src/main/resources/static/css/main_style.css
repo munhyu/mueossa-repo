@@ -22,11 +22,16 @@
   /* 서브 포인트 hover/active 상태 */
 
 
-  --color-accent: #7C3AED;            /* 감성적 강조 컬러 (세일, 이벤트 배너 포인트 등) */
-  --color-brown: #B17457;           /* 브라운 계열 (브라운 색상) */
-  --color-green: #10B981;            /* 그린 계열 (그린 색상) */
-  --color-card-white: rgb(250, 250, 250); /* 카드 배경색 (흰색) */
-  --color-card-gray: rgb(240, 240, 240); /* 카드 배경색 (회색) */
+  --color-accent: #7C3AED;
+  /* 감성적 강조 컬러 (세일, 이벤트 배너 포인트 등) */
+  --color-brown: #B17457;
+  /* 브라운 계열 (브라운 색상) */
+  --color-green: #10B981;
+  /* 그린 계열 (그린 색상) */
+  --color-card-white: rgb(250, 250, 250);
+  /* 카드 배경색 (흰색) */
+  --color-card-gray: rgb(240, 240, 240);
+  /* 카드 배경색 (회색) */
 
 }
 
@@ -37,7 +42,7 @@
   position: fixed;
   bottom: 13px;
   width: 360px;
-  height: 50px;
+  height: 43px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -63,9 +68,9 @@
 }
 
 .tab-item img {
-  width: 16px;
-  height: 16px;
-  margin-bottom: 5px;
+  width: 13px;
+  height: 13px;
+  margin-bottom: 1px;
   transition: transform 0.3s ease;
 }
 
@@ -301,17 +306,17 @@ p {
 }
 
 .preference-button2 {
-  width: 80px;
-  height: 80px;
+  width: 50px;
+  height: 50px;
   border-radius: 10px;
   background-color: #ffffffb6;
   margin-top: 5px;
   margin-left: 35px;
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 8px;
   display: inline-block;
   text-align: center;
-  line-height: 25px;
+  line-height: 15px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
@@ -335,11 +340,23 @@ p {
 }
 
 .preference-button2 img {
-  width: 70px;
-  height: 70px;
+  width: 40px;
+  height: 40px;
   margin-top: 4px;
   border-radius: 10px;
 
+}
+
+
+
+.preference-button2 span {
+  width: 100%;
+  font-size: 8px;
+  margin-top: 5px;
+  color: #333;
+  display: block;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 
@@ -349,17 +366,17 @@ p {
 
 
 .preference-toggle {
-  width: 80px;
-  height: 25px;
-  border-radius: 10px;
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
   background-color: #ffffffb6;
   margin-top: 5px;
   margin-left: 35px;
   font-family: Arial, sans-serif;
-  font-size: 12px;
+  font-size: 8px;
   display: inline-block;
   text-align: center;
-  line-height: 25px;
+  line-height: 15px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
@@ -378,7 +395,21 @@ p {
   /* 선택된 버튼의 테두리 색상 */
 }
 
+.preference-toggle img {
+  width: 40px;
+  height: 40px;
+  margin-top: 4px;
+  border-radius: 5px;
+}
 
+.preference-toggle span {
+    font-size: 8px;
+    margin-top: 5px;
+    color: #333;
+    display: block;
+    text-align: center;
+    margin-bottom: 5px;
+}
 
 /* 로그인 폼 스타일 */
 #login {
@@ -772,8 +803,8 @@ span input {
 
 .product-card a:hover {
   background-color: var(--color-card-white);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); 
-  transform: translateY(-1px); 
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-1px);
 }
 
 .product-image {
@@ -797,7 +828,7 @@ span input {
 }
 
 .product-info:hover {
-  transform: translateY(-1px); 
+  transform: translateY(-1px);
 }
 
 .product-brand {
@@ -893,9 +924,18 @@ span input {
 
 /* 상세 페이지 디자인 */
 
+.product-discription-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: space-between;
+  padding: 0 15px;
+
+}
+
 .product-discription-card img {
-  width: 380px;
-  height: 390px;
+  width: 360px;
+  height: 370px;
 }
 
 .product-discription-category {
@@ -915,10 +955,33 @@ span input {
   font-weight: bold;
   margin-bottom: 4px;
   color: #333;
+  display: inline-block;
+}
+
+.product-discription-sentiment {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: #333;
+  display: inline-block;
+}
+
+.product-discription-pricebox {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 30px;
+}
+
+.product-discription-discount {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 4px;
+  color: red;
 }
 
 .product-discription-price {
-  font-size: 20px;
+  font-size: 16px;
   font-weight: bold;
   margin-bottom: 4px;
   text-align: right;
@@ -949,11 +1012,11 @@ span input {
   margin-bottom: 4px;
   color: white;
   /* 텍스트 색상 */
-  background-color: #4caf50;
+  background-color: var(--color-secondary-dark);
   /* 버튼 배경색 */
   padding: 5px 10px;
   /* 내부 여백 */
-  border: 1px solid #4caf50;
+  border: 1px solid var(--color-secondary);
   /* 테두리 */
   border-radius: 5px;
   /* 둥근 모서리 */
@@ -968,7 +1031,7 @@ span input {
 }
 
 .product-link:hover {
-  background-color: #45a049;
+  background-color: var(--color-secondary);
   /* 호버 시 배경색 변경 */
   color: white;
   /* 호버 시 텍스트 색상 */
@@ -1010,7 +1073,8 @@ span input {
 }
 
 .product-discription-image img {
-  width: 380px;
+  width: 360px;
+  margin-left: 15px;
 }
 
 
@@ -1125,4 +1189,100 @@ span input {
 .cancel-button {
   background-color: #f44336;
   color: white;
+}
+
+/* email-madal 이메일 찾기 */
+
+.email-modal {
+  position: fixed;
+  z-index: 3000;
+  left: 45px;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.email-modal-content {
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  width: 320px;
+  position: relative;
+  text-align: center;
+}
+
+.email-modal-content h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.email-modal-content p {
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.email-close {
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.email-modal-buttons button {
+  margin: 10px 8px 0 8px;
+  width: 40px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #ffffffb6;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s, ease, color 0.3s, ease;
+}
+
+.email-pw {
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+.email-submit {
+  margin: 10px 8px 0 8px;
+  width: 90px;
+  height: 30px;
+  border-radius: 10px;
+  background-color: #ffffffb6;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.3s, ease, color 0.3s, ease;
+}
+
+#authCodeInput {
+  font-size: 14px;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  padding: 5px;
+  margin-top: 10px;
+}
+
+#authSuccess {
+  color: green;
+  margin-top: 10px;
+  display: none;
+}
+
+#authForm {
+  display: none;
 }

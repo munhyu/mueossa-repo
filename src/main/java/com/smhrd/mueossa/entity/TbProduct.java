@@ -59,7 +59,7 @@ public class TbProduct {
 	private String pType;
 
 	@Column(name = "sentiment")
-	private int sentiment;
+	private Float sentiment;
 
 	public TbProduct(Product product) {
 		this.pId = product.getPId();

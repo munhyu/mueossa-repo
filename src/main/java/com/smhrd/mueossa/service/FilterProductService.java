@@ -56,5 +56,6 @@ public class FilterProductService {
 
     // 최종 결과 리스트를 모델에 추가
     model.addAttribute("prodCateList", finalResults);
+    model.addAttribute("keyword", keyword);
   }
 }

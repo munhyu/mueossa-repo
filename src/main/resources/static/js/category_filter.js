@@ -66,7 +66,8 @@ $(function () {
     let html = "";
     $.each(types, function (_, type) {
       html += `<label class="pType-label">
-        <input type="checkbox" class="pType-checkbox" name="pType" value="${type}"> ${type}
+        <input type="checkbox" class="pType-checkbox" name="pType" value="${type}"> 
+        <span class="pType-label-text">${type}</span>
       </label>`;
     });
     $pTypeCheckboxes.html(html);

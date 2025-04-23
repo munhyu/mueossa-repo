@@ -23,8 +23,12 @@ public class FilterProductController {
   // 상품 검색 기능
   @GetMapping("/searchProduct")
   public String searchProduct(@RequestParam("keyword") String keyword, Model model) {
+    // 키워드가 null이거나 비어있으면 기본 페이지로 이동
+    if (keyword == null || keyword.trim().isEmpty()) {
+      return "redirect:/goHome";
+    }
     filterProdSvc.searchProductsModelAdd(keyword, model);
-    return "home";
+    return "searchProduct";
   }
 
   // footer 카테고리 눌렀을 때 이동

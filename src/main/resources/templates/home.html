@@ -33,6 +33,12 @@
   <div class="main-title2">사용자의 취향에 맞는 추천 상품</div>
 
   <div class="divider2"></div>
+  <!-- 점수 높은 순서(무엇사 추천순), 정렬 버튼 가격 높은 낮은순서 -->
+  <select id="sortBy">
+    <option value="recommend_desc">무엇사 추천순</option>
+    <option value="price_asc">낮은 가격순</option>
+    <option value="price_desc">높은 가격순</option>
+  </select>
 
   <th:block th:replace="~{fragments/productList :: productList}"></th:block>
 
@@ -40,9 +46,6 @@
 </div>
 
 <th:block layout:fragment="footer"></th:block>
-<th:block layout:fragment="script-footer">
-
-
-</th:block>
+<th:block layout:fragment="script-footer"></th:block>
 
 </html>

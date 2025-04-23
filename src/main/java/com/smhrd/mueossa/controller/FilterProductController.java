@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.service.FilterProductService;
+import com.smhrd.mueossa.service.ProductService;
 
 import jakarta.servlet.http.HttpSession;
 
@@ -18,6 +19,9 @@ public class FilterProductController {
   @Autowired
   private FilterProductService filterProdSvc;
 
+  @Autowired
+  private ProductService prodSvc;
+
   // 상품 검색 기능
   @GetMapping("/searchProduct")
   public String searchProduct(@RequestParam("keyword") String keyword, Model model) {
@@ -25,18 +29,12 @@ public class FilterProductController {
     return "home";
   }
 
-  // 카테고리 페이지
-  @PostMapping({ "/filterProduct" })
-  public String goFilterProduct(FilterForm filterForm, Model model, HttpSession session) {
-    filterProdSvc.loadAndSaveFilteredProductCategories(filterForm, model, session);
-    return "filterCategory";
-  }
-
   // footer 카테고리 눌렀을 때 이동
   @GetMapping({ "/goCategory" })
   public String goFilterProduct(Model model, HttpSession session) {
+    prodSvc.loadProductAndCategoryData(model);
 
-    filterProdSvc.loadProductAndCategoryData(model, session);
+    // filterProdSvc.loadProductAndCategoryData(model, session);
     return "filterCategory";
   }
 

@@ -73,7 +73,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctFluffy == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/fluffy.jpg" alt=" " />
+              <img src="/images/category-icons/fluffy.png" alt=" " />
               <span>폭신한</span>
             </label>
             <input
@@ -89,7 +89,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctLight == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/light.jpg" alt=" " />
+              <img src="/images/category-icons/light.png" alt=" " />
               <span>가벼운</span>
             </label>
             <input
@@ -105,7 +105,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctSoft == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/soft.jpg" alt=" " />
+              <img src="/images/category-icons/soft.png" alt=" " />
               <span>부드러운</span>
             </label>
             <input
@@ -120,7 +120,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/flat.jpg" alt=" " />
+              <img src="/images/category-icons/flat.png" alt=" " />
               <span>딱딱한</span>
             </label>
             <input
@@ -132,11 +132,27 @@
             />
 
             <label
+              for="strong"
+              class="preference-button2"
+              th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''"
+            >
+              <img src="/images/category-icons/durable.png" alt=" " />
+              <span>튼튼한</span>
+            </label>
+            <input
+              type="checkbox"
+              id="strong"
+              name="ctStrong"
+              value="Y"
+              th:checked="${session.filteredProducts?.ctStrong == 'Y'}"
+            />
+
+            <label
               for="pretty"
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctPretty == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/pretty.jpg" alt=" " />
+              <img src="/images/category-icons/pretty.png" alt=" " />
               <span>예쁜</span>
             </label>
             <input
@@ -152,7 +168,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctCute == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/cute.jpg" alt=" " />
+              <img src="/images/category-icons/cute.png" alt=" " />
               <span>귀여운</span>
             </label>
             <input
@@ -168,7 +184,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctNeat == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/neat.jpg" alt=" " />
+              <img src="/images/category-icons/neat.png" alt=" " />
               <span>깔끔한</span>
             </label>
             <input
@@ -184,7 +200,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctModern == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/modern.jpg" alt=" " />
+              <img src="/images/category-icons/modern.png" alt=" " />
               <span>모던한</span>
             </label>
             <input
@@ -196,59 +212,11 @@
             />
 
             <label
-              for="wide"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''"
-            >
-              <img src="/images/category-icons/wide feet.jpg" alt=" " />
-              <span>발볼이 넓은</span>
-            </label>
-            <input
-              type="checkbox"
-              id="wide"
-              name="ctWide"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctWide == 'Y'}"
-            />
-
-            <label
-              for="narrow"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''"
-            >
-              <img src="/images/category-icons/narrow feet.jpg" alt=" " />
-              <span>발볼이 좁은</span>
-            </label>
-            <input
-              type="checkbox"
-              id="narrow"
-              name="ctNarrow"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctNarrow == 'Y'}"
-            />
-
-            <label
-              for="standard"
-              class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''"
-            >
-              <img src="/images/category-icons/normal feet.jpg" alt=" " />
-              <span>발볼이 보통</span>
-            </label>
-            <input
-              type="checkbox"
-              id="standard"
-              name="ctStandard"
-              value="Y"
-              th:checked="${session.filteredProducts?.ctStandard == 'Y'}"
-            />
-
-            <label
               for="hip"
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctHip == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/go-to.jpg" alt=" " />
+              <img src="/images/category-icons/go-to.png" alt=" " />
               <span>휘뚜루마뚜루</span>
             </label>
             <input
@@ -264,7 +232,7 @@
               class="preference-button2"
               th:classappend="${session.filteredProducts?.ctCost == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/value.jpg" alt=" " />
+              <img src="/images/category-icons/value.png" alt=" " />
               <span>가격이 착한</span>
             </label>
             <input
@@ -276,20 +244,56 @@
             />
 
             <label
-              for="strong"
+              for="wide"
               class="preference-button2"
-              th:classappend="${session.filteredProducts?.ctStrong == 'Y'} ? 'selected' : ''"
+              th:classappend="${session.filteredProducts?.ctWide == 'Y'} ? 'selected' : ''"
             >
-              <img src="/images/category-icons/durable.jpg" alt=" " />
-              <span>튼튼한</span>
+              <img src="/images/category-icons/wide feet.png" alt=" " />
+              <span>발볼이 넓은</span>
             </label>
             <input
               type="checkbox"
-              id="strong"
-              name="ctStrong"
+              id="wide"
+              name="ctWide"
               value="Y"
-              th:checked="${session.filteredProducts?.ctStrong == 'Y'}"
+              th:checked="${session.filteredProducts?.ctWide == 'Y'}"
             />
+
+            <label
+              for="narrow"
+              class="preference-button2"
+              th:classappend="${session.filteredProducts?.ctNarrow == 'Y'} ? 'selected' : ''"
+            >
+              <img src="/images/category-icons/narrow feet.png" alt=" " />
+              <span>발볼이 좁은</span>
+            </label>
+            <input
+              type="checkbox"
+              id="narrow"
+              name="ctNarrow"
+              value="Y"
+              th:checked="${session.filteredProducts?.ctNarrow == 'Y'}"
+            />
+
+            <label
+              for="standard"
+              class="preference-button2"
+              th:classappend="${session.filteredProducts?.ctStandard == 'Y'} ? 'selected' : ''"
+            >
+              <img src="/images/category-icons/normal feet.png" alt=" " />
+              <span>발볼이 보통</span>
+            </label>
+            <input
+              type="checkbox"
+              id="standard"
+              name="ctStandard"
+              value="Y"
+              th:checked="${session.filteredProducts?.ctStandard == 'Y'}"
+            />
+
+            
+
+            
           </div>
 
           <!-- 신발 종류 구두, 부츠/워커, 스니커즈, 샌들/슬리퍼-->

@@ -32,6 +32,14 @@
   /* 카드 배경색 (흰색) */
   --color-card-gray: rgb(240, 240, 240);
   /* 카드 배경색 (회색) */
+  --color-yellow: #E0CD00;
+  /* 노란색 계열 (노란색) */
+  --color-ivory: #F9F6E3;
+  /* 아이보리 계열 (아이보리 색상) */
+  --color-lemon: #F6F435;
+  /* 레몬 계열 (레몬 색상) */
+  --color-ssammoogreen: #E9FDE5;
+  /* 쌈무그린 계열 (쌈무그린 색상) */
 
 }
 
@@ -327,11 +335,11 @@ p {
 }
 
 .preference-button2.selected {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-ssammoogreen);
   /* 선택된 버튼의 배경색 */
   color: var(--color-secondary-dark);
   /* 선택된 버튼의 텍스트 색상 */
-  border: 1px solid var(--color-secondary-dark);
+  border: 1px solid #f0f0f0;
   /* 선택된 버튼의 테두리 색상 */
 }
 
@@ -343,8 +351,6 @@ p {
   width: 40px;
   height: 40px;
   margin-top: 4px;
-  border-radius: 10px;
-
 }
 
 
@@ -387,7 +393,7 @@ p {
 }
 
 .preference-toggle.selected {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-ssammoogreen);
   /* 선택된 버튼의 배경색 */
   color: white;
   /* 선택된 버튼의 텍스트 색상 */

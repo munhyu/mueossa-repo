@@ -253,7 +253,7 @@ p {
 
 .login-box img {
   width: 55px;
-  height: 60px;
+  height: 55px;
   display: block;
   cursor: pointer;
 }
@@ -317,7 +317,7 @@ p {
   width: 50px;
   height: 50px;
   border-radius: 10px;
-  background-color: #ffffffb6;
+  background-color: #f7f7f7b6;
   margin-top: 5px;
   margin-left: 35px;
   font-family: Arial, sans-serif;
@@ -328,6 +328,7 @@ p {
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
+  box-shadow: #d6d6d6 0px 0px 0.5px 0.5px;
 }
 
 .preference-button2:hover {
@@ -386,6 +387,7 @@ p {
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
+  box-shadow: #d6d6d6 0px 0px 0.5px 0.5px;
 }
 
 .preference-toggle:hover {
@@ -417,27 +419,53 @@ p {
   margin-bottom: 5px;
 }
 
+.pType-label {
+  border: 1.5px solid #ccc;
+  border-radius: 15px;
+  padding: 6px 16px;
+  background: #fafafa;
+  color: #444;
+  cursor: pointer;
+  transition: all 0.15s;
+  display: flex;
+  justify-content: center;
+  margin-right: 10px;
+  margin-bottom: 5px;
+  height: 25px;
+  width: auto;
+}
+
+/* pType 체크박스가 선택된 경우 */
+.pType-label:has(.pType-checkbox:checked) {
+  border-color: #ccc;
+  background: var(--color-ssammoogreen);
+  color: #444;
+  font-weight: bold;
+}
+
+/* pType 체크박스에 마우스 오버 시 */
+.pType-label:hover {
+  background: #f0f0f0;
+}
+
 #pType-checkboxes {
   display: flex;
   flex-wrap: wrap;
   justify-content: justify;
   margin-top: 10px;
   margin-left: 15px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
-.pType-label {
-  display: flex;
-  justify-content: center;
-  margin-right: 10px;
-  margin-bottom: 20px;
-  height: 25px;
-  width: auto;
-}
+
 
 .pType-label-text {
   font-size: 10px;
   text-align: center;
 }
+
+
 
 /* 로그인 폼 스타일 */
 #login {
@@ -905,7 +933,15 @@ span input {
 }
 
 .keywords p:hover {
-  background-color: var(--color-secondary-dark);
+  background-color: var(--color-secondary);
+  color: white;
+  cursor: pointer;
+  transform: translateY(-1px);
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.keyword-selected {
+  background-color: var(--color-secondary);
   color: white;
   cursor: pointer;
   transform: translateY(-1px);
@@ -916,6 +952,26 @@ span input {
   font-size: 14px;
   font-weight: bold;
   margin-bottom: 4px;
+}
+
+.air {
+  margin-bottom: 30px;
+}
+
+.div-from-sortBy {
+  display: flex;
+  justify-content: flex-end;
+  height: 20px;
+  width: 100%;
+}
+
+#sortBy {
+  font-size: 10px;
+  font-weight: bold;
+  color: #333;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
 }
 
 .price-line {
@@ -1331,12 +1387,14 @@ span input {
     margin-right: 0;
     /* 모바일 화면에서 오른쪽 여백 제거 */
   }
+
   .topbar {
     padding: 10px 8px;
     /* 모바일 화면에서 여백 조정 */
     height: 50px;
     /* 모바일 화면에서 높이 조정 */
   }
+
   .tabbar {
     width: 100%;
     /* 모바일 화면에서 너비를 100%로 설정 */
@@ -1345,18 +1403,21 @@ span input {
     margin-left: 0;
     /* 모바일 화면에서 왼쪽 여백 제거 */
   }
+
   .top-button {
     right: 10px;
     /* 모바일 화면에서 오른쪽 여백 줄임 */
     bottom: 70px;
     /* 모바일 화면에서 아래 여백 조정 */
   }
+
   .modal-content {
     width: 90%;
     /* 모바일 화면에서 너비를 90%로 설정 */
     padding: 15px;
     /* 모바일 화면에서 여백 조정 */
   }
+
   .email-modal-content {
     width: 90%;
     /* 모바일 화면에서 너비를 80%로 설정 */

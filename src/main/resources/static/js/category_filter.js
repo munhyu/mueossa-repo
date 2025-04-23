@@ -1,3 +1,9 @@
+// 키워드 p가 있는 카드는 a태그로 감싸져 있어 preventDefault()를 사용하여 기본 동작을 방지
+$(document).on("click", ".keywords p", function (e) {
+  e.stopPropagation();
+  e.preventDefault();
+});
+
 $(function () {
   const pTypeMap = {
     구두: [
@@ -45,6 +51,7 @@ $(function () {
   const $productCards = $(".product-card");
   const $pTypeArea = $("#pType-area");
   const $pTypeCheckboxes = $("#pType-checkboxes");
+  let selectedKeyword = null;
 
   function updatePTypeOptions() {
     const $selectedRadio = $('input[type="radio"][name="pGroup"]:checked');
@@ -113,13 +120,49 @@ $(function () {
       }
       if (show && checkedTypes.length > 0) {
         const cardType = $(this).data("ptype");
+        // inArray() 메서드는 배열에 특정 값이 포함되어 있는지 확인 있으면 해당 값 첫 번째 인덱스 반환, 없으면 -1 반환
         if ($.inArray(cardType, checkedTypes) === -1) {
           show = false;
         }
       }
+      // 키워드 필터 추가
+      if (show && selectedKeyword) {
+        const hasKeyword =
+          $(this)
+            .find(".keywords p")
+            .filter(function () {
+              return $(this).text() === selectedKeyword;
+            }).length > 0;
+        if (!hasKeyword) show = false;
+      }
+      // 제품 보여주기/숨기기
       $(this).toggle(show);
     });
   }
+
+  // 키워드 클릭 이벤트 (하나만 선택)
+  // $(document).on("click", ".keywords p")을 사용하는 이유
+  // 상위 고정된 요소에 이벤트 핸들러를 연결하여 메모리 사용량에서 효율적
+  // $(.keywords p).on("click", fun(){})는 동적으로 생긴 요소에는 작동하지 않음
+  $(document).on("click", ".keywords p", function (e) {
+    e.stopPropagation();
+    const $this = $(this);
+    const text = $this.text();
+    if ($this.hasClass("keyword-selected")) {
+      // 이미 선택된 키워드 클릭 시 해제
+      $(".keywords p").removeClass("keyword-selected");
+      selectedKeyword = null;
+    } else {
+      $(".keywords p").removeClass("keyword-selected");
+      $(".keywords p")
+        .filter(function () {
+          return $(this).text() === text;
+        })
+        .addClass("keyword-selected");
+      selectedKeyword = text;
+    }
+    filterProducts();
+  });
 
   $filterInputs.on("change", function () {
     if (this.type === "radio" && this.name === "pGroup") {

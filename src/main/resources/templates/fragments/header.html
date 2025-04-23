@@ -10,7 +10,7 @@
         </a>
         <div class="search-place">
             <form th:action="@{/searchProduct}" class="search-keyword" method="get">
-                <input type="text" name="keyword" placeholder="검색어를 입력하세요" />
+                <input type="text" name="keyword" placeholder="검색어를 입력하세요" th:value="${keyword} ? ${keyword}" />
                 <button type="submit" class="search-button"></button>
             </form>
         </div>

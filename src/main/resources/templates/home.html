@@ -4,7 +4,17 @@
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
 <th:block layout:fragment="script"></th:block>
 
-<th:block layout:fragment="css"></th:block>
+<th:block layout:fragment="css">
+  <style>
+    .keyword-selected {
+      background-color: var(--color-ssammoogreen);
+      color: white;
+      cursor: pointer;
+      transform: translateY(-1px);
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+  </style>
+</th:block>
 
 <th:block layout:fragment="header"></th:block>
 <!-- 콘텐츠 -->

@@ -20,7 +20,7 @@
         <div>
           <label for="comf" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctComf == 'Y'} ? 'selected' : ''">
-            <img src="/images/category-icons/comfortable.jpg" alt=" ">
+            <img src="/images/category-icons/comfortable.png" alt=" ">
           <span>편한</span>
           </label>
           <input type="checkbox" id="comf" name="ctComf" value="Y"
@@ -53,7 +53,7 @@
           <label for="flat" class="preference-button2"
             th:classappend="${session.filteredProducts?.ctFlat == 'Y'} ? 'selected' : ''">
             <img src="/images/category-icons/flat.jpg" alt=" ">
-          <span>편안한</span>
+          <span>딱딱한</span>
           </label>
           <input type="checkbox" id="flat" name="ctFlat" value="Y"
             th:checked="${session.filteredProducts?.ctFlat == 'Y'}" />
@@ -172,7 +172,7 @@
             th:checked="${session.filteredProducts?.pGroup == '샌들/슬리퍼'}" />
           <label for="shoesSandals" class="preference-toggle"
             th:classappend="${session.filteredProducts?.pGroup == '샌들/슬리퍼'} ? 'selected' : ''">
-            <img src="/images/shoes/sandal.png" alt=" ">
+            <img src="/images/shoes/샌들.png" alt=" ">
             <span>샌들/슬리퍼</span>
           </label>
         </div>

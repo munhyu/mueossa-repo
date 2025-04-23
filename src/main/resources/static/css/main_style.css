@@ -1115,6 +1115,13 @@ span input {
   /* 다른 요소 위에 표시 */
 }
 
+@media (max-width: 768px) {
+  .top-button {
+    right: 10px; /* 모바일 화면에서 오른쪽 여백 줄임 */
+    bottom: 70px; /* 모바일 화면에서 아래 여백 조정 */
+  }
+}
+
 .top-button:hover {
   background-color: #a3a3a3;
   /* 호버 시 배경색 변경 */

@@ -3,7 +3,29 @@
     <div class="product-list">
       <!-- 상품 카드 반복 -->
       <th:block th:each="product : ${prodCateList}">
-        <div class="product-card" th:attr="data-pid=${product.pId}">
+        <div
+          class="product-card"
+          th:attr="
+                data-pid=${product.pId},
+                data-ctcomf=${product.ctComf},
+                data-ctfluffy=${product.ctFluffy},
+                data-ctlight=${product.ctLight},
+                data-ctsoft=${product.ctSoft},
+                data-ctflat=${product.ctFlat},
+                data-ctpretty=${product.ctPretty},
+                data-ctcute=${product.ctCute},
+                data-ctneat=${product.ctNeat},
+                data-ctmodern=${product.ctModern},
+                data-cthip=${product.ctHip},
+                data-ctwide=${product.ctWide},
+                data-ctnarrow=${product.ctNarrow},
+                data-ctstandard=${product.ctStandard},
+                data-ctcost=${product.ctCost},
+                data-ctstrong=${product.ctStrong},
+                data-pgroup=${product.pGroup},
+                data-ptype=${product.pType},
+             "
+        >
           <!-- 찜버튼용 data-pid추가 -->
           <a th:href="@{productInfo(pId=${product.pId})}">
             <!-- 찜버튼 -->
@@ -14,7 +36,11 @@
                 class="heart-icon"
               />
             </div>
-            <img class="product-image"th:src="${product.pImage}" alt="상품 이미지" />
+            <img
+              class="product-image"
+              th:src="${product.pImage}"
+              alt="상품 이미지"
+            />
             <div class="product-info">
               <div class="product-brand" th:text="${product.pBrand}"></div>
               <div class="product-name" th:text="${product.pName}"></div>
@@ -26,7 +52,7 @@
               <span
                 class="product-sentiment"
                 name="sentiment"
-                th:text="|💖${product.sentiment}|"  
+                th:text="|💖${product.sentiment}|"
               ></span>
               <div class="keywords">
                 <p th:if="${product.ctComf} == 'Y' ">편한</p>

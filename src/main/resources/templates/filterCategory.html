@@ -368,79 +368,12 @@
           </div>
 
           <div class="divider3"></div>
-          <<<<<<< HEAD
           <!-- 점수 높은 순서(무엇사 추천순), 정렬 버튼 가격 높은 낮은순서 -->
           <select id="sortBy">
             <option value="recommend_desc">무엇사 추천순</option>
             <option value="price_asc">낮은 가격순</option>
             <option value="price_desc">높은 가격순</option>
           </select>
-          =======
-          <div class="section-title3">신발의 종류를 선택하세요</div>
-          <input
-            type="radio"
-            id="shoesSneakers"
-            name="pGroup"
-            value="스니커즈"
-            th:checked="${session.filteredProducts?.pGroup == '스니커즈'}"
-          />
-          <label
-            for="shoesSneakers"
-            class="preference-toggle"
-            th:classappend="${session.filteredProducts?.pGroup == '스니커즈'} ? 'selected' : ''"
-          >
-            <img src="/images/shoes/sneekers.png" alt=" " />
-            <span>스니커즈</span>
-          </label>
-
-          <input
-            type="radio"
-            id="shoesHeels"
-            name="pGroup"
-            value="구두"
-            th:checked="${session.filteredProducts?.pGroup == '구두'}"
-          />
-          <label
-            for="shoesHeels"
-            class="preference-toggle"
-            th:classappend="${session.filteredProducts?.pGroup == '구두'} ? 'selected' : ''"
-          >
-            <img src="/images/shoes/dress_shoes.png" alt=" " />
-            <span>구두</span>
-          </label>
-
-          <input
-            type="radio"
-            id="shoesBoots"
-            name="pGroup"
-            value="부츠/워커"
-            th:checked="${session.filteredProducts?.pGroup == '부츠/워커'}"
-          />
-          <label
-            for="shoesBoots"
-            class="preference-toggle"
-            th:classappend="${session.filteredProducts?.pGroup == '부츠/워커'} ? 'selected' : ''"
-          >
-            <img src="/images/shoes/boots.png" alt=" " />
-            <span>부츠/워커</span>
-          </label>
-
-          <input
-            type="radio"
-            id="shoesSandals"
-            name="pGroup"
-            value="샌들/슬리퍼"
-            th:checked="${session.filteredProducts?.pGroup == '샌들/슬리퍼'}"
-          />
-          <label
-            for="shoesSandals"
-            class="preference-toggle"
-            th:classappend="${session.filteredProducts?.pGroup == '샌들/슬리퍼'} ? 'selected' : ''"
-          >
-            <img src="/images/shoes/샌들.png" alt=" " />
-            <span>샌들/슬리퍼</span>
-          </label>
-          >>>>>>> master
         </div>
       </form>
       <th:block th:replace="~{fragments/productList :: productList}"></th:block>

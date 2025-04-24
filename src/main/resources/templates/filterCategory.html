@@ -3,36 +3,8 @@
 <th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-  <!-- 임시 pType체크박스 스타일 -->
-  <style>
-    /* pType 체크박스 라벨 기본 스타일 */
-    .pType-label {
-      display: inline-block;
-      border: 1.5px solid #ddd;
-      border-radius: 18px;
-      padding: 6px 16px;
-      margin: 4px 6px 4px 0;
-      background: #fafafa;
-      color: #444;
-      cursor: pointer;
-      transition: all 0.15s;
-    }
 
-    /* pType 체크박스가 선택된 경우 */
-    .pType-label:has(.pType-checkbox:checked),
-    .pType-label input:checked {
-      border-color: #4e7cff;
-      background: #e6eeff;
-      color: #2350b8;
-      font-weight: bold;
-    }
 
-    /* pType 체크박스에 마우스 오버 시 */
-    .pType-label:hover {
-      border-color: #4e7cff;
-      background: #f0f6ff;
-    }
-  </style>
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -217,21 +189,16 @@
 
         <div class="divider3"></div>
         <!-- 점수 높은 순서(무엇사 추천순), 정렬 버튼 가격 높은 낮은순서 -->
-        <select id="sortBy">
-          <option value="recommend_desc">무엇사 추천순</option>
-          <option value="price_asc">낮은 가격순</option>
-          <option value="price_desc">높은 가격순</option>
-        </select>
+        <div class="div-from-sortBy"><select id="sortBy">
+            <option value="recommend_desc">무엇사 추천순</option>
+            <option value="price_asc">낮은 가격순</option>
+            <option value="price_desc">높은 가격순</option>
+          </select>
+        </div>
       </div>
-
-      <!-- pType(세부 분류) 체크박스: 처음엔 숨김 -->
-      <div id="pType-area" style="display: none; margin-top: 10px">
-        <div id="pType-checkboxes"></div>
-      </div>
+    </form>
+    <th:block th:replace="~{fragments/productList :: productList}"></th:block>
   </div>
-  </form>
-  <th:block th:replace="~{fragments/productList :: productList}"></th:block>
-</div>
 </div>
 
 <th:block layout:fragment="footer"></th:block>

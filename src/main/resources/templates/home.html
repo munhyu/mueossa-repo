@@ -5,15 +5,7 @@
 <th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-  <style>
-    .keyword-selected {
-      background-color: var(--color-ssammoogreen);
-      color: white;
-      cursor: pointer;
-      transform: translateY(-1px);
-      transition: transform 0.3s ease, background-color 0.3s ease;
-    }
-  </style>
+
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -44,12 +36,12 @@
 
   <div class="divider2"></div>
   <!-- 점수 높은 순서(무엇사 추천순), 정렬 버튼 가격 높은 낮은순서 -->
-  <select id="sortBy">
+  <div class="div-from-sortBy"><select id="sortBy">
     <option value="recommend_desc">무엇사 추천순</option>
     <option value="price_asc">낮은 가격순</option>
     <option value="price_desc">높은 가격순</option>
   </select>
-
+</div>
   <th:block th:replace="~{fragments/productList :: productList}"></th:block>
 
 </div>

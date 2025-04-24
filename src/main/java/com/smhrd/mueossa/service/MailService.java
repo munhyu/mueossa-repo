@@ -57,4 +57,33 @@ public class MailService {
     }
   }
 
+  // Join 사용
+  public String sendAuthCode(String email) {
+
+    // 6자리 인증코드 생성
+    int code = (int) ((Math.random() * 900000) + 100000);
+    String authCode = String.valueOf(code);
+    System.out.println("인증코드: " + authCode);
+
+    // 이메일 전송
+    SimpleMailMessage message = new SimpleMailMessage();
+    message.setTo(email);
+    message.setFrom("qkrxodud130@gmail.com"); // 발신자 이메일 설정 추가
+    message.setSubject("무엇싸 회원가입 인증코드 안내");
+    message.setText("인증코드: " + authCode);
+    System.out.println("인증코드: " + authCode);
+    try {
+      mailSender.send(message);
+      System.out.println(email + "로 인증코드 발송 완료");
+      // 인증코드를 model에 담아서 html로 전달
+      return authCode; // 인증코드 반환
+      // user정보 모델에 추가
+    } catch (Exception e) {
+      System.err.println("이메일 발송 실패: " + e.getMessage());
+      e.printStackTrace();
+      return null; // 오류 발생 시 null 반환
+    }
+
+  }
+
 }

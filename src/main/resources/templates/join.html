@@ -13,7 +13,6 @@
 
   <div id="join" class="page">
     <div class="section-title">SIGN UP</div>
-
     <!-- 회원가입 폼 위에 에러 메시지 출력 -->
     <div th:if="${error != null and error != ''}" class="error-message">
       <p th:text="${error}"></p>
@@ -24,7 +23,7 @@
       <span class="join-id">
         <div class="input-wrapper">
           <input type="text" id="id" name="id" placeholder="ID" required />
-          <button type="button" id="check" class="id-check-button check-button">중복확인</button>
+          <button type="button" id="check" class="id-check-button check-button">중복 확인</button>
         </div>
       </span>
 
@@ -38,13 +37,22 @@
       <span class="join-email">
         <div class="input-wrapper">
           <input type="email" id="email" name="email" placeholder="email" required />
-          <button type="button" id="check" class="email-check-button check-button">중복확인</button>
+          <button type="button" id="check" class="email-check-button check-button">메일 인증</button>
         </div>
       </span>
 
       <span class="join-email">
         <div class="input-wrapper">
           <input type="text" id="email_check" placeholder="EMAIL중복확인을 해주세요" readonly />
+        </div>
+      </span>
+
+      <span class="join-email">
+        <div class="input-wrapper">
+          <input type="text" id="email_authCodeInput" maxlength="6" placeholder="스팸메일함도 확인해주세요." required
+            pattern="\d{6}">
+          <button type="button" id="authCodeCheck" class="email-auth-button check-button" onclick="submitAuthCode()">번호
+            확인</button>
         </div>
       </span>
 
@@ -93,6 +101,9 @@
 <th:block layout:fragment="script-footer">
 
   <script th:inline="javascript">
+    // 아이디 중복 체크
+    let checkCode = null; // 서버에서 받은 인증코드 초기화
+
     document.querySelector('.id-check-button').addEventListener('click', function () {
       const id = document.querySelector('#id').value;
       if (id) {
@@ -111,12 +122,12 @@
             const idCheckField = document.querySelector('#id_check');
             if (data === false) {
               idCheckField.value = '이미 사용 중인 아이디입니다.';
-              idCheckField.style.color = 'red'; // 불가능한 경우 빨간색
+              idCheckField.style.color = 'red';
               $('button[type="submit"]').attr('disabled', true);
             } else {
               idCheckField.value = '사용 가능한 아이디입니다.';
-              idCheckField.style.color = 'green'; // 가능한 경우 초록색
-              $('button[type="submit"]').removeAttr('disabled')
+              idCheckField.style.color = 'green';
+              $('button[type="submit"]').removeAttr('disabled');
             }
           })
           .catch(error => console.error('Error:', error));
@@ -125,6 +136,7 @@
       }
     });
 
+    // 이메일 중복 체크 및 인증코드 발송
     document.querySelector('.email-check-button').addEventListener('click', function () {
       const email = document.querySelector('#email').value;
       if (email) {
@@ -143,12 +155,32 @@
             const emailCheckField = document.querySelector('#email_check');
             if (data === false) {
               emailCheckField.value = '이미 사용 중인 이메일입니다.';
-              emailCheckField.style.color = 'red'; // 불가능한 경우 빨간색
+              emailCheckField.style.color = 'red';
               $('button[type="submit"]').attr('disabled', true);
             } else {
               emailCheckField.value = '사용 가능한 이메일입니다.';
-              emailCheckField.style.color = 'green'; // 가능한 경우 초록색
-              $('button[type="submit"]').removeAttr('disabled')
+              emailCheckField.style.color = 'green';
+              $('button[type="submit"]').removeAttr('disabled');
+              // #email input태그 readonly 속성 추가
+              document.querySelector('#email').setAttribute('readonly', true);
+              // 인증코드 발송
+              fetch('/sendAuthCode', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({ email: email }).toString()
+              })
+                .then(response => response.json())
+                .then(result => {
+                  if (result.success) {
+                    // alert('인증코드가 이메일로 전송되었습니다.');
+                    checkCode = result.checkCode.toString()
+                  } else {
+                    alert('이메일 전송에 실패했습니다.');
+                  }
+                })
+                .catch(() => alert('이메일 전송 중 오류가 발생했습니다.'));
             }
           })
           .catch(error => console.error('Error:', error));
@@ -157,7 +189,28 @@
       }
     });
 
-  </script>
+    // 인증코드 입력 후 확인 버튼(폼 submit)에서 사용
+    function submitAuthCode() {
+      var inputCode = $('#email_authCodeInput').val();
+      var serverCheckCode = checkCode;
+      if (inputCode === serverCheckCode) {
+        $('#email_authCodeInput').css('color', 'green');
+        // alert('인증이 완료되었습니다.');
+        // 완료(회원가입) 버튼 활성화
+        $('.join-buttons button[type="submit"]').prop('disabled', false);
+      } else {
+        $('#email_authCodeInput').css('color', 'red');
+        alert('인증번호가 일치하지 않습니다.');
+        // 인증 실패 시 완료 버튼 비활성화
+        $('.join-buttons button[type="submit"]').prop('disabled', true);
+        alert('인증번호를 다시 확인해주세요.');
+      }
+    }
+
+    // 페이지 로드 시 완료 버튼 비활성화
+    $(document).ready(function () {
+      $('.join-buttons button[type="submit"]').prop('disabled', true);
+    });  </script>
 
 </th:block>
 

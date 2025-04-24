@@ -1,0 +1,111 @@
+<!-- layout 쓰는 파일-->
+
+<!DOCTYPE html>
+<html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+<th:block layout:fragment="script"></th:block>
+
+<th:block layout:fragment="css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        table th,
+        table td {
+            padding: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #f7f7f7;
+            color: #444;
+            font-weight: 600;
+        }
+
+        table td {
+            color: #555;
+            vertical-align: top;
+        }
+
+        table tr:hover {
+            background-color: #f1f9ff;
+        }
+    </style>
+</th:block>
+
+<th:block layout:fragment="header"></th:block>
+
+
+<th:block layout:fragment="content">
+
+    <h1>문의 하기</h1>
+
+    <table th:if="${inquiry == null}">
+        <tbody>
+            <tr>
+                <td colspan="4">
+                    <form th:action="@{/inquiryInsert}" method="post"
+                        style="display: flex; flex-direction: column; gap: 16px;">
+                        <label>
+                            제목
+                            <input type="text" name="title" placeholder="제목을 입력하세요" required
+                                style="width: 100%; margin-top: 4px;">
+                        </label>
+                        <label>
+                            작성자 ID
+                            <input type="text" name="uId" th:value="${session.user.id}" readonly
+                                style="width: 100%; margin-top: 4px;">
+                        </label>
+                        <label>
+                            내용
+                            <textarea name="content" placeholder="문의 내용을 입력하세요" required
+                                style="width: 100%; height: 100px; margin-top: 4px;"></textarea>
+                        </label>
+                        <button type="submit" style="margin-top: 12px;">문의 등록</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table th:if="${inquiry}">
+        <tbody>
+            <tr>
+                <td colspan="4">
+                    <form th:action="@{/inquiryInsert}" method="post"
+                        style="display: flex; flex-direction: column; gap: 16px;">
+                        <input type="text" name="idx" th:value="${inquiry.idx}" readonly style="display: none;">
+                        <label>
+                            제목
+                            <input type="text" name="title" placeholder="제목을 입력하세요" required
+                                style="width: 100%; margin-top: 4px;" th:value="${inquiry.title}">
+                        </label>
+                        <label>
+                            작성자 ID
+                            <input type="text" name="uId" readonly style="width: 100%; margin-top: 4px;"
+                                th:value="${inquiry.uId}">
+                        </label>
+                        <label>
+                            내용
+                            <textarea name="content" placeholder="문의 내용을 입력하세요" required
+                                style="width: 100%; height: 100px; margin-top: 4px;"
+                                th:text="${inquiry.content}"></textarea>
+                        </label>
+                        <button type="submit" style="margin-top: 12px;">문의 등록</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</th:block>
+
+<th:block layout:fragment="footer"></th:block>
+
+
+<th:block layout:fragment="script-footer"></th:block>
+
+</html>

@@ -43,6 +43,20 @@
 
 }
 
+@font-face {
+  font-family: "NanumSquareR";
+  src: url("../font/NanumSquareR.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "NanumSquareB";
+  src: url("../font/NanumSquareR.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 
 
@@ -94,12 +108,7 @@
 
 
 
-@font-face {
-  font-family: "NanumSquareR";
-  src: url("../font/NanumSquareR.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
-}
+
 
 * {
   margin: 0;
@@ -197,12 +206,12 @@ p {
 }
 
 .topbar h1 {
-  font-size: 18px;
+  font-size: 20px;
   color: #333;
   font-weight: bold;
-  margin-left: -10px;
-  margin-top: -8px;
-  padding-right: 10px;
+  margin-left: 1px;
+  margin-top: -5px;
+  font-family: "NanumSquareB", sans-serif;
 }
 
 .search-place {
@@ -247,7 +256,7 @@ p {
 .login-box {
   display: inline-block;
   cursor: pointer;
-  margin-left: 15px;
+  margin-left: 5px;
   margin-top: 8px;
 }
 
@@ -260,14 +269,24 @@ p {
 
 /* 마이페이지 스타일 */
 
+.mypage-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
 .mypage-button {
-  width: 240px;
-  height: 80px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
   border-radius: 10px;
   background-color: #ffffffb6;
   margin: 5px;
   font-family: Arial, sans-serif;
-  font-size: 20px;
+  font-size: 15px;
   border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.3s, ease, color 0.3s, ease;
@@ -422,14 +441,12 @@ p {
 .pType-label {
   border: 1.5px solid #ccc;
   border-radius: 15px;
-  padding: 6px 16px;
   background: #fafafa;
   color: #444;
   cursor: pointer;
   transition: all 0.15s;
   display: flex;
-  justify-content: center;
-  margin-right: 10px;
+  margin-right: 3px;
   margin-bottom: 5px;
   height: 25px;
   width: auto;
@@ -462,7 +479,10 @@ p {
 
 .pType-label-text {
   font-size: 10px;
+  align-items: center;
   text-align: center;
+  margin-top: 3px;;
+  padding: 0 10px;
 }
 
 
@@ -961,11 +981,12 @@ span input {
 .div-from-sortBy {
   display: flex;
   justify-content: flex-end;
-  height: 20px;
+  height: 30px;
   width: 100%;
 }
 
 #sortBy {
+  height: 20px;
   font-size: 10px;
   font-weight: bold;
   color: #333;
@@ -1280,9 +1301,9 @@ span input {
 /* email-madal 이메일 찾기 */
 
 .email-modal {
-  position: fixed;
+  position: absolute;
   z-index: 3000;
-  left: 45px;
+  left: 0;
   top: 0;
   width: 100%;
   height: 100%;

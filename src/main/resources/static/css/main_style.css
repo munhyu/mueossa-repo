@@ -40,7 +40,89 @@
   /* 레몬 계열 (레몬 색상) */
   --color-ssammoogreen: #E9FDE5;
   /* 쌈무그린 계열 (쌈무그린 색상) */
+  --color-eggyellow: #FFD662;
+  /* 에그노란색 계열 (에그노란색) */
+  --color-emotion-pink: #fce8e6;
+  /* 감성의 따뜻함 */
+  --color-emotion-beige: #ffe8cc;
+  /* 포근한 공기 같은 베이지 */
+  --color-emotion-orange: #f7b267;
+  /* 가슴을 간질이는 햇살 같은 오렌지 */
+  --color-emotion-purple: #a79ab2;
+  /* 섬세한 노을빛 보라 */
+}
 
+
+/*
+Copyright (c) 2021 Kil Hyung-jin, with Reserved Font Name Pretendard.
+https://github.com/orioncactus/pretendard
+
+This Font Software is licensed under the SIL Open Font License, Version 1.1.
+This license is copied below, and is also available with a FAQ at:
+http://scripts.sil.org/OFL
+*/
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 900;
+  font-display: swap;
+  src: local('Pretendard Black'), url(./woff2/Pretendard-Black.woff2) format('woff2'), url(./woff/Pretendard-Black.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 800;
+  font-display: swap;
+  src: local('Pretendard ExtraBold'), url(./woff2/Pretendard-ExtraBold.woff2) format('woff2'), url(./woff/Pretendard-ExtraBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 700;
+  font-display: swap;
+  src: local('Pretendard Bold'), url(./woff2/Pretendard-Bold.woff2) format('woff2'), url(./woff/Pretendard-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 600;
+  font-display: swap;
+  src: local('Pretendard SemiBold'), url(./woff2/Pretendard-SemiBold.woff2) format('woff2'), url(./woff/Pretendard-SemiBold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 500;
+  font-display: swap;
+  src: local('Pretendard Medium'), url(./woff2/Pretendard-Medium.woff2) format('woff2'), url(./woff/Pretendard-Medium.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 400;
+  font-display: swap;
+  src: local('Pretendard Regular'), url(./woff2/Pretendard-Regular.woff2) format('woff2'), url(./woff/Pretendard-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 300;
+  font-display: swap;
+  src: local('Pretendard Light'), url(./woff2/Pretendard-Light.woff2) format('woff2'), url(./woff/Pretendard-Light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 200;
+  font-display: swap;
+  src: local('Pretendard ExtraLight'), url(./woff2/Pretendard-ExtraLight.woff2) format('woff2'), url(./woff/Pretendard-ExtraLight.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  font-weight: 100;
+  font-display: swap;
+  src: local('Pretendard Thin'), url(./woff2/Pretendard-Thin.woff2) format('woff2'), url(./woff/Pretendard-Thin.woff) format('woff');
 }
 
 @font-face {
@@ -60,51 +142,7 @@
 
 
 
-.tabbar {
-  position: fixed;
-  bottom: 13px;
-  width: 360px;
-  height: 43px;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
-  background-color: var(--color-background);
-  /* 배경색 */
-  border-top: 1px solid var(--color-border-light);
-  /* 상단 경계선 */
-  border-radius: 20px;
-  margin-left: 15px;
-  z-index: 1000;
-}
 
-.tab-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none;
-  color: var(--color-text-subtle);
-  /* 기본 텍스트 색상 */
-  font-size: 12px;
-  transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.tab-item img {
-  width: 13px;
-  height: 13px;
-  margin-bottom: 1px;
-  transition: transform 0.3s ease;
-}
-
-.tab-item.active {
-  color: var(--color-secondary-dark);
-  /* 활성화된 텍스트 색상 */
-}
-
-.tab-item.active img {
-  transform: scale(1.2);
-  /* 활성화된 아이콘 확대 */
-}
 
 
 
@@ -114,6 +152,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif;
 }
 
 ::-webkit-scrollbar {
@@ -121,7 +160,6 @@
 }
 
 body {
-  font-family: sans-serif;
   background: #f5f5f5;
   padding: 0;
   margin: 0;
@@ -209,9 +247,9 @@ p {
   font-size: 20px;
   color: #333;
   font-weight: bold;
-  margin-left: 1px;
+  margin-left: -5px;
   margin-top: -5px;
-  font-family: "NanumSquareB", sans-serif;
+  font-family: "Pretendard", sans-serif;
 }
 
 .search-place {
@@ -267,10 +305,57 @@ p {
   cursor: pointer;
 }
 
+.tabbar {
+  position: fixed;
+  bottom: 13px;
+  width: 360px;
+  height: 43px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-background);
+  /* 배경색 */
+  border-top: 1px solid var(--color-border-light);
+  /* 상단 경계선 */
+  border-radius: 20px;
+  margin-left: 15px;
+  z-index: 1000;
+}
+
+.tab-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: var(--color-text-subtle);
+  /* 기본 텍스트 색상 */
+  font-size: 12px;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.tab-item img {
+  width: 13px;
+  height: 13px;
+  margin-bottom: 1px;
+  transition: transform 0.3s ease;
+}
+
+.tab-item.active {
+  color: var(--color-secondary-dark);
+  /* 활성화된 텍스트 색상 */
+}
+
+.tab-item.active img {
+  transform: scale(1.2);
+  /* 활성화된 아이콘 확대 */
+}
+
 /* 마이페이지 스타일 */
 
 .mypage-buttons {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
@@ -279,6 +364,7 @@ p {
 }
 
 .mypage-button {
+  flex: 1 1 calc(33.33% - 10px);
   width: 100px;
   height: 50px;
   text-align: center;
@@ -481,7 +567,8 @@ p {
   font-size: 10px;
   align-items: center;
   text-align: center;
-  margin-top: 3px;;
+  margin-top: 3px;
+  ;
   padding: 0 10px;
 }
 
@@ -628,10 +715,6 @@ p {
   font-family: "NanumSquareR", sans-serif;
 }
 
-span {
-  display: block;
-  margin-bottom: 15px;
-}
 
 span input {
   width: 100%;
@@ -903,6 +986,8 @@ span input {
   height: 140px;
 }
 
+
+
 .product-info:hover {
   transform: translateY(-1px);
 }
@@ -1019,12 +1104,14 @@ span input {
   font-size: 9px;
   color: red;
   margin-top: 1px;
+  margin-bottom: 15px;
 }
 
 .product-price {
   font-size: 10px;
   font-weight: bold;
   color: #333;
+  margin-bottom: 15px;
 }
 
 /* 상세 페이지 디자인 */
@@ -1092,6 +1179,11 @@ span input {
   text-align: right;
 }
 
+.product-discription-category-score {
+  align-items: center;
+  width: 100%;
+}
+
 .product-discription-category-score div {
   font-size: 10px;
   font-weight: bold;
@@ -1145,36 +1237,40 @@ span input {
 .bar {
   display: flex;
   align-items: center;
-  margin-bottom: 2px;
-  height: 25px;
+  margin-bottom: 12px;
+  height: 15px;
   width: 100%;
-  max-width: 350px;
-}
-
-.bar-label {
-  width: 76px;
-  font-size: 13px;
-  font-weight: bold;
-  color: #333;
+  max-width: 300px;
+  background-color: #f3f3f3;
+  border-radius: 4px;
+  position: relative;
 }
 
 .bar-fill {
-  width: 0;
-  height: 20px;
-  background-color: #1dcd9f;
-  text-align: right;
-  border-radius: 5px;
-  transition: width 3s ease-in-out;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 12px;
+  background-color: var(--color-emotion-purple);
+  height: 100%;
+  border-radius: 4px;
+  transition: width 1s ease-in-out;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
+
+.bar-label {
+  font-size: 13px;
+  font-weight: bold;
+  color: #333;
+  margin-top: -2px;
+  margin-bottom: 3px;
+}
+
 
 .bar-fill span {
   font-size: 10px;
-  margin-top: 15px;
-  text-align: right;
+  color: white;
+  font-weight: bold;
+  margin-left: 5px;
+  text-align: center;
 }
 
 .product-discription-image img {
@@ -1192,7 +1288,7 @@ span input {
   /* 버튼의 너비 */
   right: 210px;
   /* 오른쪽 여백 */
-  bottom: 70px;
+  bottom: 60px;
   /* 아래 여백 */
   height: 20px;
   /* 버튼의 높이 */
@@ -1402,7 +1498,7 @@ span input {
 
 
 /* 모바일 반응형 디자인 */
-@media (max-width: 768px) {
+@media (max-width: 844px) {
   .mobile-frame {
     width: 100%;
     margin-right: 0;
@@ -1445,4 +1541,15 @@ span input {
     padding: 15px;
     /* 모바일 화면에서 여백 조정 */
   }
+
+  .email-submit {
+    width: auto;
+    max-width: 100%;
+    height: 40px;
+    font-size: 14px;
+    padding: 10px 15px;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
+

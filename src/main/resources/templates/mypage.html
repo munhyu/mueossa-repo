@@ -8,14 +8,16 @@
 
 <div layout:fragment="content">
 
-<div id="login" class="page">
-  <div class="section-title">마이페이지</div>
-  <div class="mypage-buttons">
-    <button type="button" class="mypage-button" onclick="location.href='goUpdate'">회원정보 수정</button>
-    <button type="button" class="mypage-button" onclick="location.href='goPreference'">취향 선택</button>
-    <button type="button" class="mypage-button" onclick="location.href='goWishlist'">찜한 상품</button>
+  <div id="login" class="page">
+    <div class="section-title">마이페이지</div>
+    <div class="mypage-buttons">
+      <button type="button" class="mypage-button" onclick="location.href='goUpdate'">회원정보 수정</button>
+      <button type="button" class="mypage-button" onclick="location.href='goPreference'">취향 선택</button>
+      <button type="button" class="mypage-button" onclick="location.href='goWishlist'">찜한 상품</button>
+      <button type="button" class="mypage-button" onclick="location.href='goInquiryList'"
+        th:if="${session.user}">문의하기</button>
+    </div>
   </div>
-</div>
 </div>
 
 

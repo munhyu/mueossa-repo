@@ -16,12 +16,6 @@ public class MainController {
     return "inquiry"; // inquiry.html로 이동
   }
 
-  // 문의 게시판 페이지 이동
-  @GetMapping("/goInquiryList")
-  public String goInquiryList() {
-    return "inquiryList";
-  }
-
   // 계정 찾는 페이지 이동
   @GetMapping("/goFindAccount")
   public String goFindAccount() {

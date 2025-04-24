@@ -6,12 +6,6 @@
 
 <th:block layout:fragment="css">
     <style>
-        h1 {
-            margin-top: 20px;
-            font-size: 28px;
-            color: #333;
-        }
-
         table {
             width: 100%;
             border-collapse: collapse;
@@ -50,32 +44,59 @@
 
     <h1>문의 하기</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-                <th>내용</th>
-            </tr>
-        </thead>
+    <table th:if="${inquiry == null}">
         <tbody>
             <tr>
-                <form action="/inquiryWrite" method="post">
-                    <td>
-                        <input type="text" name="title" placeholder="제목 입력" required>
-                    </td>
-                    <td>
-                        <input type="text" name="writer" placeholder="작성자 입력" required>
-                    </td>
-                    <br>
-                    <td>
-                        <input type="text" name="content" placeholder="내용 입력" style="width: 100%;" required>
-                    </td>
-                    <td>
-                        <button type="submit">작성</button>
-                    </td>
-                </form>
+                <td colspan="4">
+                    <form th:action="@{/inquiryInsert}" method="post"
+                        style="display: flex; flex-direction: column; gap: 16px;">
+                        <label>
+                            제목
+                            <input type="text" name="title" placeholder="제목을 입력하세요" required
+                                style="width: 100%; margin-top: 4px;">
+                        </label>
+                        <label>
+                            작성자 ID
+                            <input type="text" name="uId" th:value="${session.user.id}" readonly
+                                style="width: 100%; margin-top: 4px;">
+                        </label>
+                        <label>
+                            내용
+                            <textarea name="content" placeholder="문의 내용을 입력하세요" required
+                                style="width: 100%; height: 100px; margin-top: 4px;"></textarea>
+                        </label>
+                        <button type="submit" style="margin-top: 12px;">문의 등록</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table th:if="${inquiry}">
+        <tbody>
+            <tr>
+                <td colspan="4">
+                    <form th:action="@{/inquiryInsert}" method="post"
+                        style="display: flex; flex-direction: column; gap: 16px;">
+                        <input type="text" name="idx" th:value="${inquiry.idx}" readonly style="display: none;">
+                        <label>
+                            제목
+                            <input type="text" name="title" placeholder="제목을 입력하세요" required
+                                style="width: 100%; margin-top: 4px;" th:value="${inquiry.title}">
+                        </label>
+                        <label>
+                            작성자 ID
+                            <input type="text" name="uId" readonly style="width: 100%; margin-top: 4px;"
+                                th:value="${inquiry.uId}">
+                        </label>
+                        <label>
+                            내용
+                            <textarea name="content" placeholder="문의 내용을 입력하세요" required
+                                style="width: 100%; height: 100px; margin-top: 4px;"
+                                th:text="${inquiry.content}"></textarea>
+                        </label>
+                        <button type="submit" style="margin-top: 12px;">문의 등록</button>
+                    </form>
+                </td>
             </tr>
         </tbody>
     </table>
@@ -85,75 +106,6 @@
 <th:block layout:fragment="footer"></th:block>
 
 
-<th:block layout:fragment="script-footer">
-
-    <script th:inline="javascript">
-        document.querySelector('.id-check-button').addEventListener('click', function () {
-            const id = document.querySelector('#id').value;
-            if (id) {
-                const formData = new URLSearchParams();
-                formData.append('id', id);
-
-                fetch('/checkId', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: formData.toString()
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        const idCheckField = document.querySelector('#id_check');
-                        if (data === false) {
-                            idCheckField.value = '이미 사용 중인 아이디입니다.';
-                            idCheckField.style.color = 'red'; // 불가능한 경우 빨간색
-                            $('button[type="submit"]').attr('disabled', true);
-                        } else {
-                            idCheckField.value = '사용 가능한 아이디입니다.';
-                            idCheckField.style.color = 'green'; // 가능한 경우 초록색
-                            $('button[type="submit"]').removeAttr('disabled')
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            } else {
-                alert('아이디를 입력하세요.');
-            }
-        });
-
-        document.querySelector('.email-check-button').addEventListener('click', function () {
-            const email = document.querySelector('#email').value;
-            if (email) {
-                const formData = new URLSearchParams();
-                formData.append('email', email);
-
-                fetch('/checkEmail', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    },
-                    body: formData.toString()
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        const emailCheckField = document.querySelector('#email_check');
-                        if (data === false) {
-                            emailCheckField.value = '이미 사용 중인 이메일입니다.';
-                            emailCheckField.style.color = 'red'; // 불가능한 경우 빨간색
-                            $('button[type="submit"]').attr('disabled', true);
-                        } else {
-                            emailCheckField.value = '사용 가능한 이메일입니다.';
-                            emailCheckField.style.color = 'green'; // 가능한 경우 초록색
-                            $('button[type="submit"]').removeAttr('disabled')
-                        }
-                    })
-                    .catch(error => console.error('Error:', error));
-            } else {
-                alert('이메일을 입력하세요.');
-            }
-        });
-
-    </script>
-
-</th:block>
+<th:block layout:fragment="script-footer"></th:block>
 
 </html>

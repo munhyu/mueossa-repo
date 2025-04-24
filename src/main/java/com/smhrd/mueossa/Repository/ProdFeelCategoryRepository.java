@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.smhrd.mueossa.dto.FilterForm;
 import com.smhrd.mueossa.dto.ProdCategoryAndGroupDTO;
 import com.smhrd.mueossa.dto.ProdFeelCategoryPercentileDTO;
 import com.smhrd.mueossa.dto.ProductAndCategoryDTO;

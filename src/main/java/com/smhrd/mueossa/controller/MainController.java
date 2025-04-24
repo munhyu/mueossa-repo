@@ -10,6 +10,12 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class MainController {
 
+  // 문의 페이지 이동
+  @GetMapping("/goInquiry")
+  public String goInquiry() {
+    return "inquiry"; // inquiry.html로 이동
+  }
+
   // 문의 게시판 페이지 이동
   @GetMapping("/goInquiryList")
   public String goInquiryList() {

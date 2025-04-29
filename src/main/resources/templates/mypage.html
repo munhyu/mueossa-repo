@@ -14,8 +14,14 @@
       <button type="button" class="mypage-button" onclick="location.href='goUpdate'">회원정보 수정</button>
       <button type="button" class="mypage-button" onclick="location.href='goPreference'">취향 선택</button>
       <button type="button" class="mypage-button" onclick="location.href='goWishlist'">찜한 상품</button>
-      <button type="button" class="mypage-button" onclick="location.href='goInquiryList'"
-        th:if="${session.user}">문의하기</button>
+      <button type="button" class="mypage-button" th:if="${session.user != null}"
+        onclick="location.href='goInquiryList'">
+        문의하기
+      </button>
+      <button type="button" class="mypage-button" th:if="${session.user == null}"
+        onclick="alert('로그인 후 이용 가능합니다.'); location.href='goLogin';">
+        문의하기
+      </button>
     </div>
   </div>
 </div>

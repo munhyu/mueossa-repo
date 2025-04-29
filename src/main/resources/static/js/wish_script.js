@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       event.stopPropagation(); // 이벤트 버블링 방지
 
       if (!productId) {
-        console.error("상품 ID를 찾을 수 없습니다.");
+        // console.error("상품 ID를 찾을 수 없습니다.");
         return;
       }
 
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
           }
         })
         .catch((error) => {
-          console.error("Error:", error);
+          // console.error("Error:", error);
           alert("오류가 발생했습니다. 다시 시도해주세요.");
         });
     });

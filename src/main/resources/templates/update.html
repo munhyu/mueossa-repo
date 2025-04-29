@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-<th:block layout:fragment="script"></th:block>
+<th:block layout:fragment="script">
+</th:block>
 
 <th:block layout:fragment="css"></th:block>
 
@@ -12,6 +13,7 @@
   <div id="join" class="page">
     <div class="section-title">회원 정보 수정</div>
 
+    <!-- 모달 -->
     <div th:fragment="confirmDeleteModal">
       <div id="custom-modal" class="modal" style="display: none;">
         <div class="modal-content">

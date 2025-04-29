@@ -11,6 +11,77 @@
 
 <th:block layout:fragment="content">
 
+  <!-- 안내 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="join-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>회원가입 완료 로그인 해주세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 아이디 입력X 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="id_check_modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>아이디를 입력하세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 이메일 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="email_check_modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>이메일을 입력하세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="confirmDeleteModal">
+    <div id="email_check_modal2" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>이메일 전송 중 오류가 발생했습니다.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 인증번호 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="number_check_modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>인증번호를 입력해주세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div th:fragment="confirmDeleteModal">
+    <div id="number_check_modal2" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>인증번호가 일치하지 않습니다.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
   <div id="join" class="page">
     <div class="section-title">SIGN UP</div>
     <!-- 회원가입 폼 위에 에러 메시지 출력 -->
@@ -80,8 +151,8 @@
       <!-- 하단 링크 -->
       <div class="join-links">
         <a href="goLogin">로그인</a> |
-        <a href="#">계정 찾기</a> |
-        <a href="#">문의하기</a>
+        <a href="goFindAccount">계정 찾기</a> |
+        <a href="goInquiryList">문의하기</a>
       </div>
 
       <!-- 완료 버튼 -->
@@ -132,7 +203,7 @@
           })
           .catch(error => console.error('Error:', error));
       } else {
-        alert('아이디를 입력하세요.');
+        $("#id_check_modal").css("display", "flex");
       }
     });
 
@@ -174,18 +245,17 @@
                 .then(response => response.json())
                 .then(result => {
                   if (result.success) {
-                    // alert('인증코드가 이메일로 전송되었습니다.');
                     checkCode = result.checkCode.toString()
                   } else {
-                    alert('이메일 전송에 실패했습니다.');
+                    $("#email_check_modal").css("display", "flex");
                   }
                 })
-                .catch(() => alert('이메일 전송 중 오류가 발생했습니다.'));
+                .catch(() => $("#email_check_modal2").css("display", "flex"));
             }
           })
           .catch(error => console.error('Error:', error));
       } else {
-        alert('이메일을 입력하세요.');
+        $("#email_check_modal").css("display", "flex");
       }
     });
 
@@ -195,22 +265,28 @@
       var serverCheckCode = checkCode;
       if (inputCode === serverCheckCode) {
         $('#email_authCodeInput').css('color', 'green');
-        // alert('인증이 완료되었습니다.');
         // 완료(회원가입) 버튼 활성화
         $('.join-buttons button[type="submit"]').prop('disabled', false);
       } else {
         $('#email_authCodeInput').css('color', 'red');
-        alert('인증번호가 일치하지 않습니다.');
+        if (inputCode === "") {
+          $("#number_check_modal").css("display", "flex");
+        } else {
+          $("#number_check_modal2").css("display", "flex");
+        }
         // 인증 실패 시 완료 버튼 비활성화
         $('.join-buttons button[type="submit"]').prop('disabled', true);
-        alert('인증번호를 다시 확인해주세요.');
       }
     }
-
+    // 모달 닫기
+    $(".modal").on("click", function () {
+      $(this).css("display", "none");
+    });
     // 페이지 로드 시 완료 버튼 비활성화
     $(document).ready(function () {
       $('.join-buttons button[type="submit"]').prop('disabled', true);
-    });  </script>
+    }); 
+  </script>
 
 </th:block>
 

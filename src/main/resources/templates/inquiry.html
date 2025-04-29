@@ -5,36 +5,7 @@
 <th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        table th,
-        table td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            text-align: left;
-        }
-
-        table th {
-            background-color: #f7f7f7;
-            color: #444;
-            font-weight: 600;
-        }
-
-        table td {
-            color: #555;
-            vertical-align: top;
-        }
-
-        table tr:hover {
-            background-color: #f1f9ff;
-        }
-    </style>
+ 
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -42,9 +13,9 @@
 
 <th:block layout:fragment="content">
 
-    <h1>문의 하기</h1>
+    <h1 class="inquiry-title">문의 하기</h1>
 
-    <table th:if="${inquiry == null}">
+    <table class="inquiry-write-table" th:if="${inquiry == null}">
         <tbody>
             <tr>
                 <td colspan="4">

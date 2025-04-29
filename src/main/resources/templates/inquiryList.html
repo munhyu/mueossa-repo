@@ -5,46 +5,7 @@
 <th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-    <style>
-        h1 {
-            margin-top: 20px;
-            font-size: 28px;
-            color: #333;
-        }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            font-size: 14px;
-        }
-
-        table th,
-        table td {
-            padding: 12px;
-            border-bottom: 1px solid #e0e0e0;
-            text-align: left;
-        }
-
-        table th {
-            background-color: #f7f7f7;
-            color: #444;
-            font-weight: 600;
-        }
-
-        table td {
-            color: #555;
-            vertical-align: top;
-        }
-
-        table tr:hover {
-            background-color: #f1f9ff;
-        }
-
-        #idx_vlaue {
-            display: none;
-        }
-    </style>
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -80,8 +41,10 @@
 
     <h1>문의 게시판</h1>
 
-    <a href="goInquiry">문의하기</a>
-    <table>
+    <div class="inquiry-button">
+        <a href="goInquiry">문의하기</a>
+    </div>
+    <table class="inquiry-table">
         <thead>
             <tr>
                 <th>제목</th>
@@ -99,9 +62,9 @@
                 <td>
                     <form action="goInquiry" method="post">
                         <input type="hidden" th:value="${inquiry.idx}" name="idx" id="idx_vlaue" />
-                        <button type="submit">수정</button>
+                        <button type="submit" class="inquiry-update-button">수정</button>
                     </form>
-                    <button type="button" class="delete-btn">삭제</button>
+                    <button type="button" class="inquiry-update-button">삭제</button>
                 </td>
             </tr>
         </tbody>

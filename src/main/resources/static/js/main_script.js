@@ -72,14 +72,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextButton = document.querySelector('.next-slide');
 
     if (!slides) {
-        console.error("슬라이드 요소를 찾을 수 없습니다.");
+        // console.error("슬라이드 요소를 찾을 수 없습니다.");
         return;
     }
 
     let currentIndex = 0;
     const totalSlides = slides.children.length;
-    console.log("슬라이드 요소:", slides);
-    console.log("슬라이드 개수:", totalSlides);
+    // console.log("슬라이드 요소:", slides);
+    // console.log("슬라이드 개수:", totalSlides);
 
     // 슬라이드 이동 함수
     function updateSlidePosition() {
@@ -159,7 +159,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const currentPath = window.location.pathname;
 
   // 현재 경로 출력
-  console.log("현재 경로:", currentPath);
+  // console.log("현재 경로:", currentPath);
 
   // 모든 탭 항목 가져오기
   const tabs = document.querySelectorAll(".tab-item");
@@ -174,27 +174,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const tabPath = tab.getAttribute("href");
 
       // 탭 경로 출력
-      console.log("탭 경로:", tabPath);
+      // console.log("탭 경로:", tabPath);
 
       // 현재 경로와 href 값이 일치하면 active 클래스 추가
       if (currentPath.includes(tabPath)) {
-          console.log(`활성화된 탭: ${tabPath}`);
+          // console.log(`활성화된 탭: ${tabPath}`);
           tab.classList.add("active");
       }
   });
 
   // 현재 경로에 따라 활성화된 탭에 active 클래스 추가
   if (currentPath.includes("/goHome")) {
-      console.log("홈 탭 활성화");
+      // console.log("홈 탭 활성화");
       document.getElementById("home").classList.add("active");
   } else if (currentPath.includes("/goCategory")) {
-      console.log("카테고리 탭 활성화");
+      // console.log("카테고리 탭 활성화");
       document.getElementById("category").classList.add("active");
   } else if (currentPath.includes("/goWishlist")) {
-      console.log("찜 탭 활성화");
+      // console.log("찜 탭 활성화");
       document.getElementById("wishlist").classList.add("active");
   } else if (currentPath.includes("/goMypage")) {
-      console.log("마이페이지 탭 활성화");
+      // console.log("마이페이지 탭 활성화");
       document.getElementById("mypage").classList.add("active");
   }
 });

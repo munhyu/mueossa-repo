@@ -83,7 +83,7 @@
 
 
   <div id="join" class="page">
-    <div class="section-title">SIGN UP</div>
+    <div class="section-title-join">SIGN UP</div>
     <!-- 회원가입 폼 위에 에러 메시지 출력 -->
     <div th:if="${error != null and error != ''}" class="error-message">
       <p th:text="${error}"></p>
@@ -129,21 +129,27 @@
 
       <!-- 비밀번호 입력 -->
       <span class="join-pw">
+        <div class="input-wrapper">
         <input type="password" id="pw" name="pw" placeholder="Password" required />
+      </div>
       </span>
 
       <!-- 닉네임 입력 -->
       <span class="join-nickname">
+        <div class="input-wrapper">
         <input type="text" id="nickname" name="nick" placeholder="닉네임 입력" required />
+      </div>
       </span>
 
       <!-- 성별 선택 -->
       <div class="join-gender">
+        <div class="input-wrapper">
         <select name="gender" id="gender" required>
           <option value="" disabled selected>성별을 선택하세요</option>
           <option value="M">남성</option>
           <option value="F">여성</option>
         </select>
+      </div>
       </div>
 
       <div class="divider"></div>

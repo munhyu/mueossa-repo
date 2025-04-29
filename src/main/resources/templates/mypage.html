@@ -8,6 +8,17 @@
 
 <div layout:fragment="content">
 
+  <div th:fragment="confirmDeleteModal">
+    <div id="login-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>로그인 먼저 진행해 해주세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div id="login" class="page">
     <div class="section-title">마이페이지</div>
     <div class="mypage-buttons">
@@ -19,7 +30,7 @@
         문의하기
       </button>
       <button type="button" class="mypage-button" th:if="${session.user == null}"
-        onclick="alert('로그인 후 이용 가능합니다.'); location.href='goLogin';">
+        onclick="document.getElementById('login-modal').style.display='flex';">
         문의하기
       </button>
     </div>
@@ -29,6 +40,13 @@
 
 <th:block layout:fragment="footer"></th:block>
 
-<th:block layout:fragment="script-footer"></th:block>
+<th:block layout:fragment="script-footer">
+  <script>
+    $(".modal").on("click", function () {
+      $(this).css("display", "none");
+      location.href = "goLogin";
+    });
+  </script>
+</th:block>
 
 </html>

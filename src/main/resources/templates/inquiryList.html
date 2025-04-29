@@ -5,7 +5,7 @@
 <th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-   
+
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -13,7 +13,33 @@
 
 <th:block layout:fragment="content">
 
-    <h1 class="inquiry-title">문의 게시판</h1>
+    <!-- 확인 모달 -->
+    <div th:fragment="confirmDeleteModal">
+        <div id="custom-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>게시글을 삭제 하시겠습니까?</p>
+                <div class="modal-buttons">
+                    <button id="modal-confirm" class="confirm-button">확인</button>
+                    <button id="modal-cancel" class="cancel-button">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 안내 모달 -->
+    <div th:fragment="confirmDeleteModal">
+        <div id="custom-modal2" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>다시 실행해주세요.</p>
+                <div class="modal-buttons">
+                    <button id="modal-confirm2" class="confirm-button">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <h1>문의 게시판</h1>
 
     <div class="inquiry-button">
         <a href="goInquiry">문의하기</a>
@@ -22,17 +48,17 @@
         <thead>
             <tr>
                 <th>제목</th>
+                <th>내용</th>
                 <th>작성자</th>
-                <th>작성일</th>
-                <th colspan="2">내용</th>
+                <th colspan="2">작성일</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="inquiry : ${inquiryList}">
                 <td th:text="${inquiry.title}"></td>
+                <td th:text="${inquiry.content}"></td>
                 <td th:text="${inquiry.uId}"></td>
                 <td th:text="${#dates.format(inquiry.createdAt, 'yyyy-MM-dd')}"></td>
-                <td th:text="${inquiry.content}"></td>
                 <td>
                     <form action="goInquiry" method="post">
                         <input type="hidden" th:value="${inquiry.idx}" name="idx" id="idx_vlaue" />
@@ -52,26 +78,43 @@
 <th:block layout:fragment="script-footer">
 
     <script th:inline="javascript">
-        // 각 삭제 버튼에 개별 이벤트 바인딩 (동적으로 여러 개 처리)
+        // 삭제 버튼 클릭 시 모달 열기 및 해당 문의 idx 저장
+        let selectedInquiryIdx = null;
         $(document).on("click", ".delete-btn", function () {
-            if (confirm("정말 삭제하시겠습니까?")) {
-                var idx = $(this).closest("tr").find("input[name='idx']").val();
+            selectedInquiryIdx = $(this).closest("tr").find("input[name='idx']").val();
+            $("#custom-modal").css("display", "flex");
+        });
+
+        // 모달의 취소 버튼 클릭 시 모달 닫기
+        $("#modal-cancel").on("click", function () {
+            $("#custom-modal").css("display", "none");
+            selectedInquiryIdx = null;
+        });
+
+        // 모달의 확인 버튼 클릭 시 삭제 요청
+        $("#modal-confirm").on("click", function () {
+            if (selectedInquiryIdx) {
                 fetch("deleteInquiry", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: idx.toString()
+                    body: selectedInquiryIdx.toString()
                 })
                     .then(response => {
                         if (response.ok) {
-                            location.reload(); // 페이지 새로고침
+                            location.reload();
                         } else {
-                            alert("삭제 실패");
+                            $("#custom-modal2").css("display", "flex");
                         }
                     });
+                // 모달 닫기
+                // $("#custom-modal").css("display", "none");
+                $(".modal").css("display", "none");
+                selectedInquiryIdx = null;
             }
         });
+
     </script>
 
 </th:block>

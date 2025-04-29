@@ -46,7 +46,7 @@
 </th:block>
 
 <th:block layout:fragment="css">
-  
+
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -78,7 +78,7 @@
                 <!-- <span><b>비밀번호:[[${user.pw}]]</b></span><br> -->
                 <input type="hidden" th:value="${user.id}" name="id" />
                 <input class="email-pw" type="password" name="pw" />
-                <button class="email-submit"type="submit">비밀번호 변경</button>
+                <button class="email-submit" type="submit">비밀번호 변경</button>
               </form>
               <!-- <span><b><a th:href="@{/}">비밀번호 변경</a></b></span> -->
             </th:block>
@@ -105,7 +105,7 @@
       <div class="login-links">
         <a href="goJoin">회원가입</a> |
         <a href="goLogin">로그인</a> |
-        <a href="#">문의하기</a>
+        <a href="goInquiryList">문의하기</a>
       </div>
 
       <!-- 이메일 찾기 버튼 -->

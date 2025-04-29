@@ -19,6 +19,4 @@ public class User {
 	private Timestamp joinedAt;
 	private String type;
 
-	// 기타 등등 추가
-
 }

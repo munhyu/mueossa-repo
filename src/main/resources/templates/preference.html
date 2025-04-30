@@ -1,36 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
-<th:block layout:fragment="script">
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const container = document.querySelector(".preference-buttons");
-            const labels = container.querySelectorAll("label");
-
-            labels.forEach(label => {
-                const input = document.getElementById(label.getAttribute("for"));
-
-                // 페이지 로드 시 이미 체크된 항목이면 selected 클래스 추가
-                if (input && input.checked) {
-                    label.classList.add("selected");
-                }
-
-                // 라벨 클릭 시 체크 상태 토글 및 스타일 반영
-                label.addEventListener("click", function (e) {
-                    e.preventDefault();
-                    if (input) {
-                        input.checked = !input.checked;
-                        label.classList.toggle("selected", input.checked);
-                    }
-                });
-            });
-        });
-    </script>
-
-
-</th:block>
+<th:block layout:fragment="script"></th:block>
 
 <th:block layout:fragment="css">
-    
+
 </th:block>
 
 <th:block layout:fragment="header"></th:block>
@@ -121,5 +94,32 @@
 </div>
 
 <th:block layout:fragment="footer"></th:block>
+
+<th:block layout:fragment="script">
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const container = document.querySelector(".preference-buttons");
+            const labels = container.querySelectorAll("label");
+
+            labels.forEach(label => {
+                const input = document.getElementById(label.getAttribute("for"));
+
+                // 페이지 로드 시 이미 체크된 항목이면 selected 클래스 추가
+                if (input && input.checked) {
+                    label.classList.add("selected");
+                }
+
+                // 라벨 클릭 시 체크 상태 토글 및 스타일 반영
+                label.addEventListener("click", function (e) {
+                    e.preventDefault();
+                    if (input) {
+                        input.checked = !input.checked;
+                        label.classList.toggle("selected", input.checked);
+                    }
+                });
+            });
+        });
+    </script>
+</th:block>
 
 </html>

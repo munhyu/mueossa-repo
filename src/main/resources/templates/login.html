@@ -11,6 +11,18 @@
 
 <th:block layout:fragment="content">
 
+  <!-- 확인 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="login-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>로그인 성공하였습니다.</p>
+        <div class="modal-buttons">
+          <button id="login-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 여기 로그인이에요! -->
   <div id="login" class="page">
     <div class="section-title">LOGIN</div>
@@ -50,5 +62,22 @@
 </th:block>
 
 <th:block layout:fragment="footer"></th:block>
+
+<th:block layout:fragment="script-footer">
+  <script>
+    $(function () {
+      const loginForm = $("form[method='post']");
+      $("button[type='submit']").on("click", function (e) {
+        e.preventDefault();
+        $("#login-modal").css("display", "flex");
+      });
+      // 모달 확인 버튼 클릭 시 폼 제출(로그인 시도)
+      $("#login-confirm").on("click", function () {
+        $("#login-modal").css("display", "none");
+        loginForm.submit();
+      });
+    });
+  </script>
+</th:block>
 
 </html>

@@ -1,8 +1,18 @@
 <html lang="ko">
 
-
 <th:block th:fragment="header">
 
+    <!-- 확인 모달 -->
+    <div th:fragment="confirmDeleteModal">
+        <div id="logout-modal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <p>로그아웃 되었습니다.</p>
+                <div class="modal-buttons">
+                    <button id="logout-confirm" class="confirm-button">확인</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="topbar">
         <a href="goHome">
@@ -17,7 +27,7 @@
 
         <div th:if="${session.user != null}">
             <!-- 로그아웃 버튼 -->
-            <div class="login-box" onclick="location.href='userLogout'">
+            <div class="login-box" id="logout_box">
                 <img th:src="@{/images/logout_icon.ico}" alt="logout" class="logout-image">
             </div>
         </div>
@@ -29,11 +39,19 @@
         </div>
 
     </div>
-
+    <script>
+        $(function () {
+            $("#logout_box").on("click", function (e) {
+                e.preventDefault();
+                $("#logout-modal").css("display", "flex");
+            });
+            $("#logout-confirm").on("click", function (e) {
+                e.preventDefault();
+                window.location.href = "/userLogout";
+            });
+        });
+    </script>
 
 </th:block>
-
-
-
 
 </html>

@@ -64,7 +64,7 @@
                         <input type="hidden" th:value="${inquiry.idx}" name="idx" id="idx_vlaue" />
                         <button type="submit" class="inquiry-update-button">수정</button>
                     </form>
-                    <button type="button" class="inquiry-update-button">삭제</button>
+                    <button type="button" id="delete-btn" class="inquiry-update-button">삭제</button>
                 </td>
             </tr>
         </tbody>
@@ -80,7 +80,7 @@
     <script th:inline="javascript">
         // 삭제 버튼 클릭 시 모달 열기 및 해당 문의 idx 저장
         let selectedInquiryIdx = null;
-        $(document).on("click", ".inquiry-update-button", function () {
+        $(document).on("click", "#delete-btn", function () {
             selectedInquiryIdx = $(this).closest("tr").find("input[name='idx']").val();
             $("#custom-modal").css("display", "flex");
         });

@@ -81,6 +81,17 @@
     </div>
   </div>
 
+  <!-- 확인 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="final-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>회원가입 완료되었습니다. 로그인 진행해주세요.</p>
+        <div class="modal-buttons">
+          <button id="modal-confirm2" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <div id="join" class="page">
     <div class="section-title-join">SIGN UP</div>
@@ -130,26 +141,26 @@
       <!-- 비밀번호 입력 -->
       <span class="join-pw">
         <div class="input-wrapper">
-        <input type="password" id="pw" name="pw" placeholder="Password" required />
-      </div>
+          <input type="password" id="pw" name="pw" placeholder="Password" required />
+        </div>
       </span>
 
       <!-- 닉네임 입력 -->
       <span class="join-nickname">
         <div class="input-wrapper">
-        <input type="text" id="nickname" name="nick" placeholder="닉네임 입력" required />
-      </div>
+          <input type="text" id="nickname" name="nick" placeholder="닉네임 입력" required />
+        </div>
       </span>
 
       <!-- 성별 선택 -->
       <div class="join-gender">
         <div class="input-wrapper">
-        <select name="gender" id="gender" required>
-          <option value="" disabled selected>성별을 선택하세요</option>
-          <option value="M">남성</option>
-          <option value="F">여성</option>
-        </select>
-      </div>
+          <select name="gender" id="gender" required>
+            <option value="" disabled selected>성별을 선택하세요</option>
+            <option value="M">남성</option>
+            <option value="F">여성</option>
+          </select>
+        </div>
       </div>
 
       <div class="divider"></div>
@@ -179,7 +190,7 @@
 
   <script th:inline="javascript">
     // 아이디 중복 체크
-    let checkCode = null; // 서버에서 받은 인증코드 초기화
+    let checkCode = null;
 
     document.querySelector('.id-check-button').addEventListener('click', function () {
       const id = document.querySelector('#id').value;
@@ -284,14 +295,35 @@
         $('.join-buttons button[type="submit"]').prop('disabled', true);
       }
     }
-    // 모달 닫기
-    $(".modal").on("click", function () {
-      $(this).css("display", "none");
+    // 모달 닫기 (모달 바깥 클릭 시 닫힘)
+    $(".modal").on("click", function (e) {
+      if ($(e.target).hasClass("modal")) {
+        $(this).css("display", "none");
+      }
     });
     // 페이지 로드 시 완료 버튼 비활성화
     $(document).ready(function () {
       $('.join-buttons button[type="submit"]').prop('disabled', true);
-    }); 
+
+      // 폼 제출 시(완료 버튼 클릭) 기본 동작 막고, 확인 모달(final-modal) 띄우기
+      let joinForm = $('form[action="/userInsert"]');
+      let formSubmitReady = false;
+
+      joinForm.on('submit', function (e) {
+        if (!formSubmitReady) {
+          e.preventDefault();
+          $("#final-modal").css("display", "flex");
+        }
+      });
+
+      // 확인 모달의 확인 버튼 클릭 시 실제 폼 제출
+      $("#modal-confirm2").on("click", function () {
+        $("#final-modal").css("display", "none");
+        formSubmitReady = true;
+        joinForm.submit();
+      });
+    });
+
   </script>
 
 </th:block>

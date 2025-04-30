@@ -66,63 +66,63 @@ http://scripts.sil.org/OFL
   font-family: 'Pretendard';
   font-weight: 900;
   font-display: swap;
-  src: local('Pretendard Black'), url(./font/woff2/Pretendard-Black.woff2) format('woff2'), url(./font/woff/Pretendard-Black.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Black.woff2") format("woff2"), url("../font/woff/Pretendard-Black.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 800;
   font-display: swap;
-  src: local('Pretendard ExtraBold'), url(./font/woff2/Pretendard-ExtraBold.woff2) format('woff2'), url(./font/woff/Pretendard-ExtraBold.woff) format('woff');
+  src: url("../font/woff2/Pretendard-ExtraBold.woff2") format("woff2"), url("../font/woff/Pretendard-ExtraBold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 700;
   font-display: swap;
-  src: local('Pretendard Bold'), url(./font/woff2/Pretendard-Bold.woff2) format('woff2'), url(./font/woff/Pretendard-Bold.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Bold.woff2") format("woff2"), url("../font/woff/Pretendard-Bold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 600;
   font-display: swap;
-  src: local('Pretendard SemiBold'), url(./font/woff2/Pretendard-SemiBold.woff2) format('woff2'), url(./font/woff/Pretendard-SemiBold.woff) format('woff');
+  src: url("../font/woff2/Pretendard-SemiBold.woff2") format("woff2"), url("../font/woff/Pretendard-SemiBold.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 500;
   font-display: swap;
-  src: local('Pretendard Medium'), url(./font/woff2/Pretendard-Medium.woff2) format('woff2'), url(./font/woff/Pretendard-Medium.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Medium.woff2") format("woff2"), url("../font/woff/Pretendard-Medium.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 400;
   font-display: swap;
-  src: local('Pretendard Regular'), url(./font/woff2/Pretendard-Regular.woff2) format('woff2'), url(./font/woff/Pretendard-Regular.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Regular.woff2") format("woff2"), url("../font/woff/Pretendard-Regular.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 300;
   font-display: swap;
-  src: local('Pretendard Light'), url(../font/woff2/Pretendard-Light.woff2) format('woff2'), url(../font/woff/Pretendard-Light.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Light.woff2") format("woff2"), url("../font/woff/Pretendard-Light.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 200;
   font-display: swap;
-  src: local('Pretendard ExtraLight'), url(../font/woff2/Pretendard-ExtraLight.woff2) format('woff2'), url(../font/woff/Pretendard-ExtraLight.woff) format('woff');
+  src: url("../font/woff2/Pretendard-ExtraLight.woff2") format("woff2"), url("../font/woff/Pretendard-ExtraLight.woff") format("woff");
 }
 
 @font-face {
   font-family: 'Pretendard';
   font-weight: 100;
   font-display: swap;
-  src: local('Pretendard Thin'), url(../font/woff2/Pretendard-Thin.woff2) format('woff2'), url(../font/woff/Pretendard-Thin.woff) format('woff');
+  src: url("../font/woff2/Pretendard-Thin.woff2") format("woff2"), url("../font/woff/Pretendard-Thin.woff") format("woff");
 }
 
 @font-face {
@@ -153,6 +153,7 @@ http://scripts.sil.org/OFL
   padding: 0;
   box-sizing: border-box;
   font-family: 'Pretendard', sans-serif;
+  font-weight: 500;
 }
 
 ::-webkit-scrollbar {
@@ -250,6 +251,8 @@ p {
   margin-left: -5px;
   margin-top: -5px;
   font-family: "Pretendard", sans-serif;
+  font-weight: 700;
+  letter-spacing: -2px;
 }
 
 .search-place {
@@ -1607,6 +1610,7 @@ span input {
   background-color: var(--color-secondary-dark);
   color: #ffffff;
   margin-bottom: 3px;
+  cursor: pointer;
 }
 
 .inquiry-write-table {

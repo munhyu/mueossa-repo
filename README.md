@@ -66,7 +66,7 @@
 
 | 구분 | 기술 스택 |
 |---|---|
-| **Frontend** | HTML5, CSS3, JavaScript, jQuery |
+| **Frontend** | HTML, CSS, JavaScript, jQuery |
 | **Backend** | Java, Spring Boot, Spring Data JPA, Thymeleaf, Tomcat |
 | **Database** | MySQL |
 | **Data Analysis & Modeling** | Python, Pandas, Numpy, Scikit-learn, Selenium, BeautifulSoup, Jupyter Notebook, Transformers (Hugging Face), PyTorch, Tensorflow |

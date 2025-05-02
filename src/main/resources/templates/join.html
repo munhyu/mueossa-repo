@@ -281,7 +281,9 @@
       var inputCode = $('#email_authCodeInput').val();
       var serverCheckCode = checkCode;
       if (inputCode === serverCheckCode) {
+        $('#email_authCodeInput').val('인증 완료');
         $('#email_authCodeInput').css('color', 'green');
+        $('#email_authCodeInput').attr('readonly', true);
         // 완료(회원가입) 버튼 활성화
         $('.join-buttons button[type="submit"]').prop('disabled', false);
       } else {
@@ -300,6 +302,10 @@
       if ($(e.target).hasClass("modal")) {
         $(this).css("display", "none");
       }
+    });
+    // 이메일 전송 오류 모달 닫기 (확인 버튼 클릭 시)
+    $("#email_check_modal2 .confirm-button").on("click", function () {
+      $("#email_check_modal2").css("display", "none");
     });
     // 페이지 로드 시 완료 버튼 비활성화
     $(document).ready(function () {

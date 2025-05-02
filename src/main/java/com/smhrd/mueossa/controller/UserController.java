@@ -26,7 +26,16 @@ public class UserController {
   // 로그인 처리
   @PostMapping("/userLogin")
   public String userLogin(User user, HttpSession session, Model model) {
-    return userSvc.loginUser(user, session, model) ? "redirect:/goHome" : "login";
+    boolean loginResult = userSvc.loginUser(user, session, model);
+    if (loginResult) {
+      // 성공 시 success 플래그를 model에 추가하여 login.html로 이동
+      model.addAttribute("success", true);
+      return "login";
+    } else {
+      // 실패 시 error 메시지와 함께 login.html로 이동
+      model.addAttribute("error", "아이디 또는 비밀번호가 잘못되었습니다.");
+      return "login";
+    }
   }
 
   // 로그아웃 처리(세션 유저 정보 삭제)

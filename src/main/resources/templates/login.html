@@ -11,13 +11,25 @@
 
 <th:block layout:fragment="content">
 
-  <!-- 확인 모달 -->
+  <!-- 로그인 성공 모달 -->
   <div th:fragment="confirmDeleteModal">
     <div id="login-modal" class="modal" style="display: none;">
       <div class="modal-content">
         <p>로그인 성공하였습니다.</p>
         <div class="modal-buttons">
           <button id="login-confirm" class="confirm-button">확인</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 로그인 실패 모달 -->
+  <div th:fragment="confirmDeleteModal">
+    <div id="fail-modal" class="modal" style="display: none;">
+      <div class="modal-content">
+        <p>로그인 실패 다시 시도해주세요.</p>
+        <div class="modal-buttons">
+          <button id="fail-confirm" class="confirm-button">확인</button>
         </div>
       </div>
     </div>
@@ -64,19 +76,25 @@
 <th:block layout:fragment="footer"></th:block>
 
 <th:block layout:fragment="script-footer">
-  <script>
+  <script th:inline="javascript">
     $(function () {
-      const loginForm = $("form[method='post']");
-      $("button[type='submit']").on("click", function (e) {
-        e.preventDefault();
-        $("#login-modal").css("display", "flex");
-      });
-      // 모달 확인 버튼 클릭 시 폼 제출(로그인 시도)
-      $("#login-confirm").on("click", function () {
-        $("#login-modal").css("display", "none");
-        loginForm.submit();
-      });
+      /*<![CDATA[*/
+      if ([[${ error != null}]]) {
+      $("#fail-modal").css("display", "flex");
+    }
+    if ([[${ success != null}]]) {
+      $("#login-modal").css("display", "flex");
+    }
+    /*]]>*/
+
+    $("#fail-confirm").on("click", function () {
+      $("#fail-modal").css("display", "none");
     });
+    $("#login-confirm").on("click", function () {
+      $("#login-modal").css("display", "none");
+      window.location.href = "goHome";
+    });
+  });
   </script>
 </th:block>
 

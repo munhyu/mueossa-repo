@@ -734,11 +734,50 @@ span input {
 
  .join-pw-confirm {
   width: 100%;
+  font-size: 14px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#email {
+  width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 2px solid #ccc;
   border-radius: 10px;
   box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pw {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pwCheck {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pwMatch {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .input-wrapper {

@@ -58,11 +58,9 @@
     <form method="post" th:action="@{/userUpdate}" th:object="${user}">
 
       <!-- email 입력 -->
-      <span class="join-email">
-        <div class="input-wrapper">
+      <span class="join-pw-confirm">
           <input type="email" id="email" name="email" placeholder="변경할 email" th:value="${session.user.email}"
             readonly />
-        </div>
       </span>
 
       <!-- 비밀번호 입력 -->
@@ -76,8 +74,8 @@
       </span>
 
       <!-- 비밀번호 확인 체크 -->
-      <span>
-        <input type="text" id="pwMatch" placeholder="" readonly />
+      <span class="join-pw-confirm">
+        <input type="text" id="pwMatch" placeholder="비밀번호 입력 시 일치 여부가 표시됩니다." readonly />
       </span>
 
       <!-- 닉네임 입력 -->

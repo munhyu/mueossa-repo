@@ -11,25 +11,13 @@
 
 <th:block layout:fragment="content">
 
-  <!-- 로그인 성공 모달 -->
+  <!-- 확인 모달 -->
   <div th:fragment="confirmDeleteModal">
     <div id="login-modal" class="modal" style="display: none;">
       <div class="modal-content">
         <p>로그인 성공하였습니다.</p>
         <div class="modal-buttons">
           <button id="login-confirm" class="confirm-button">확인</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 로그인 실패 모달 -->
-  <div th:fragment="confirmDeleteModal">
-    <div id="fail-modal" class="modal" style="display: none;">
-      <div class="modal-content">
-        <p>로그인 실패 다시 시도해주세요.</p>
-        <div class="modal-buttons">
-          <button id="fail-confirm" class="confirm-button">확인</button>
         </div>
       </div>
     </div>
@@ -76,7 +64,7 @@
 <th:block layout:fragment="footer"></th:block>
 
 <th:block layout:fragment="script-footer">
-  <script th:inline="javascript">
+  <script>
     $(function () {
       /*<![CDATA[*/
       if ([[${ error != null}]]) {

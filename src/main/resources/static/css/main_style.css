@@ -734,11 +734,50 @@ span input {
 
  .join-pw-confirm {
   width: 100%;
+  font-size: 14px;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#email {
+  width: 100%;
   padding: 10px;
   font-size: 14px;
   border: 2px solid #ccc;
   border-radius: 10px;
   box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pw {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pwCheck {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+}
+
+#pwMatch {
+  width: 100%;
+  padding: 10px;
+  font-size: 14px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
 }
 
 .input-wrapper {
@@ -882,6 +921,12 @@ span input {
   padding-right: 10px;
 }
 
+.prev-slide img {
+  width: 20px;
+  height: 20px;
+  margin-left: 10px;
+}
+
 .next-slide {
   position: absolute;
   top: 50%;
@@ -900,6 +945,12 @@ span input {
   font-size: 15px;
   line-height: 1;
   padding-left: 10px;
+}
+
+.next-slide img {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
 }
 
 .prev-slide {
@@ -1497,61 +1548,6 @@ span input {
 
 
 
-/* 모바일 반응형 디자인 */
-@media (max-width: 844px) {
-  .mobile-frame {
-    width: 100%;
-    margin-right: 0;
-    /* 모바일 화면에서 오른쪽 여백 제거 */
-  }
-
-  .topbar {
-    padding: 10px 8px;
-    /* 모바일 화면에서 여백 조정 */
-    height: 50px;
-    /* 모바일 화면에서 높이 조정 */
-  }
-
-  .tabbar {
-    width: 100%;
-    /* 모바일 화면에서 너비를 100%로 설정 */
-    bottom: 0;
-    /* 모바일 화면에서 하단에 고정 */
-    margin-left: 0;
-    /* 모바일 화면에서 왼쪽 여백 제거 */
-  }
-
-  .top-button {
-    right: 10px;
-    /* 모바일 화면에서 오른쪽 여백 줄임 */
-    bottom: 70px;
-    /* 모바일 화면에서 아래 여백 조정 */
-  }
-
-  .modal-content {
-    width: 90%;
-    /* 모바일 화면에서 너비를 90%로 설정 */
-    padding: 15px;
-    /* 모바일 화면에서 여백 조정 */
-  }
-
-  .email-modal-content {
-    width: 90%;
-    /* 모바일 화면에서 너비를 80%로 설정 */
-    padding: 15px;
-    /* 모바일 화면에서 여백 조정 */
-  }
-
-  .email-submit {
-    width: auto;
-    max-width: 100%;
-    height: 40px;
-    font-size: 14px;
-    padding: 10px 15px;
-    text-align: center;
-    white-space: nowrap;
-  }
-}
 
 /* 문의 페이지 */
 
@@ -1620,4 +1616,60 @@ span input {
   text-align: center;
   border: solid 1px gray;
   font-size: 11px;
+}
+
+/* 모바일 반응형 디자인 */
+@media (max-width: 844px) {
+  .mobile-frame {
+    width: 100%;
+    margin-right: 0;
+    /* 모바일 화면에서 오른쪽 여백 제거 */
+  }
+
+  .topbar {
+    padding: 10px 8px;
+    /* 모바일 화면에서 여백 조정 */
+    height: 50px;
+    /* 모바일 화면에서 높이 조정 */
+  }
+
+  .tabbar {
+    width: 100%;
+    /* 모바일 화면에서 너비를 100%로 설정 */
+    bottom: 0;
+    /* 모바일 화면에서 하단에 고정 */
+    margin-left: 0;
+    /* 모바일 화면에서 왼쪽 여백 제거 */
+  }
+
+  .top-button {
+    right: 10px;
+    /* 모바일 화면에서 오른쪽 여백 줄임 */
+    bottom: 70px;
+    /* 모바일 화면에서 아래 여백 조정 */
+  }
+
+  .modal-content {
+    width: 90%;
+    /* 모바일 화면에서 너비를 90%로 설정 */
+    padding: 15px;
+    /* 모바일 화면에서 여백 조정 */
+  }
+
+  .email-modal-content {
+    width: 90%;
+    /* 모바일 화면에서 너비를 80%로 설정 */
+    padding: 15px;
+    /* 모바일 화면에서 여백 조정 */
+  }
+
+  .email-submit {
+    width: auto;
+    max-width: 100%;
+    height: 40px;
+    font-size: 14px;
+    padding: 10px 15px;
+    text-align: center;
+    white-space: nowrap;
+  }
 }

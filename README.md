@@ -150,6 +150,9 @@
     * 감성 점수는 긍정 클래스의 softmax 확률 값을 0부터 100 사이의 값으로 변환하여 사용
 * 각 상품별 리뷰에 대해 긍정(1) 또는 부정(0) 라벨을 부여
 * 상품별 평균 감성 점수 및 평균 긍정 라벨을 산출
+![image](https://github.com/user-attachments/assets/b9650cfd-b982-4ef9-8922-d1fdddecee74)
+
+
 
 ## 💡 트러블슈팅
 

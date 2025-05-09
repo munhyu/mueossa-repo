@@ -66,17 +66,23 @@
 <th:block layout:fragment="script-footer">
   <script>
     $(function () {
-      const loginForm = $("form[method='post']");
-      $("button[type='submit']").on("click", function (e) {
-        e.preventDefault();
-        $("#login-modal").css("display", "flex");
-      });
-      // 모달 확인 버튼 클릭 시 폼 제출(로그인 시도)
-      $("#login-confirm").on("click", function () {
-        $("#login-modal").css("display", "none");
-        loginForm.submit();
-      });
+      /*<![CDATA[*/
+      if ([[${ error != null}]]) {
+      $("#fail-modal").css("display", "flex");
+    }
+    if ([[${ success != null}]]) {
+      $("#login-modal").css("display", "flex");
+    }
+    /*]]>*/
+
+    $("#fail-confirm").on("click", function () {
+      $("#fail-modal").css("display", "none");
     });
+    $("#login-confirm").on("click", function () {
+      $("#login-modal").css("display", "none");
+      window.location.href = "goHome";
+    });
+  });
   </script>
 </th:block>
 
